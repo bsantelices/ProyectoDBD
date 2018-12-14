@@ -14,7 +14,7 @@ class RolController extends Controller
      */
     public function index()
     {
-        $rol = Rol::all(;)
+        $rol = Rol::all();
         return $rol;
     }
 

@@ -20,7 +20,7 @@ class CreateAsientosTable extends Migration
             $table->integer('numero_asiento');
             $table->integer('tipo_asiento');
             //Booleano va asi o boolean.
-            $table->boolval('disponibilidad');
+            $table->boolean('disponibilidad');
             $table->timestamps();
         });
     }

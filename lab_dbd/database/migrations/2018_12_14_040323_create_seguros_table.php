@@ -18,8 +18,7 @@ class CreateSegurosTable extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_termino');
             $table->integer('costo');
-            //Que era esto wn, el nombre del seguro no mas (?)
-            $table->string('tipo_seguro',15);
+            $table->string('tipo_seguro',15);//tipo
             $table->timestamps();
         });
     }
