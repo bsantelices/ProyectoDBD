@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\holi;
+use App\Vuelo;
 use Illuminate\Http\Request;
 
-class HoliController extends Controller
+class VueloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class HoliController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\holi  $holi
+     * @param  \App\Vuelo  $vuelo
      * @return \Illuminate\Http\Response
      */
-    public function show(holi $holi)
+    public function show(Vuelo $vuelo)
     {
         //
     }
@@ -52,10 +52,10 @@ class HoliController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\holi  $holi
+     * @param  \App\Vuelo  $vuelo
      * @return \Illuminate\Http\Response
      */
-    public function edit(holi $holi)
+    public function edit(Vuelo $vuelo)
     {
         //
     }
@@ -64,10 +64,10 @@ class HoliController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\holi  $holi
+     * @param  \App\Vuelo  $vuelo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, holi $holi)
+    public function update(Request $request, Vuelo $vuelo)
     {
         //
     }
@@ -75,10 +75,10 @@ class HoliController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\holi  $holi
+     * @param  \App\Vuelo  $vuelo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(holi $holi)
+    public function destroy(Vuelo $vuelo)
     {
         //
     }
