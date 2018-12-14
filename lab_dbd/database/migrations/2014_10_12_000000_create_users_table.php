@@ -22,8 +22,6 @@ class CreateUsersTable extends Migration
             $table->integer('dni_pasaporte');
             $table->string('rut', 50);
             $table->string('nombre_cuenta', 20);
-
-
             /*
             $table->increments('id');
             $table->string('name');

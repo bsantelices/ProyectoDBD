@@ -15,6 +15,11 @@ class CreatePaquetesTable extends Migration
     {
         Schema::create('paquetes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('precio_normal');
+            $table->integer('precio_descuento');
+            //OJO: wn no importa si quedan iguales algunos nombres entre las entidades. Pta igual le  podriamos poner descripcion_paquete.
+            $table->string('Descripcion',250);
+            $table->integer('tipo');
             $table->timestamps();
         });
     }

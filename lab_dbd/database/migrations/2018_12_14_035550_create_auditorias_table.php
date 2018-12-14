@@ -15,6 +15,10 @@ class CreateAuditoriasTable extends Migration
     {
         Schema::create('auditorias', function (Blueprint $table) {
             $table->increments('id');
+            //**Llave foranea de usuario.**
+            $table->string('titulo_registro',20);
+            $table->string('descripcion_registro',250);
+            $table->date('fecha_registro');
             $table->timestamps();
         });
     }

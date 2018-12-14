@@ -15,6 +15,9 @@ class CreateAeropuertosTable extends Migration
     {
         Schema::create('aeropuertos', function (Blueprint $table) {
             $table->increments('id');
+            //**Llave foranea de Ubicacion**
+            $table->string('nombre_aeropuerto',20);
+            $table->string('tipo_aeropuerto',15);
             $table->timestamps();
         });
     }

@@ -15,6 +15,12 @@ class CreateAsientosTable extends Migration
     {
         Schema::create('asientos', function (Blueprint $table) {
             $table->increments('id');
+            //**Llave foranea de Vuelo.**
+            //**Llave foranea de Avion.**
+            $table->integer('numero_asiento');
+            $table->integer('tipo_asiento');
+            //Booleano va asi o boolean.
+            $table->boolval('disponibilidad');
             $table->timestamps();
         });
     }

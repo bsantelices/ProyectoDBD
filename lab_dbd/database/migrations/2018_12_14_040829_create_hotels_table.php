@@ -15,6 +15,9 @@ class CreateHotelsTable extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->increments('id');
+            //**Llave foranea de Ubicacion.**
+            $table->string('nombre_hotel',20);
+            $table->integer('calificacion');
             $table->timestamps();
         });
     }

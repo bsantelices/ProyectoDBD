@@ -15,6 +15,16 @@ class CreateVuelosTable extends Migration
     {
         Schema::create('vuelos', function (Blueprint $table) {
             $table->increments('id');
+            //**Llave foranea Aeropuerto Origen.**
+            //**Llave foranea Aeropuerto Destino.**
+            $table->integer('tipo_vuelo');
+            $table->integer('precio');
+            $table->integer('numero_escala');
+            $table->integer('cantidad_equipaje');
+            $table->date('fecha_partida');
+            $table->date('fecha_regreso');
+            $table->time('hora_partida');
+            $table->time('hora_regreso');
             $table->timestamps();
         });
     }
