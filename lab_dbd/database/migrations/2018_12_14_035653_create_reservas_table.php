@@ -18,11 +18,8 @@ class CreateReservasTable extends Migration
             //**Llave foranea de usuario.**
             $table->integer('monto');
             $table->string('descripcion',150);
-            //OJO: Que contendran cuando el usuario no haya realizado ninguna compra?.
-            $table->date('fecha_compra');
-            $table->time('hora_compra');
-            //Parece que nos equivocamo al pasar este wn.
-            //$table->string('correo',25);
+            $table->date('fecha_reserva');
+            $table->time('hora_reservac');
             $table->timestamps();
         });
     }

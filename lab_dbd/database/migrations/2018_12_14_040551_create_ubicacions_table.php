@@ -20,7 +20,6 @@ class CreateUbicacionsTable extends Migration
             $table->string('ciudad',15);
             $table->string('pais',15);
             $table->string('calle',15);
-            //Lo cambie a integer, estaba con stirng jasj.
             $table->integer('numero_direccion');
             $table->integer('codigo_postal');
             $table->timestamps();

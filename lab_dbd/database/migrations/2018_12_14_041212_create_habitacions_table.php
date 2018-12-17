@@ -16,7 +16,7 @@ class CreateHabitacionsTable extends Migration
         Schema::create('habitacions', function (Blueprint $table) {
             $table->increments('id');
             //**Llave foranea de Hotel.**
-            //Falta nombre del hotel jasj.
+            $table->string('nombre');
             $table->integer('precio_habitacion');
             $table->integer('calificacion');
             $table->integer('capacidad_adultos');
