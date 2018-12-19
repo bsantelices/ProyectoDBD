@@ -8,5 +8,8 @@ class Avion extends Model
 {
     public function vuelo(){
     	return $this->belongs(Vuelo::class,'vuelo_id');
-    }    
+    }   
+    protected $fillable = [
+    'marca','capacidad',
+    ]; 
 }

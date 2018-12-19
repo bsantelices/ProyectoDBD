@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('nombre', 50);
             $table->string('rut', 20);
             $table->integer('dni_pasaporte');
-            $table->string('rut', 50);
+            //$table->string('rut', 50); (?)Repetido
             $table->string('nombre_cuenta', 20);
             /*
             $table->increments('id');
@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             */
         });
     }
+
 
     /**
      * Reverse the migrations.

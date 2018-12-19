@@ -12,4 +12,7 @@ class Asiento extends Model
     public function avion(){
     	return $this->belongs(Avion::class,'avion_id');
     }
+    protected $fillable = [
+    'numero_asiento','tipo_asiento','disponibilidad',
+    ];
 }

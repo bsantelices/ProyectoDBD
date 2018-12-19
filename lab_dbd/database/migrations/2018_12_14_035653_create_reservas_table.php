@@ -19,10 +19,15 @@ class CreateReservasTable extends Migration
             $table->integer('monto');
             $table->string('descripcion',150);
             $table->date('fecha_reserva');
-            $table->time('hora_reservac');
+            $table->time('fecha_reserva');
             $table->timestamps();
         });
     }
+
+        protected $fillable = [
+        'monto','descripcion','fecha_reserva',
+    ];
+}
 
     /**
      * Reverse the migrations.
