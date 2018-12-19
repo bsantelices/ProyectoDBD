@@ -8,6 +8,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
+    public function rol()
+    {
+        return $this->belongsToMany(Rol::class,'rol_id');
+    }
+    public function auditoria()
+    {
+        return $this->hasOne(Auditoria::class,'auditoria_id');
+    }
+    public function reserva()
+    {
+        return $this->hasMany(Reserva::class,'reserva_id');
+    }
+
     use Notifiable;
 
     /**
