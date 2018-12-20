@@ -15,9 +15,12 @@ class CreatePlanesTable extends Migration
     {
         Schema::create('planes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('brand',20);
+            $table->string('brand');
             $table->integer('capacity');
             $table->timestamps();
+
+            $table->unsignedInteger('airport_id');
+            $table->foreign('airport_id')->references('id')->on('airports');
         });
     }
 

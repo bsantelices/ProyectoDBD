@@ -15,11 +15,16 @@ class CreateLogsTable extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('transactionCode',50);
-            $table->string('title',100);
-            $table->string('description',100);
+            $table->string('transactionCode')->nullable();
+            $table->string('title');
+            $table->text('description');
             $table->timestamps();
 
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedInteger('payment_method_id')->nullable();
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
         });
     }
 

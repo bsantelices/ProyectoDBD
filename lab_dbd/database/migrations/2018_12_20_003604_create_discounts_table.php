@@ -16,9 +16,9 @@ class CreateDiscountsTable extends Migration
         Schema::create('discounts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('amount');
-            $table->string('type', 50);
-            $table->string('title', 50);
-            $table->string('description', 255);
+            $table->string('type');
+            $table->string('title');
+            $table->text('description');
             $table->timestamps();
         });
     }

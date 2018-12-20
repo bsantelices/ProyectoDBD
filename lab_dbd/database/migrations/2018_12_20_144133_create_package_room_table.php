@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolUsersTable extends Migration
+class CreatePackageRoomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreateRolUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('rol_users', function (Blueprint $table) {
+        Schema::create('package_room', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->unsignedInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms');
+            
+            $table->unsignedInteger('package_id');
+            $table->foreign('package_id')->references('id')->on('packages');
         });
     }
 
@@ -26,6 +32,6 @@ class CreateRolUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rol_users');
+        Schema::dropIfExists('package_room');
     }
 }

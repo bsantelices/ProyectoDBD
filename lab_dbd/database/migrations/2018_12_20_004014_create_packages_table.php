@@ -16,9 +16,12 @@ class CreatePackagesTable extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('value');
-            $table->string('description',255);
-            $table->integer('type');
+            $table->text('description');
+            $table->string('type');
             $table->timestamps();
+
+            $table->unsignedInteger('discount_id')->nullable();
+            $table->foreign('discount_id')->references('id')->on('discounts');
         });
     }
 

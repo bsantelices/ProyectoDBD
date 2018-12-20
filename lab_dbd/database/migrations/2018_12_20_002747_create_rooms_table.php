@@ -19,8 +19,11 @@ class CreateRoomsTable extends Migration
             $table->integer('state');
             $table->integer('adultCapacity');
             $table->integer('childrenCapacity');
-            $table->string('type', 50);
+            $table->string('type');
             $table->timestamps();
+
+            $table->unsignedInteger('hotel_id');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
         });
     }
 

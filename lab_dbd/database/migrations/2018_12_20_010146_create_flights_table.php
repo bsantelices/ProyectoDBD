@@ -15,11 +15,14 @@ class CreateFlightsTable extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('coordinatesStart',255);
-            $table->string('coordinatesEnd',255);
-            $table->string('type', 50);
+            $table->string('coordinatesStart');
+            $table->string('coordinatesEnd');
+            $table->string('type');
             $table->integer('luggageCapacity');
             $table->timestamps();
+
+            $table->unsignedInteger('airport_id')->nullable();
+            $table->foreign('airport_id')->references('id')->on('airports');
         });
     }
 

@@ -15,9 +15,12 @@ class CreateAirportsTable extends Migration
     {
         Schema::create('airports', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',50);
-            $table->string('type',50);
+            $table->string('name');
+            $table->string('type');
             $table->timestamps();
+
+            $table->unsignedInteger('location_id')->nullable();
+            $table->foreign('location_id')->references('id')->on('locations');
         });
     }
 

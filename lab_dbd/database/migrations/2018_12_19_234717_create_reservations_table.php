@@ -16,9 +16,15 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('amount');
-            $table->string('descripcion',200);
-            $table->boolean('completed');
+            $table->text('description');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
+
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedInteger('payment_method_id');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
         });
     }
 

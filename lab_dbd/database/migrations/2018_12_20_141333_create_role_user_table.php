@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePackageReservationsTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreatePackageReservationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('package_reservations', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            
+            $table->unsignedInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -26,6 +32,6 @@ class CreatePackageReservationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('package_reservations');
+        Schema::dropIfExists('role_user');
     }
 }

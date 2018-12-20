@@ -8,30 +8,21 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-
-    public function rol()
-    {
-        return $this->belongsToMany(Rol::class,'rol_id');
-    }
-    public function auditoria()
-    {
-        return $this->hasOne(Log::class,'Log_id');
-    }
-    public function reserva()
-    {
-        return $this->hasMany(Reservation::class,'reservation_id');
-    }
-
     use Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
-     */
-    
+     */   
     protected $fillable = [
-        'password','moneyAmount', 'name', 'lastname','dni','accountName',
+        'password',
+        'moneyAmount',
+        'name',
+        'lastname',
+        'email',
+        'dni',
+        'accountName'
     ];
 
     /**
@@ -42,4 +33,28 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the roles records associated with the user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class,'role_id');
+    }
+
+    /**
+     * Get the log record associated with the user.
+     */
+    public function log()
+    {
+        return $this->hasOne(Log::class,'log_id');
+    }
+
+    /**
+     * Get the reservations records associated with the user.
+     */
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class,'reservation_id');
+    }
 }
