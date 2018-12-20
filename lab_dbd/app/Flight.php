@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hotel extends Model
+class Flight extends Model
 {
     protected $fillable = [
-        'name','state'
+        'coordinatesStart','coordinatesEnd','type','luggageCapacity'
     ];
 }

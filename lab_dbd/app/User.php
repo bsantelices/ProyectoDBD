@@ -15,11 +15,11 @@ class User extends Authenticatable
     }
     public function auditoria()
     {
-        return $this->hasOne(Auditoria::class,'auditoria_id');
+        return $this->hasOne(Log::class,'Log_id');
     }
     public function reserva()
     {
-        return $this->hasMany(Reserva::class,'reserva_id');
+        return $this->hasMany(Reservation::class,'reservation_id');
     }
 
     use Notifiable;
@@ -31,7 +31,7 @@ class User extends Authenticatable
      */
     
     protected $fillable = [
-        'nombre','fondos', 'email', 'password','rut','dni_pasaporte','nombre_cuenta',
+        'password','moneyAmount', 'name', 'lastname','dni','accountName',
     ];
 
     /**

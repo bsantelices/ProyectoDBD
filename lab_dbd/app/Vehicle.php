@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hotel extends Model
+class Vehicle extends Model
 {
     protected $fillable = [
-        'name','state'
-    ];
+        'capacity','model','brand','patent'
+    ]; 
 }

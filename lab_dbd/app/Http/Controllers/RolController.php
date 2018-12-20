@@ -37,7 +37,7 @@ class RolController extends Controller
     public function store(Request $request)
     {
         $rol = new Rol();
-        $rol->nombre_rol = $request->nombre_rol;
+        $rol->name = $request->name;
         $rol->save();
         $all = Rol::all();
         return $all;
@@ -46,10 +46,10 @@ class RolController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\rol  $rol
+     * @param  \App\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function show(rol $rol)
+    public function show(Rol $rol)
     {
         $rol = Rol::find($id);
         return $rol;
@@ -58,10 +58,10 @@ class RolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\rol  $rol
+     * @param  \App\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function edit(rol $rol)
+    public function edit(Rol $rol)
     {
         //
     }
@@ -70,13 +70,13 @@ class RolController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\rol  $rol
+     * @param  \App\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rol $rol)
+    public function update(Request $request, Rol $rol)
     {
         $rol = Rol::find($id);
-        $rol->nombreRol= $request->nombre_rol;
+        $rol->name= $request->name;
         $rol->save();
         return $rol;
     }
@@ -84,10 +84,10 @@ class RolController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\rol  $rol
+     * @param  \App\Rol  $rol
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rol $rol)
+    public function destroy(Rol $rol)
     {
         $rol = Rol::find($id);
         $rol->delete();
