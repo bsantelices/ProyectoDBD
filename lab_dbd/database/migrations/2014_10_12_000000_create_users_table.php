@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('moneyAmount');
+            $table->integer('moneyAmount')->default(0);
             $table->string('dni');
-            $table->string('accountName');
+            $table->string('username')->unique();
             $table->rememberToken();
             $table->timestamps();
         });
