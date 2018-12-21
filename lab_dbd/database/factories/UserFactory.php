@@ -16,6 +16,10 @@ use Faker\Factory as Factory;
 
 $factory->define(App\User::class, function (Faker $faker) {
 
+    /*
+    * Faker can't create dni values from default (US), so I changed it to (es_ES) where it can
+    * This makes the names and other stuff be in Spanish too
+    */
     $faker = Factory::create('es_ES');
 
     return [
