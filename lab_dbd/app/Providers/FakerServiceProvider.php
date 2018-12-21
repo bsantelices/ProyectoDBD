@@ -37,9 +37,9 @@ class FakerServiceProvider extends ServiceProvider
                 public function role()
                 {
                     $roles = [
-                        'administrador',
-                        'developer',
-                        'normal',
+                        'administrator', // admin or administrator
+                        'developer',     // develop or developer
+                        'normal',        // normal or --- 
                     ];
                     return $roles[rand(0,count($roles)-1)];
                 }
