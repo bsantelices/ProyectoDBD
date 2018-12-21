@@ -1,5 +1,5 @@
 
--- Last modification date: 2018-12-20 15:43:22.014
+-- Last modification date: 2018-12-21 15:24:50.476
 
 -- tables
 -- Table: airport
@@ -284,7 +284,7 @@ CREATE TABLE "user" (
     lastname varchar(255)  NOT NULL,
     dni varchar(255)  NOT NULL,
     email varchar(255)  NOT NULL,
-    accountName varchar(255)  NOT NULL,
+    username varchar(255)  NOT NULL,
     created_at timestamp  NOT NULL,
     updated_at timestamp  NOT NULL,
     CONSTRAINT email UNIQUE (email) NOT DEFERRABLE  INITIALLY IMMEDIATE,
