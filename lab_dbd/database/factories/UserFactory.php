@@ -5,21 +5,19 @@ use Faker\Factory as Factory;
 
 /*
 |--------------------------------------------------------------------------
-| Model Factories
+| User Factory
 |--------------------------------------------------------------------------
 |
-| This directory should contain each of the model factory definitions for
-| your application. Factories provide a convenient way to generate new
-| model instances for testing / seeding your application's database.
+| Define a factory class to create users with faker
 |
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
 
     /*
-    * Faker can't create dni values from default (US), so I changed it to (es_ES) where it can
-    * This makes the names and other stuff be in Spanish too
-    */
+     * Faker can't create dni values from default (US), so I changed it to (es_ES) where it can
+     * This makes the names and other stuff be in Spanish too
+     */
     $faker = Factory::create('es_ES');
 
     return [
