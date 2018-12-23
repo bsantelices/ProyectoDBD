@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Rol;
+use App\Role;
 use Illuminate\Http\Request;
 
 class RolController extends Controller
@@ -14,8 +14,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        $rol = Rol::all();
-        return $rol;
+        $role = Role::all();
+        return $role;
     }
 
     /**
@@ -36,32 +36,32 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = new Rol();
-        $rol->name = $request->name;
-        $rol->save();
-        $all = Rol::all();
-        return $all;
+        $role = new Role();
+        $role->name = $request->name;
+        $role->save();
+        $role = Role::all();
+        return $role;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Rol $rol)
+    public function show(Role $role)
     {
-        $rol = Rol::find($id);
-        return $rol;
+        $role = Role::find($id);
+        return $role;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rol $rol)
+    public function edit(Role $role)
     {
         //
     }
@@ -70,27 +70,27 @@ class RolController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rol  $rol
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, Role $role)
     {
-        $rol = Rol::find($id);
-        $rol->name= $request->name;
-        $rol->save();
-        return $rol;
+        $role = Role::find($id);
+        $role->name= $request->name;
+        $role->save();
+        return $role;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Rol  $rol
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rol $rol)
+    public function destroy(Role $role)
     {
-        $rol = Rol::find($id);
-        $rol->delete();
-        return Rol:: all();
+        $role = Role::find($id);
+        $role->delete();
+        return Role:: all();
     }
 }
