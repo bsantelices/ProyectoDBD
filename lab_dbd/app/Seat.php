@@ -14,6 +14,7 @@ class Seat extends Model
     protected $fillable = [
         'code',
         'type',
+        'available',
         'flight_id',
         'plane_id'
     ];

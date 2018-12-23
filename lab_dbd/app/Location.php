@@ -15,6 +15,8 @@ class Location extends Model
         'coordinates',
         'city',
         'country',
+        'street',
+        'houseCode',
         'postalCode'
     ];
 

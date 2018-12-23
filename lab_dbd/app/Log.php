@@ -12,9 +12,11 @@ class Log extends Model
      * @var array
      */
     protected $fillable = [
+        'transactionCode',
         'title',
         'description',
-        'user_id'
+        'user_id',
+        'payment_method_id'
     ];
 
     /**

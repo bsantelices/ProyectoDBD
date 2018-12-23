@@ -15,6 +15,7 @@ class Package extends Model
         'value',
         'description',
         'type',
+        'discount_id'
     ];
 
     /**
