@@ -14,7 +14,8 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
-        //
+        $paymentMethod = PaymentMethod::all();
+        return $paymentMethod;
     }
 
     /**
@@ -35,7 +36,11 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paymentMethod = new PaymentMethod();
+        $paymentMethod->type = $request->type;
+        $paymentMethod->save();
+        $paymentMethod = PaymentMethod::all();
+        return $paymentMethod;
     }
 
     /**
@@ -46,7 +51,8 @@ class PaymentMethodController extends Controller
      */
     public function show(PaymentMethod $paymentMethod)
     {
-        //
+        $paymentMethod = PaymentMethod::find($id);
+        return $paymentMethod;
     }
 
     /**
@@ -69,7 +75,10 @@ class PaymentMethodController extends Controller
      */
     public function update(Request $request, PaymentMethod $paymentMethod)
     {
-        //
+        $paymentMethod = PaymentMethod::find($id);
+        $paymentMethod->type = $request->type;
+        $paymentMethod->save();
+        return $paymentMethod;
     }
 
     /**
@@ -80,6 +89,8 @@ class PaymentMethodController extends Controller
      */
     public function destroy(PaymentMethod $paymentMethod)
     {
-        //
+        $paymentMethod = PaymentMethod::find($id);
+        $paymentMethod->delete();
+        return PaymentMethod::all();
     }
 }

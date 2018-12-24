@@ -14,7 +14,8 @@ class LogController extends Controller
      */
     public function index()
     {
-        //
+        $log = Log::all();
+        return $log;
     }
 
     /**
@@ -35,7 +36,15 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $log = new Log();
+        $log->transactionCode = $request->transactionCode;
+        $log->title = $request->title;
+        $log->description = $request->description;
+        $log->user_id = $request->user_id;
+        $log->payment_method_id = $request->payment_method_id;
+        $log->save();
+        $log = Log::all();
+        return $log;
     }
 
     /**
@@ -46,7 +55,8 @@ class LogController extends Controller
      */
     public function show(Log $log)
     {
-        //
+        $log = Log::find($id);
+        return $log;
     }
 
     /**
@@ -69,7 +79,14 @@ class LogController extends Controller
      */
     public function update(Request $request, Log $log)
     {
-        //
+        $log = Log::find($id);
+        $log->transactionCode = $request->transactionCode;
+        $log->title = $request->title;
+        $log->description = $request->description;
+        $log->user_id = $request->user_id;
+        $log->payment_method_id = $request->payment_method_id;
+        $log->save();
+        return $log;
     }
 
     /**
@@ -80,6 +97,8 @@ class LogController extends Controller
      */
     public function destroy(Log $log)
     {
-        //
+        $log = Log::find($id);
+        $log->delete();
+        return Log::all();
     }
 }

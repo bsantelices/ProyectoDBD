@@ -14,7 +14,8 @@ class FlightController extends Controller
      */
     public function index()
     {
-        //
+        $flight = Flight::all();
+        return $flight;
     }
 
     /**
@@ -35,7 +36,15 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $flight = new Flight();
+        $flight->coordinatesStart = $request->coordinatesStart;
+        $flight->coordinatesEnd = $request->coordinatesEnd;
+        $flight->type = $request->type;
+        $flight->luggageCapacity = $request->luggageCapacity;
+        $flight->airport_id = $request->airport_id;
+        $flight->save();
+        $flight = Flight::all();
+        return $flight;
     }
 
     /**
@@ -46,7 +55,8 @@ class FlightController extends Controller
      */
     public function show(Flight $flight)
     {
-        //
+        $flight = Flight::find($id);
+        return $flight;
     }
 
     /**
@@ -69,7 +79,14 @@ class FlightController extends Controller
      */
     public function update(Request $request, Flight $flight)
     {
-        //
+        $flight = Flight::find($id);
+        $flight->coordinatesStart = $request->coordinatesStart;
+        $flight->coordinatesEnd = $request->coordinatesEnd;
+        $flight->type = $request->type;
+        $flight->luggageCapacity = $request->luggageCapacity;
+        $flight->airport_id = $request->airport_id;
+        $flight->save();
+        return $flight;
     }
 
     /**
@@ -80,6 +97,8 @@ class FlightController extends Controller
      */
     public function destroy(Flight $flight)
     {
-        //
+        $flight = Flight::find($id);
+        $flight->delete();
+        return Flight::all();
     }
 }

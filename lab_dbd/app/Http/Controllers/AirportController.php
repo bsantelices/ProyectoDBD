@@ -14,7 +14,8 @@ class AirportController extends Controller
      */
     public function index()
     {
-        //
+        $airport = Airport::all();
+        return $airport;
     }
 
     /**
@@ -35,7 +36,13 @@ class AirportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $airport = new Airport();
+        $airport->names = $request->names;
+        $airport->type = $request->type;
+        $airport->location_id = $request->location_id;
+        $airport->save();
+        $airport = Airport::all();
+        return $airport;
     }
 
     /**
@@ -46,7 +53,8 @@ class AirportController extends Controller
      */
     public function show(Airport $airport)
     {
-        //
+        $airport = Airport::find($id);
+        return $airport;
     }
 
     /**
@@ -69,7 +77,12 @@ class AirportController extends Controller
      */
     public function update(Request $request, Airport $airport)
     {
-        //
+        $airport = Airport::find($id);
+        $airport->names = $request->names;
+        $airport->type = $request->type;
+        $airport->location_id = $request->location_id;
+        $airport->save();
+        return $airport;
     }
 
     /**
@@ -80,6 +93,8 @@ class AirportController extends Controller
      */
     public function destroy(Airport $airport)
     {
-        //
+        $airport = Airport::find($id);
+        $airport->delete();
+        return Airport::all();
     }
 }

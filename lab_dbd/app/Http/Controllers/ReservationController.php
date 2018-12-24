@@ -14,7 +14,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservation = Reservation::all();
+        return $reservation; 
     }
 
     /**
@@ -35,7 +36,15 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reservation = new Reservation();
+        $reservation->amount = $request->amount;
+        $reservation->description = $request->description;
+        $reservation->completed = $request->completed;
+        $reservation->payment_method_id = $request->payment_method_id;
+        $reservation->user_id = $request->user_id;
+        $reservation->save();
+        $reservation = Reservation::all();
+        return $reservation;
     }
 
     /**
@@ -46,7 +55,8 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        $reservation = Reservation::find($id);
+        return $reservation;
     }
 
     /**
@@ -69,7 +79,14 @@ class ReservationController extends Controller
      */
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $reservation = Reservation::find($id);
+        $reservation->amount = $request->amount;
+        $reservation->description = $request->description;
+        $reservation->completed = $request->completed;
+        $reservation->payment_method_id = $request->payment_method_id;
+        $reservation->user_id = $request->user_id;
+        $reservation->save();
+        return $reservation;
     }
 
     /**
@@ -80,6 +97,8 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation = Reservation::find($id);
+        $reservation->delete();
+        return Reservation::all();
     }
 }

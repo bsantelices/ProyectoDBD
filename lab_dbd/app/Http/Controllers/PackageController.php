@@ -14,7 +14,8 @@ class PackageController extends Controller
      */
     public function index()
     {
-        //
+        $package = Package::all();
+        return $package;
     }
 
     /**
@@ -35,7 +36,14 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $package = new Package();
+        $package->value = $request->value;
+        $package->description = $request->description;
+        $package->type = $request->type;
+        $package->discount_id = $request->discount_id;
+        $package->save();
+        $package = Package::all();
+        return $package;
     }
 
     /**
@@ -46,7 +54,8 @@ class PackageController extends Controller
      */
     public function show(Package $package)
     {
-        //
+        $package = Package::find($id);
+        return $package;
     }
 
     /**
@@ -69,7 +78,13 @@ class PackageController extends Controller
      */
     public function update(Request $request, Package $package)
     {
-        //
+        $package = Package::find($id);
+        $package->value = $request->value;
+        $package->description = $request->description;
+        $package->type = $request->type;
+        $package->discount_id = $request->discount_id;
+        $package->save();
+        return $package;        
     }
 
     /**
@@ -80,6 +95,8 @@ class PackageController extends Controller
      */
     public function destroy(Package $package)
     {
-        //
+        $package = Package::find($id);
+        $package->delete();
+        return Package::all();
     }
 }

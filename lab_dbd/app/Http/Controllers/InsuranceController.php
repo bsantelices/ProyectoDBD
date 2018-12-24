@@ -14,7 +14,8 @@ class InsuranceController extends Controller
      */
     public function index()
     {
-        //
+        $insurance = Insurance::all();
+        return $insurance;
     }
 
     /**
@@ -35,7 +36,12 @@ class InsuranceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $insurance = new Insurance();
+        $insurance->value = $request->value;
+        $insurance->type = $request->type;
+        $insurance->save();
+        $insurance = Insurance::all();
+        return $insurance;
     }
 
     /**
@@ -46,7 +52,8 @@ class InsuranceController extends Controller
      */
     public function show(Insurance $insurance)
     {
-        //
+        $insurance = Insurance::find($id);
+        return $insurance;
     }
 
     /**
@@ -69,7 +76,11 @@ class InsuranceController extends Controller
      */
     public function update(Request $request, Insurance $insurance)
     {
-        //
+        $insurance = Insurance::find($id);
+        $insurance->value = $request->value;
+        $insurance->type = $request->type;
+        $insurance->save();
+        return $insurance;
     }
 
     /**
@@ -80,6 +91,8 @@ class InsuranceController extends Controller
      */
     public function destroy(Insurance $insurance)
     {
-        //
+        $insurance = Insurance::find($id);
+        $insurance->delete();
+        return Insurance::all();
     }
 }

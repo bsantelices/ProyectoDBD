@@ -14,7 +14,8 @@ class SeatController extends Controller
      */
     public function index()
     {
-        //
+        $seat = Seat::all();
+        return $seat;
     }
 
     /**
@@ -35,7 +36,15 @@ class SeatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $seat = new Seat();
+        $seat->code = $request->code;
+        $seat->type = $request->type;
+        $seat->available = $request->available;
+        $seat->flight_id = $request->flight_id;
+        $seat->plane_id = $request->plane_id;
+        $seat->save();
+        $seat = Seat::all();
+        return $seat;
     }
 
     /**
@@ -46,7 +55,8 @@ class SeatController extends Controller
      */
     public function show(Seat $seat)
     {
-        //
+        $seat = Seat::find($id);
+        return $seat;
     }
 
     /**
@@ -69,7 +79,14 @@ class SeatController extends Controller
      */
     public function update(Request $request, Seat $seat)
     {
-        //
+        $seat = Seat::find($id);
+        $seat->code = $request->code;
+        $seat->type = $request->type;
+        $seat->available = $request->available;
+        $seat->flight_id = $request->flight_id;
+        $seat->plane_id = $request->plane_id;
+        $seat->save();        
+        return $seat;        
     }
 
     /**
@@ -80,6 +97,8 @@ class SeatController extends Controller
      */
     public function destroy(Seat $seat)
     {
-        //
+        $seat = Seat::find($id);
+        $seat->delete();
+        return Seat::all();
     }
 }

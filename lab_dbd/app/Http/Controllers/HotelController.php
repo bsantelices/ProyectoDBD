@@ -14,7 +14,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        $hotel = Hotel::all();
+        return $hotel;
     }
 
     /**
@@ -35,7 +36,13 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $hotel = new Hotel();
+        $hotel->name = $request->name;
+        $hotel->state = $request->state;
+        $hotel->location_id = $request->location_id;
+        $hotel->save();
+        $hotel = Hotel::all();
+        return $hotel;
     }
 
     /**
@@ -46,7 +53,8 @@ class HotelController extends Controller
      */
     public function show(Hotel $hotel)
     {
-        //
+        $hotel = Hotel::find($id);
+        return $hotel;
     }
 
     /**
@@ -69,7 +77,12 @@ class HotelController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
-        //
+        $hotel = Hotel::find($id);
+        $hotel->name = $request->name;
+        $hotel->state = $request->state;
+        $hotel->location_id = $request->location_id;
+        $hotel->save();
+        return $hotel;
     }
 
     /**
@@ -80,6 +93,8 @@ class HotelController extends Controller
      */
     public function destroy(Hotel $hotel)
     {
-        //
+        $hotel = Hotel::find($id);
+        $hotel->delete();
+        return Hotel::all();
     }
 }

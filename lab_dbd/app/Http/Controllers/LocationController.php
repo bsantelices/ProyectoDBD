@@ -14,7 +14,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        $location = Location::all();
+        return $location;
     }
 
     /**
@@ -35,7 +36,16 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $location = new Location();
+        $location->coordinates = $request->coordinates;
+        $location->city = $request->city;
+        $location->country = $request->country;
+        $location->street = $request->street;
+        $location->houseCode = $request->houseCode;
+        $location->postalCode = $request->postalCode;
+        $location->save();
+        $location = Location::all();
+        return $location;
     }
 
     /**
@@ -46,7 +56,8 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        $location = Location($id);
+        return $location;
     }
 
     /**
@@ -69,7 +80,15 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $location = Location::find($id);
+        $location->coordinates = $request->coordinates;
+        $location->city = $request->city;
+        $location->country = $request->country;
+        $location->street = $request->street;
+        $location->houseCode = $request->houseCode;
+        $location->postalCode = $request->postalCode;
+        $location->save();
+        return $location;
     }
 
     /**
@@ -80,6 +99,8 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location = Location::find($id);
+        $location->delete();
+        return Location::all();
     }
 }

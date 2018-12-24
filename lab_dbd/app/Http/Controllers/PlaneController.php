@@ -14,7 +14,8 @@ class PlaneController extends Controller
      */
     public function index()
     {
-        //
+        $plane = Plane::all();
+        return $plane;
     }
 
     /**
@@ -35,7 +36,13 @@ class PlaneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $plane = new Plane();
+        $plane->brand = $request->brand;
+        $plane->capacity = $request->capacity;
+        $plane->airport_id = $request->airport_id;
+        $plane->save();
+        $plane = Plane::all();
+        return $plane;
     }
 
     /**
@@ -46,7 +53,8 @@ class PlaneController extends Controller
      */
     public function show(Plane $plane)
     {
-        //
+        $plane = Plane::find($id);
+        return $plane;
     }
 
     /**
@@ -69,7 +77,12 @@ class PlaneController extends Controller
      */
     public function update(Request $request, Plane $plane)
     {
-        //
+        $plane = Plane::find($id);
+        $plane->brand = $request->brand;
+        $plane->capacity = $request->capacity;
+        $plane->airport_id = $request->airport_id;
+        $plane->save();
+        return $plane;
     }
 
     /**
@@ -80,6 +93,8 @@ class PlaneController extends Controller
      */
     public function destroy(Plane $plane)
     {
-        //
+        $plane = Plane::find($id);
+        $plane->delete();
+        return Plane::all();
     }
 }

@@ -14,7 +14,8 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        //
+        $discount = Discount::all();
+        return $discount;
     }
 
     /**
@@ -35,7 +36,14 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $discount = new Discount();
+        $discount->amount = $request->amount;
+        $discount->type = $request->type;
+        $discount->title = $request->title;
+        $discount->description = $request->description;
+        $discount->save();
+        $discount = Discount::all();
+        return $discount;
     }
 
     /**
@@ -46,7 +54,8 @@ class DiscountController extends Controller
      */
     public function show(Discount $discount)
     {
-        //
+        $discount = Discount::find($id);
+        return $discount;
     }
 
     /**
@@ -69,7 +78,13 @@ class DiscountController extends Controller
      */
     public function update(Request $request, Discount $discount)
     {
-        //
+        $discount = Discount::find($id);
+        $discount->amount = $request->amount;
+        $discount->type = $request->type;
+        $discount->title = $request->title;
+        $discount->description = $request->description;
+        $discount->save();
+        return $discount;
     }
 
     /**
@@ -80,6 +95,8 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
-        //
+        $discount = Discount::find($id);
+        $discount->delete();
+        return Discount::all();
     }
 }

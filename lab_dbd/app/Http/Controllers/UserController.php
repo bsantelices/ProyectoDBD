@@ -35,7 +35,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->password = $request->password;
+        $user->moneyAmount = $request->moneyAmount;
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->dni = $request->dni;
+        $user->email = $request->email;
+        $user->username = $request->username;
+        $user->save();
+        $user = User::all();
+        return $user;
     }
 
     /**
@@ -46,7 +56,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return $user;
     }
 
     /**
@@ -69,7 +80,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->password = $request->password;
+        $user->moneyAmount = $request->moneyAmount;
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->dni = $request->dni;
+        $user->email = $request->email;
+        $user->username = $request->username;    
+        $user->save();
+        return $user;    
     }
 
     /**
@@ -80,6 +100,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return User::all();
     }
 }
