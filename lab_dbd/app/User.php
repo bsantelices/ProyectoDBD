@@ -36,9 +36,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Execute NewUser Event that asign a role for the new user
+     */
     public static function boot()
     {
         parent::boot();
+        //only when created
         static::created(function($user) {
             event(new NewUser($user));
         });
