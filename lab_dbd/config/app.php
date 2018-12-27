@@ -162,6 +162,7 @@ return [
 
         // My providers
         App\Providers\FakerServiceProvider::class,
+        \Froiden\SqlGenerator\SqlGeneratorServiceProvider::class,
 
     ],
 

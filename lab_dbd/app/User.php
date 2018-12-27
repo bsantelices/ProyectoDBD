@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Events\Registered;
+use App\Events\NewUser;
 
 class User extends Authenticatable
 {
@@ -34,12 +36,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::created(function($user) {
+            event(new NewUser($user));
+        });
+    }
+
+
     /**
      * Get the roles records associated with the user.
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class,'role_id');
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     /**
@@ -47,7 +58,7 @@ class User extends Authenticatable
      */
     public function log()
     {
-        return $this->hasOne(Log::class,'log_id');
+        return $this->hasOne(Log::class);
     }
 
     /**
@@ -55,6 +66,6 @@ class User extends Authenticatable
      */
     public function reservations()
     {
-        return $this->hasMany(Reservation::class,'reservation_id');
+        return $this->hasMany(Reservation::class);
     }
 }

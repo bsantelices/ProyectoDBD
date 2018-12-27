@@ -41,7 +41,7 @@ class FakerServiceProvider extends ServiceProvider
                         'developer',     // develop or developer
                         'normal',        // normal or --- 
                     ];
-                    return $roles[rand(0,count($roles)-1)];
+                    return $roles[array_rand($roles)];
                 }
 
                 /*
