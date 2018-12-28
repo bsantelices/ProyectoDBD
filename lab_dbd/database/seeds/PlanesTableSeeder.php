@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Payment_methodsTableSeeder extends Seeder
+class PlanesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class Payment_methodsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Plane::class,10)->create();
     }
 }
