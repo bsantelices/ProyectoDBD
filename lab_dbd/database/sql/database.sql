@@ -419,3 +419,73 @@ alter table
   "reservation_seat" 
 add 
   constraint "reservation_seat_seat_id_foreign" foreign key ("seat_id") references "seats" ("id");
+
+
+
+INSERT INTO airport VALUES ('Aeropuerto Atacama','Tipo gigante');
+INSERT INTO airport VALUES ('Aeropuerto Valdivia','Tipo mediano');
+INSERT INTO airport VALUES ('Aeropuerto Santiago','Tipo menor');
+
+INSERT INTO discount VALUES (10000,'10%','Descuento del 10%','Este descuento descuenta 10% a todas las compras dentro de la paguina');
+INSERT INTO discount VALUES (50000,'20%','Descuento del 20%','Este descuento descuenta 20% a todas las compras dentro de la paguina');
+INSERT INTO discount VALUES (10000,'30%','Descuento del 30%','Este descuento descuenta 30% a todas las compras dentro de la paguina');
+
+INSERT INTO flight VALUES ('40.7127837 -74.00594130000002','-26.625062629569683 -70.25322903438365','Internacional',1000);
+INSERT INTO flight VALUES ('-26.625062629569683 -70.25322903438365','-32.817927419914014 -68.67119778438365','Nacional',1100);
+INSERT INTO flight VALUES ('-32.817927419914014 -68.67119778438365','-30.286766715010305 -57.06963528438365','Internacional',600);
+
+/*
+  A que se refiere el state, a la cantidad de habitaciones disponibles, o si esta disponible o no el hotel.
+*/
+INSERT INTO hotel VALUES ('La diosa de santiago',30);
+INSERT INTO hotel VALUES ('La diosa de valdivia',20);
+INSERT INTO hotel VALUES ('El monarca del centro',10);
+
+INSERT INTO insurance VALUES (100000,'Seguro completo');
+INSERT INTO insurance VALUES (5000,'Seguro antirobos');
+INSERT INTO insurance VALUES (60000,'Seguro de vida');
+
+INSERT INTO location VALUES ('40.7127837 -74.00594130000002','Santiago','Chile','Las palmas',099,0005554);
+INSERT INTO location VALUES ('-26.625062629569683 -70.25322903438365','Valdivia','Chile','Las danza',675,1004574);
+INSERT INTO location VALUES ('-30.286766715010305 -57.06963528438365','Lima','Peru','Las bailarina',321,0231254);
+
+INSERT INTO log VALUES ('049201X','Reverva Nº049201X','El usuario realizo una reserva con los elementos asiento y seguro');
+INSERT INTO log VALUES ('039911X','Compra Nº039911X','El usuario realizo una compra de un seguro');
+INSERT INTO log VALUES ('0439291','Paquete Nº0439291','El usuario realizo la compra de un paquete');
+
+INSERT INTO package VALUES (500000,'Paquete de vuelo + seguro en santiago','Vuelo y seguro');
+INSERT INTO package VALUES (250000,'Paquete de vuelo + habitacion de hotel en atacama','Vuelo y habitacion');
+INSERT INTO package VALUES (930000,'Paquete de vuelo + habitacion + seguro de hotel en las vegas','Vuelo, habitacion y seguro');
+
+INSERT INTO paymentMethod VALUES ('Targeta vista');
+INSERT INTO paymentMethod VALUES ('Targeta credito');
+INSERT INTO paymentMethod VALUES ('Paypal');
+
+INSERT INTO plane VALUES ('Airbus 92',400);
+INSERT INTO plane VALUES ('AvionesLatinos 09',600);
+INSERT INTO plane VALUES ('AirLuxer A-1',900);
+
+INSERT INTO reservation VALUES(50000,'Reserva de vuelo',false);
+INSERT INTO reservation VALUES(70000,'Reserva de habitacion',true);
+INSERT INTO reservation VALUES(899000,'Reserva de vuelo',false);
+
+INSERT INTO role VALUES ('administrator');
+INSERT INTO role VALUES ('developer');
+INSERT INTO role VALUES ('normal');
+
+INSERT INTO room VALUES (50000,1,4,0,'Lujoso');
+INSERT INTO room VALUES (26000,0,6,0,'Economico');
+INSERT INTO room VALUES (40000,1,2,0,'Ejecutivo');
+
+INSERT INTO seat VALUES ('A-10','Lujoso',true);
+INSERT INTO seat VALUES ('B-14','Economico',false);
+INSERT INTO seat VALUES ('D-20','Economico',true);
+
+INSERT INTO vehicles VALUES (5,'SH-200','Audi','WJGHJ-3');
+INSERT INTO vehicles VALUES (4,'MH-600','BMW','HJHHW-H');
+INSERT INTO vehicles VALUES (6,'KH-900','Alpine','32GJEL');
+
+
+
+
+
