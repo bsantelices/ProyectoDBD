@@ -14,8 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $role = Role::all();
-        return $role;
+        return Role::all();
     }
 
     /**
@@ -36,11 +35,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Role();
-        $role->name = $request->name;
-        $role->save();
-        $role = Role::all();
-        return $role;
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Role::create($request->all());
     }
 
     /**
@@ -49,9 +52,8 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        $role = Role::find($id);
         return $role;
     }
 
@@ -73,10 +75,17 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        $role = Role::find($id);
-        $role->name= $request->name;
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $role->update($request->all());
         $role->save();
         return $role;
     }
@@ -87,10 +96,10 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        $role = Role::find($id);
         $role->delete();
-        return Role:: all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

@@ -14,8 +14,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $location = Location::all();
-        return $location;
+        return Location::all();
     }
 
     /**
@@ -36,16 +35,20 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $location = new Location();
-        $location->coordinates = $request->coordinates;
-        $location->city = $request->city;
-        $location->country = $request->country;
-        $location->street = $request->street;
-        $location->houseCode = $request->houseCode;
-        $location->postalCode = $request->postalCode;
-        $location->save();
-        $location = Location::all();
-        return $location;
+        $validator = Validator::make($request->all(), [
+            'city'        => 'required|string|max:255',
+            'coordinates' => 'required|string|max:255',
+            'country'     => 'required|string|max:255',
+            'street'      => 'required|string|max:255',
+            'houseCode'   => 'required|string|max:255',
+            'postalCode'  => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Location::create($request->all());
     }
 
     /**
@@ -54,9 +57,8 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Location $location)
     {
-        $location = Location($id);
         return $location;
     }
 
@@ -78,15 +80,22 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Location $location)
     {
-        $location = Location::find($id);
-        $location->coordinates = $request->coordinates;
-        $location->city = $request->city;
-        $location->country = $request->country;
-        $location->street = $request->street;
-        $location->houseCode = $request->houseCode;
-        $location->postalCode = $request->postalCode;
+        $validator = Validator::make($request->all(), [
+            'city'        => 'required|string|max:255',
+            'coordinates' => 'required|string|max:255',
+            'country'     => 'required|string|max:255',
+            'street'      => 'required|string|max:255',
+            'houseCode'   => 'required|string|max:255',
+            'postalCode'  => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $location->update($request->all());
         $location->save();
         return $location;
     }
@@ -97,10 +106,10 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Location $location)
     {
-        $location = Location::find($id);
         $location->delete();
-        return Location::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

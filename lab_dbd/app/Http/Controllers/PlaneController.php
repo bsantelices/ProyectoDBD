@@ -14,8 +14,7 @@ class PlaneController extends Controller
      */
     public function index()
     {
-        $plane = Plane::all();
-        return $plane;
+        return Plane::all();
     }
 
     /**
@@ -36,13 +35,17 @@ class PlaneController extends Controller
      */
     public function store(Request $request)
     {
-        $plane = new Plane();
-        $plane->brand = $request->brand;
-        $plane->capacity = $request->capacity;
-        $plane->airport_id = $request->airport_id;
-        $plane->save();
-        $plane = Plane::all();
-        return $plane;
+        $validator = Validator::make($request->all(), [
+            'brand'      => 'required|string|max:255',
+            'capacity'   => 'required|integer',
+            'airport_id' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Plane::create($request->all());
     }
 
     /**
@@ -51,9 +54,8 @@ class PlaneController extends Controller
      * @param  \App\Plane  $plane
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Plane $plane)
     {
-        $plane = Plane::find($id);
         return $plane;
     }
 
@@ -75,12 +77,19 @@ class PlaneController extends Controller
      * @param  \App\Plane  $plane
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Plane $plane)
     {
-        $plane = Plane::find($id);
-        $plane->brand = $request->brand;
-        $plane->capacity = $request->capacity;
-        $plane->airport_id = $request->airport_id;
+        $validator = Validator::make($request->all(), [
+            'brand'      => 'required|string|max:255',
+            'capacity'   => 'required|integer',
+            'airport_id' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $plane->update($request->all());
         $plane->save();
         return $plane;
     }
@@ -91,10 +100,10 @@ class PlaneController extends Controller
      * @param  \App\Plane  $plane
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Plane $plane)
     {
-        $plane = Plane::find($id);
         $plane->delete();
-        return Plane::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

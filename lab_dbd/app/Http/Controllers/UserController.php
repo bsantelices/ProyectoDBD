@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class UserController extends Controller
 {
@@ -13,8 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        return $user;
+        return User::all();
     }
 
     /**
@@ -35,17 +36,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->password = $request->password;
-        $user->moneyAmount = $request->moneyAmount;
-        $user->name = $request->name;
-        $user->lastname = $request->lastname;
-        $user->dni = $request->dni;
-        $user->email = $request->email;
-        $user->username = $request->username;
-        $user->save();
-        $user = User::all();
-        return $user;
+        $validator = Validator::make($request->all(), [
+            'moneyAmount' => 'required|integer',
+            'name'        => 'required|string|max:255',
+            'lastname'    => 'required|string|max:255',
+            'dni'         => 'required|string|max:255',
+            'email'       => 'required|string|max:255|email',
+            'username'    => 'required|string|max:255|unique',
+            'password'    => 'required|string',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return User::create([
+            'moneyAmount' => $request->moneyAmount,
+            'name'        => $request->name,
+            'lastname'    => $request->lastname,
+            'dni'         => $request->dni,
+            'email'       => $request->email,
+            'username'    => $request->username,
+            'password'    => Hash::make($request->password)
+        ]);
     }
 
     /**
@@ -54,9 +67,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::find($id);
         return $user;
     }
 
@@ -66,7 +78,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
     }
@@ -78,16 +90,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($id);
-        $user->password = $request->password;
-        $user->moneyAmount = $request->moneyAmount;
-        $user->name = $request->name;
-        $user->lastname = $request->lastname;
-        $user->dni = $request->dni;
-        $user->email = $request->email;
-        $user->username = $request->username;    
+        $validator = Validator::make($request->all(), [
+            'moneyAmount' => 'required|integer',
+            'name'        => 'required|string|max:255',
+            'lastname'    => 'required|string|max:255',
+            'dni'         => 'required|string|max:255',
+            'email'       => 'required|string|max:255|email',
+            'username'    => 'required|string|max:255|unique',
+            'password'    => 'required|string',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $user->update([
+            'moneyAmount' => $request->moneyAmount,
+            'name'        => $request->name,
+            'lastname'    => $request->lastname,
+            'dni'         => $request->dni,
+            'email'       => $request->email,
+            'username'    => $request->username,
+            'password'    => Hash::make($request->password)
+        ]);  
         $user->save();
         return $user;    
     }
@@ -98,10 +125,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
         $user->delete();
-        return User::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

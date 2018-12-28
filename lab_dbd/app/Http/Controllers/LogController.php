@@ -14,8 +14,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        $log = Log::all();
-        return $log;
+        return Log::all();
     }
 
     /**
@@ -36,15 +35,19 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-        $log = new Log();
-        $log->transactionCode = $request->transactionCode;
-        $log->title = $request->title;
-        $log->description = $request->description;
-        $log->user_id = $request->user_id;
-        $log->payment_method_id = $request->payment_method_id;
-        $log->save();
-        $log = Log::all();
-        return $log;
+        $validator = Validator::make($request->all(), [
+            'transactionCode'   => 'string|max:255',
+            'title'             => 'required|string|max:255',
+            'description'       => 'required|string',
+            'user_id'           => 'required|integer',
+            'payment_method_id' => 'integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Log::create($request->all());
     }
 
     /**
@@ -53,9 +56,8 @@ class LogController extends Controller
      * @param  \App\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Log $log)
     {
-        $log = Log::find($id);
         return $log;
     }
 
@@ -77,14 +79,21 @@ class LogController extends Controller
      * @param  \App\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Log $log)
     {
-        $log = Log::find($id);
-        $log->transactionCode = $request->transactionCode;
-        $log->title = $request->title;
-        $log->description = $request->description;
-        $log->user_id = $request->user_id;
-        $log->payment_method_id = $request->payment_method_id;
+        $validator = Validator::make($request->all(), [
+            'transactionCode'   => 'string|max:255',
+            'title'             => 'required|string|max:255',
+            'description'       => 'required|string',
+            'user_id'           => 'required|integer',
+            'payment_method_id' => 'integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $log->update($request->all());
         $log->save();
         return $log;
     }
@@ -95,10 +104,10 @@ class LogController extends Controller
      * @param  \App\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Log $log)
     {
-        $log = Log::find($id);
         $log->delete();
-        return Log::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

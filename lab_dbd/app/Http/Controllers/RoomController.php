@@ -14,8 +14,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $room = Room::all();
-        return $room;
+        return Room::all();
     }
 
     /**
@@ -36,16 +35,20 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        $room = new Room();
-        $room->value = $request->value;
-        $room->state = $request->state;
-        $room->adultCapacity = $request->adultCapacity;
-        $room->childrenCapacity = $request->childrenCapacity;
-        $room->type = $request->type;
-        $room->hotel_id = $request->hotel_id;
-        $room->save();
-        $room = Room::all();
-        return $room;
+        $validator = Validator::make($request->all(), [
+            'value'            => 'required|integer',
+            'state'            => 'required|integer',
+            'adultCapacity'    => 'required|integer',
+            'childrenCapacity' => 'required|integer',
+            'type'             => 'required|string|max:255',
+            'hotel_id'         => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Room::create($request->all());
     }
 
     /**
@@ -54,9 +57,8 @@ class RoomController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Room $room)
     {
-        $room = Room::find($id);
         return $room;
     }
 
@@ -78,15 +80,22 @@ class RoomController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Room $room)
     {
-        $room = Room::find($id);
-        $room->value = $request->value;
-        $room->state = $request->state;
-        $room->adultCapacity = $request->adultCapacity;
-        $room->childrenCapacity = $request->childrenCapacity;
-        $room->type = $request->type;
-        $room->hotel_id = $request->hotel_id;
+        $validator = Validator::make($request->all(), [
+            'value'            => 'required|integer',
+            'state'            => 'required|integer',
+            'adultCapacity'    => 'required|integer',
+            'childrenCapacity' => 'required|integer',
+            'type'             => 'required|string|max:255',
+            'hotel_id'         => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $room->update($request->all());
         $room->save();        
         return $room;        
     }
@@ -97,10 +106,10 @@ class RoomController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Room $room)
     {
-        $room = Room::find($id);
         $room->delete();
-        return Room::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

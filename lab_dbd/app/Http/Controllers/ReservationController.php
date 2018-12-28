@@ -14,8 +14,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservation = Reservation::all();
-        return $reservation; 
+        return Reservation::all();
     }
 
     /**
@@ -36,15 +35,19 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $reservation = new Reservation();
-        $reservation->amount = $request->amount;
-        $reservation->description = $request->description;
-        $reservation->completed = $request->completed;
-        $reservation->payment_method_id = $request->payment_method_id;
-        $reservation->user_id = $request->user_id;
-        $reservation->save();
-        $reservation = Reservation::all();
-        return $reservation;
+        $validator = Validator::make($request->all(), [
+            'description'       => 'required|string',
+            'ammount'           => 'required|integer',
+            'completed'         => 'required|boolean',
+            'payment_method_id' => 'required|integer',
+            'user_id'           => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Reservation::create($request->all());
     }
 
     /**
@@ -53,9 +56,8 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Reservation $reservation)
     {
-        $reservation = Reservation::find($id);
         return $reservation;
     }
 
@@ -79,12 +81,19 @@ class ReservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $reservation = Reservation::find($id);
-        $reservation->amount = $request->amount;
-        $reservation->description = $request->description;
-        $reservation->completed = $request->completed;
-        $reservation->payment_method_id = $request->payment_method_id;
-        $reservation->user_id = $request->user_id;
+        $validator = Validator::make($request->all(), [
+            'description'       => 'required|string',
+            'ammount'           => 'required|integer',
+            'completed'         => 'required|boolean',
+            'payment_method_id' => 'required|integer',
+            'user_id'           => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $reservation->update($request->all());
         $reservation->save();
         return $reservation;
     }
@@ -95,10 +104,10 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reservation $reservation)
     {
-        $reservation = Reservation::find($id);
         $reservation->delete();
-        return Reservation::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

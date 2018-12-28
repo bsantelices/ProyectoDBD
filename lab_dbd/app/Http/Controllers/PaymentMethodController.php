@@ -14,8 +14,7 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
-        $paymentMethod = PaymentMethod::all();
-        return $paymentMethod;
+        return PaymentMethod::all();
     }
 
     /**
@@ -36,11 +35,15 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        $paymentMethod = new PaymentMethod();
-        $paymentMethod->type = $request->type;
-        $paymentMethod->save();
-        $paymentMethod = PaymentMethod::all();
-        return $paymentMethod;
+        $validator = Validator::make($request->all(), [
+            'type' => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return PaymentMethod::create($request->all());
     }
 
     /**
@@ -49,9 +52,8 @@ class PaymentMethodController extends Controller
      * @param  \App\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(paymentMethod $paymentMethod)
     {
-        $paymentMethod = PaymentMethod::find($id);
         return $paymentMethod;
     }
 
@@ -73,10 +75,17 @@ class PaymentMethodController extends Controller
      * @param  \App\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, PaymentMethod $paymentMethod)
     {
-        $paymentMethod = PaymentMethod::find($id);
-        $paymentMethod->type = $request->type;
+        $validator = Validator::make($request->all(), [
+            'type' => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $paymentMethod->update($request->all());
         $paymentMethod->save();
         return $paymentMethod;
     }
@@ -87,10 +96,10 @@ class PaymentMethodController extends Controller
      * @param  \App\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PaymentMethod $paymentMethod)
     {
-        $paymentMethod = PaymentMethod::find($id);
         $paymentMethod->delete();
-        return PaymentMethod::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

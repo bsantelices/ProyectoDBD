@@ -14,8 +14,7 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $package = Package::all();
-        return $package;
+        return Package::all();
     }
 
     /**
@@ -36,14 +35,18 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        $package = new Package();
-        $package->value = $request->value;
-        $package->description = $request->description;
-        $package->type = $request->type;
-        $package->discount_id = $request->discount_id;
-        $package->save();
-        $package = Package::all();
-        return $package;
+        $validator = Validator::make($request->all(), [
+            'value'       => 'required|integer',
+            'type'        => 'required|string|max:255',
+            'description' => 'required|string',
+            'discount_id' => 'integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Package::create($request->all());
     }
 
     /**
@@ -52,9 +55,8 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Package $package)
     {
-        $package = Package::find($id);
         return $package;
     }
 
@@ -76,13 +78,20 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Package $package)
     {
-        $package = Package::find($id);
-        $package->value = $request->value;
-        $package->description = $request->description;
-        $package->type = $request->type;
-        $package->discount_id = $request->discount_id;
+        $validator = Validator::make($request->all(), [
+            'value'       => 'required|integer',
+            'type'        => 'required|string|max:255',
+            'description' => 'required|string',
+            'discount_id' => 'integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $package->update($request->all());
         $package->save();
         return $package;        
     }
@@ -93,10 +102,10 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Package $package)
     {
-        $package = Package::find($id);
         $package->delete();
-        return Package::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

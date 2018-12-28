@@ -14,8 +14,7 @@ class SeatController extends Controller
      */
     public function index()
     {
-        $seat = Seat::all();
-        return $seat;
+        return Seat::all();
     }
 
     /**
@@ -36,15 +35,19 @@ class SeatController extends Controller
      */
     public function store(Request $request)
     {
-        $seat = new Seat();
-        $seat->code = $request->code;
-        $seat->type = $request->type;
-        $seat->available = $request->available;
-        $seat->flight_id = $request->flight_id;
-        $seat->plane_id = $request->plane_id;
-        $seat->save();
-        $seat = Seat::all();
-        return $seat;
+        $validator = Validator::make($request->all(), [
+            'flight_id' => 'required|integer',
+            'plane_id'  => 'required|integer',
+            'available' => 'required|boolean',
+            'code'      => 'required|string|max:255',
+            'type'      => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Seat::create($request->all());
     }
 
     /**
@@ -53,9 +56,8 @@ class SeatController extends Controller
      * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Seat $seat)
     {
-        $seat = Seat::find($id);
         return $seat;
     }
 
@@ -77,14 +79,21 @@ class SeatController extends Controller
      * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Seat $seat)
     {
-        $seat = Seat::find($id);
-        $seat->code = $request->code;
-        $seat->type = $request->type;
-        $seat->available = $request->available;
-        $seat->flight_id = $request->flight_id;
-        $seat->plane_id = $request->plane_id;
+        $validator = Validator::make($request->all(), [
+            'flight_id' => 'required|integer',
+            'plane_id'  => 'required|integer',
+            'available' => 'required|boolean',
+            'code'      => 'required|string|max:255',
+            'type'      => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $seat->update($request->all());
         $seat->save();        
         return $seat;        
     }
@@ -95,10 +104,10 @@ class SeatController extends Controller
      * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Seat $seat)
     {
-        $seat = Seat::find($id);
         $seat->delete();
-        return Seat::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

@@ -14,8 +14,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicle = Vehicle::all();
-        return $vehicle;
+        return Vehicle::all();
     }
 
     /**
@@ -36,14 +35,18 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        $vehicle = new Vehicle();
-        $vehicle->capacity = $request->capacity;
-        $vehicle->model = $request->model;
-        $vehicle->brand = $request->brand;
-        $vehicle->patent = $request->patent;
-        $vehicle->save();
-        $vehicle = Vehicle::all();
-        return $vehicle;
+        $validator = Validator::make($request->all(), [
+            'capacity' => 'required|integer',
+            'brand'    => 'required|string|max:255',
+            'model'    => 'required|string|max:255',
+            'patent'   => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Vehicle::create($request->all());
     }
 
     /**
@@ -52,9 +55,8 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Vehicle $vehicle)
     {
-        $vehicle = Vehicle::find($id);
         return $vehicle;
     }
 
@@ -76,13 +78,20 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Vehicle $vehicle)
     {
-        $vehicle = Vehicle::find($id);
-        $vehicle->capacity = $request->capacity;
-        $vehicle->model = $request->model;
-        $vehicle->brand = $request->brand;
-        $vehicle->patent = $request->patent;
+        $validator = Validator::make($request->all(), [
+            'capacity' => 'required|integer',
+            'brand'    => 'required|string|max:255',
+            'model'    => 'required|string|max:255',
+            'patent'   => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $vehicle->update($request->all());
         $vehicle->save();
         return $vehicle;
     }
@@ -93,10 +102,10 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vehicle $vehicle)
     {
-        $vehicle = Vehicle::find($id);
-        $vehicle->save();
-        return Vehicle::all();
+        $vehicle->delete();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }
