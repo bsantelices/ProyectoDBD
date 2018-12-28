@@ -14,3 +14,4 @@ class VehiclesTableSeeder extends Seeder
         factory(App\Vehicle::class,50)->create();
     }
 }
+
