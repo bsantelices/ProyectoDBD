@@ -50,7 +50,7 @@ class FakerServiceProvider extends ServiceProvider
                  */
                 public function typeDiscount()
                 {
-                    $discountTipe = [
+                    $discountTipes = [
                         '10%', 
                         '20%',     
                         '30%',
@@ -61,7 +61,17 @@ class FakerServiceProvider extends ServiceProvider
                         '80%',
                         '90%',
                     ];
-                    return $discountTipe[array_rand($discountTipe)];
+                    return $discountTipes[array_rand($discountTipes)];
+                }
+
+                public function typeInsurance()
+                {
+                    $typeInsurances = [
+                        'life', // life insurance
+                        'travel', //For journey
+                        'thief', //antithief
+                    ];
+                    return $typeInsurances[array_rand($typeInsurances)];
                 }
 
                 /*
