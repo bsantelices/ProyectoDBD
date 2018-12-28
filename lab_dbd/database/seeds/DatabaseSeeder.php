@@ -16,10 +16,14 @@ class DatabaseSeeder extends Seeder
         $this->call(LocationsTableSeeder::class);
         $this->call(AirportsTableSeeder::class);
         $this->call(PlanesTableSeeder::class);
-
-        $this->call(InsurancesTableSeeder::class);
-        $this->call(VehiclesTableSeeder::class);
+        $this->call(FlightsTableSeeder::class);
+        $this->call(HotelsTableSeeder::class);
         $this->call(DiscountsTableSeeder::class);
-        $this->call(PackagesTableSeeder::class);
+        $this->call(InsurancesTableSeeder::class);
+        $this->call(PaymentMethodsTableSeeder::class);
+        $this->call(LogsTableSeeder::class);
+        $this->call(ReservationsTableSeeder::class);
+        $this->call(VehiclesTableSeeder::class);
+        $this->call(PackagesTableSeeder::class); 
     }
 }

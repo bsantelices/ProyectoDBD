@@ -11,6 +11,6 @@ class DiscountsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Airport::class,10)->create();
+        factory(App\Discount::class,10)->create();
     }
 }

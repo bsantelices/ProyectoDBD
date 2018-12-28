@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Payment_methodsTableSeeder extends Seeder
+class PaymentMethodsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class Payment_methodsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Payment_methods::class,10)->create();
+        factory(App\PaymentMethod::class,10)->create();
     }
 }

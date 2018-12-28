@@ -382,34 +382,34 @@ ALTER SEQUENCE logs_id_seq OWNED BY logs.id;
 -- Name: migrations; Type: TABLE; Schema: public; Owner: homestead
 --
 
---CREATE TABLE migrations (
---  id integer NOT NULL,
---    migration character varying(255) NOT NULL,
---    batch integer NOT NULL
---);
+CREATE TABLE migrations (
+  id integer NOT NULL,
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
 
 
---ALTER TABLE migrations OWNER TO homestead;
+ALTER TABLE migrations OWNER TO homestead;
 
 --
 -- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: homestead
 --
 
---CREATE SEQUENCE migrations_id_seq
---    START WITH 1
---    INCREMENT BY 1
---    NO MINVALUE
---    NO MAXVALUE
---    CACHE 1;
+CREATE SEQUENCE migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
 
 
---ALTER TABLE migrations_id_seq OWNER TO homestead;
+ALTER TABLE migrations_id_seq OWNER TO homestead;
 
 --
 -- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homestead
 --
 
--- ALTER SEQUENCE migrations_id_seq OWNED BY migrations.id;
+ALTER SEQUENCE migrations_id_seq OWNED BY migrations.id;
 
 
 --
@@ -1099,7 +1099,7 @@ ALTER TABLE ONLY logs ALTER COLUMN id SET DEFAULT nextval('logs_id_seq'::regclas
 -- Name: migrations id; Type: DEFAULT; Schema: public; Owner: homestead
 --
 
--- ALTER TABLE ONLY migrations ALTER COLUMN id SET DEFAULT nextval('migrations_id_seq'::regclass);
+ALTER TABLE ONLY migrations ALTER COLUMN id SET DEFAULT nextval('migrations_id_seq'::regclass);
 
 
 --
@@ -1448,40 +1448,40 @@ SELECT pg_catalog.setval('logs_id_seq', 10, true);
 -- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: homestead
 --
 
---INSERT INTO migrations (id, migration, batch) VALUES (730, '2014_10_12_000000_create_users_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (731, '2014_10_12_100000_create_password_resets_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (732, '2018_12_19_233223_create_roles_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (733, '2018_12_19_233518_create_payment_methods_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (734, '2018_12_19_234115_create_logs_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (735, '2018_12_19_234717_create_reservations_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (736, '2018_12_19_234914_create_insurances_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (737, '2018_12_20_000929_create_vehicles_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (738, '2018_12_20_000930_create_locations_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (739, '2018_12_20_002227_create_hotels_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (740, '2018_12_20_002747_create_rooms_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (741, '2018_12_20_003604_create_discounts_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (742, '2018_12_20_004014_create_packages_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (743, '2018_12_20_005837_create_airports_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (744, '2018_12_20_010146_create_flights_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (745, '2018_12_20_011057_create_planes_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (746, '2018_12_20_011453_create_seats_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (747, '2018_12_20_141333_create_role_user_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (748, '2018_12_20_142552_create_insurance_reservation_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (749, '2018_12_20_142928_create_reservation_vehicle_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (750, '2018_12_20_143522_create_reservation_room_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (751, '2018_12_20_143905_create_package_reservation_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (752, '2018_12_20_144039_create_package_vehicle_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (753, '2018_12_20_144133_create_package_room_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (754, '2018_12_20_144528_create_flight_reservation_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (755, '2018_12_20_144655_create_flight_package_table', 1);
---INSERT INTO migrations (id, migration, batch) VALUES (756, '2018_12_20_145039_create_reservation_seat_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (730, '2014_10_12_000000_create_users_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (731, '2014_10_12_100000_create_password_resets_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (732, '2018_12_19_233223_create_roles_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (733, '2018_12_19_233518_create_payment_methods_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (734, '2018_12_19_234115_create_logs_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (735, '2018_12_19_234717_create_reservations_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (736, '2018_12_19_234914_create_insurances_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (737, '2018_12_20_000929_create_vehicles_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (738, '2018_12_20_000930_create_locations_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (739, '2018_12_20_002227_create_hotels_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (740, '2018_12_20_002747_create_rooms_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (741, '2018_12_20_003604_create_discounts_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (742, '2018_12_20_004014_create_packages_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (743, '2018_12_20_005837_create_airports_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (744, '2018_12_20_010146_create_flights_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (745, '2018_12_20_011057_create_planes_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (746, '2018_12_20_011453_create_seats_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (747, '2018_12_20_141333_create_role_user_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (748, '2018_12_20_142552_create_insurance_reservation_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (749, '2018_12_20_142928_create_reservation_vehicle_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (750, '2018_12_20_143522_create_reservation_room_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (751, '2018_12_20_143905_create_package_reservation_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (752, '2018_12_20_144039_create_package_vehicle_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (753, '2018_12_20_144133_create_package_room_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (754, '2018_12_20_144528_create_flight_reservation_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (755, '2018_12_20_144655_create_flight_package_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (756, '2018_12_20_145039_create_reservation_seat_table', 1);
 
 
 --
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homestead
 --
 
--- SELECT pg_catalog.setval('migrations_id_seq', 756, true);
+SELECT pg_catalog.setval('migrations_id_seq', 756, true);
 
 
 --
@@ -1975,8 +1975,8 @@ ALTER TABLE ONLY logs
 -- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: homestead
 --
 
--- ALTER TABLE ONLY migrations
---    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY migrations
+    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
 
 
 --

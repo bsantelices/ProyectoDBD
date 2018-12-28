@@ -8,7 +8,7 @@ $factory->define(App\Airport::class, function (Faker $faker) {
     
     return [
     	'name' => $faker->name,
-    	'type' => $faker->unique()->typeAirport,
-        'location_id' => $faker->unique()->numberBetween($min = 0, $max = 50)
+    	'type' => $faker->typeAirport,
+      'location_id' => $faker->unique()->numberBetween($min = 1, $max = 50)
     ];
 });
