@@ -8,7 +8,12 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 use App\Events\NewUser;
+use App\Events\NewHotel;
+use App\Events\NewPlane;
 use App\Listeners\AssignRole;
+use App\Listeners\LoggingNewUser;
+use App\Listeners\CreateRooms;
+use App\Listeners\CreateSeats;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,6 +29,15 @@ class EventServiceProvider extends ServiceProvider
 
         NewUser::class => [
             AssignRole::class,
+            LoggingNewUser::class,
+        ],
+
+        NewHotel::class => [
+            CreateRooms::class,
+        ],
+
+        NewPlane::class => [
+            CreateSeats::class,
         ],
     ];
 

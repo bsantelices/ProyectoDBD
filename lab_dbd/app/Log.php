@@ -24,7 +24,7 @@ class Log extends Model
      */
     public function paymentMethod()
     {
-        return $this->belongsTo(PaymentMethod::class,'payment_method_id');
+        return $this->belongsTo(PaymentMethod::class);
     }
 
     /**
@@ -32,6 +32,6 @@ class Log extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class);
     }
 }

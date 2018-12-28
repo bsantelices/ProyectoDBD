@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Events\NewHotel;
 
 class Hotel extends Model
 {
@@ -18,11 +19,23 @@ class Hotel extends Model
     ];
 
     /**
+     * Execute CreateRooms Event that create rooms for the new hotel
+     */
+    public static function boot()
+    {
+        parent::boot();
+        //only when created
+        static::created(function($hotel) {
+            event(new NewHotel($hotel));
+        });
+    }
+
+    /**
      * Get the rooms records associated with the hotel.
      */
     public function rooms()
     {
-        return $this->hasMany(Room::class,'room_id');
+        return $this->hasMany(Room::class);
     }
 
     /**
@@ -30,6 +43,6 @@ class Hotel extends Model
      */
     public function location()
     {
-        return $this->belongsTo(Location::class,'location_id');
+        return $this->belongsTo(Location::class);
     }
 }

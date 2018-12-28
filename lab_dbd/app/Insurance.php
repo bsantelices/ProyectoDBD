@@ -21,6 +21,6 @@ class Insurance extends Model
      */
     public function reservations()
     {
-        return $this->belongsToMany(Reservation::class,'reservation_id');
+        return $this->belongsToMany(Reservation::class);
     }
 }

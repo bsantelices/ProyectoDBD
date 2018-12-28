@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Events\NewPlane;
 
 class Plane extends Model
 {
@@ -18,11 +19,24 @@ class Plane extends Model
     ];
 
     /**
+     * Execute CreateSeats Event that create seats for the new plane
+     */
+    public static function boot()
+    {
+        parent::boot();
+        //only when created
+        static::created(function($plane) {
+            event(new NewPlane($plane));
+        });
+    }
+
+
+    /**
      * Get the airport record associated with the plane.
      */
     public function airport()
     {
-        return $this->belongsTo(Airport::class,'airport_id');
+        return $this->belongsTo(Airport::class);
     }
 
     /**
@@ -30,6 +44,14 @@ class Plane extends Model
      */
     public function seats()
     {
-        return $this->hasMany(Seat::class,'seat_id');
+        return $this->hasMany(Seat::class);
+    }
+
+    /**
+     * Get the flights records associated with the plane.
+     */
+    public function flights()
+    {
+        return $this->hasMany(Flight::class);
     }
 }

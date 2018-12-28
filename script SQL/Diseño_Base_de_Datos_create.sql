@@ -1,5 +1,5 @@
 
--- Last modification date: 2018-12-21 15:24:50.476
+-- Last modification date: 2018-12-28 07:29:36.316
 
 -- tables
 -- Table: airport
@@ -35,6 +35,7 @@ CREATE TABLE flight (
     luggageCapacity int  NOT NULL,
     created_at timestamp  NOT NULL,
     updated_at timestamp  NOT NULL,
+    plane_id int  NOT NULL,
     CONSTRAINT flight_pk PRIMARY KEY (id)
 );
 
@@ -265,7 +266,6 @@ CREATE TABLE room (
 -- Table: seat
 CREATE TABLE seat (
     id int  NOT NULL,
-    flight_id int  NOT NULL,
     plane_id int  NOT NULL,
     code varchar(255)  NOT NULL,
     type varchar(255)  NOT NULL,
@@ -332,6 +332,14 @@ ALTER TABLE flight_package ADD CONSTRAINT flight_package_flight
 ALTER TABLE flight_package ADD CONSTRAINT flight_package_package
     FOREIGN KEY (package_id)
     REFERENCES package (id)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: flight_plane (table: flight)
+ALTER TABLE flight ADD CONSTRAINT flight_plane
+    FOREIGN KEY (plane_id)
+    REFERENCES plane (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
@@ -540,14 +548,6 @@ ALTER TABLE role_user ADD CONSTRAINT role_user_role
 ALTER TABLE room ADD CONSTRAINT room_hotel
     FOREIGN KEY (hotel_id)
     REFERENCES hotel (id)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: seat_flight (table: seat)
-ALTER TABLE seat ADD CONSTRAINT seat_flight
-    FOREIGN KEY (flight_id)
-    REFERENCES flight (id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;

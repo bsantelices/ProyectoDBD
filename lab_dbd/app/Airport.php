@@ -24,7 +24,7 @@ class Airport extends Model
      */
 	public function location()
     {
-        return $this->hasOne(Location::class,'location_id');
+        return $this->hasOne(Location::class);
     }
 
     /**
@@ -32,7 +32,7 @@ class Airport extends Model
      */
     public function planes()
     {
-        return $this->hasMany(Plane::class,'plane_id');
+        return $this->hasMany(Plane::class);
     }
 
     /**
@@ -40,6 +40,6 @@ class Airport extends Model
      */
     public function flights()
     {
-        return $this->hasMany(Flight::class,'flight_id');
+        return $this->hasMany(Flight::class);
     }
 }

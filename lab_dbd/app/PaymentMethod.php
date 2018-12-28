@@ -20,7 +20,7 @@ class PaymentMethod extends Model
      */
     public function logs()
     {
-        return $this->hasMany(Log::class,'log_id');
+        return $this->hasMany(Log::class);
     }
 
     /**
@@ -28,6 +28,6 @@ class PaymentMethod extends Model
      */
     public function reservations()
     {
-        return $this->hasMany(Reservations::class,'reservation_id');
+        return $this->hasMany(Reservations::class);
     }
 }

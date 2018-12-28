@@ -23,7 +23,7 @@ class Package extends Model
      */
     public function vehicles()
     {
-        return $this->belongsToMany(Vehicle::class,'vehicle_id');
+        return $this->belongsToMany(Vehicle::class);
     }
 
     /**
@@ -31,7 +31,7 @@ class Package extends Model
      */
     public function reservations()
     {
-        return $this->belongsToMany(Reservation::class,'reservation_id');
+        return $this->belongsToMany(Reservation::class);
     }
 
     /**
@@ -39,7 +39,7 @@ class Package extends Model
      */
     public function rooms()
     {
-        return $this->belongsToMany(Room::class,'room_id');
+        return $this->belongsToMany(Room::class);
     }
 
     /**
@@ -47,7 +47,7 @@ class Package extends Model
      */
     public function discount()
     {
-        return $this->belongsTo(Discount::class,'discount_id');
+        return $this->belongsTo(Discount::class);
     }
 
     /**
@@ -55,6 +55,6 @@ class Package extends Model
      */
     public function flights()
     {
-        return $this->belongsToMany(Flight::class,'flight_id');
+        return $this->belongsToMany(Flight::class);
     }
 }

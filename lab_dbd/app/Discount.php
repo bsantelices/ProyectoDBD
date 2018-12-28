@@ -23,6 +23,6 @@ class Discount extends Model
      */
     public function packages()
     {
-        return $this->hasMany(Package::class,'package_id');
+        return $this->hasMany(Package::class);
     }
 }

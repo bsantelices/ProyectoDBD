@@ -24,7 +24,7 @@ class Reservation extends Model
      */
     public function insurances()
     {
-        return $this->belongsToMany(Insurance::class,'insurance_id');
+        return $this->belongsToMany(Insurance::class);
     }
 
     /**
@@ -32,7 +32,7 @@ class Reservation extends Model
      */
     public function vehicles()
     {
-        return $this->belongsToMany(Vehicle::class,'vehicle_id');
+        return $this->belongsToMany(Vehicle::class);
     }
 
     /**
@@ -40,7 +40,7 @@ class Reservation extends Model
      */
     public function seats()
     {
-        return $this->belongsToMany(Seat::class,'seat_id');
+        return $this->belongsToMany(Seat::class);
     }
 
     /**
@@ -48,7 +48,7 @@ class Reservation extends Model
      */
     public function packages()
     {
-        return $this->belongsToMany(Package::class,'package_id');
+        return $this->belongsToMany(Package::class);
     }
 
     /**
@@ -56,7 +56,7 @@ class Reservation extends Model
      */
     public function flights()
     {
-        return $this->belongsToMany(Flight::class,'flight_id');
+        return $this->belongsToMany(Flight::class);
     }
 
     /**
@@ -64,7 +64,7 @@ class Reservation extends Model
      */
     public function rooms()
     {
-        return $this->belongsToMany(Room::class,'room_id');
+        return $this->belongsToMany(Room::class);
     }
 
     /**
@@ -72,7 +72,7 @@ class Reservation extends Model
      */
     public function paymentMethod()
     {
-        return $this->belongsTo(PaymentMethod::class,'payment_method_id');
+        return $this->belongsTo(PaymentMethod::class);
     }
 
     /**
@@ -80,6 +80,6 @@ class Reservation extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class);
     }
 }

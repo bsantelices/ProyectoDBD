@@ -15,7 +15,6 @@ class Seat extends Model
         'code',
         'type',
         'available',
-        'flight_id',
         'plane_id'
     ];
 
@@ -24,15 +23,7 @@ class Seat extends Model
      */
     public function reservations()
     {
-        return $this->belongsToMany(Reservation::class,'reservation_id');
-    }
-
-    /**
-     * Get the flight record associated with the seat.
-     */
-    public function flight()
-    {
-        return $this->belongsTo(Flight::class,'flight_id');
+        return $this->belongsToMany(Reservation::class);
     }
 
     /**
@@ -40,6 +31,6 @@ class Seat extends Model
      */
     public function plane()
     {
-        return $this->belongsTo(Plane::class,'plane_id');
+        return $this->belongsTo(Plane::class);
     }
 }

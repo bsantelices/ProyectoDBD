@@ -25,7 +25,7 @@ class Location extends Model
      */
     public function airport()
     {
-        return $this->hasOne(Airport::class,'airport_id');
+        return $this->hasOne(Airport::class);
     }
 
     /**
@@ -33,6 +33,6 @@ class Location extends Model
      */
     public function hotel()
     {
-        return $this->hasOne(Hotel::class,'hotel_id');
+        return $this->hasOne(Hotel::class);
     }
 }

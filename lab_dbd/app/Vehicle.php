@@ -23,7 +23,7 @@ class Vehicle extends Model
      */
     public function reservations()
     {
-        return $this->belongsToMany(Reservations::class,'reservation_id');
+        return $this->belongsToMany(Reservations::class);
     }
 
     /**
@@ -31,6 +31,6 @@ class Vehicle extends Model
      */
     public function packages()
     {
-        return $this->belongsToMany(Package::class,'package_id');
+        return $this->belongsToMany(Package::class);
     }
 }

@@ -16,7 +16,8 @@ class Flight extends Model
         'coordinatesEnd',
         'type',
         'luggageCapacity',
-        'airport_id'
+        'airport_id',
+        'plane_id'
     ];
 
     /**
@@ -24,7 +25,7 @@ class Flight extends Model
      */
     public function reservations()
     {
-        return $this->belongsToMany(Reservation::class,'reservation_id');
+        return $this->belongsToMany(Reservation::class);
     }
 
     /**
@@ -32,15 +33,15 @@ class Flight extends Model
      */
     public function packages()
     {
-        return $this->belongsToMany(Package::class,'package_id');
+        return $this->belongsToMany(Package::class);
     }
 
     /**
-     * Get the seats records associated with the flight.
+     * Get the plane record associated with this flight.
      */
-    public function seats()
+    public function plane()
     {
-        return $this->hasMany(Seat::class,'seat_id');
+        return $this->belongsTo(Plane::class);
     }
 
     /**
@@ -48,6 +49,6 @@ class Flight extends Model
      */
     public function airport()
     {
-        return $this->belongsTo(Airport::class,'airport_id');
+        return $this->belongsTo(Airport::class);
     }
 }

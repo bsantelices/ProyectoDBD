@@ -21,6 +21,9 @@ class CreateFlightsTable extends Migration
             $table->integer('luggageCapacity');
             $table->timestamps();
 
+            $table->unsignedInteger('plane_id');
+            $table->foreign('plane_id')->references('id')->on('planes');
+
             $table->unsignedInteger('airport_id')->nullable();
             $table->foreign('airport_id')->references('id')->on('airports');
         });

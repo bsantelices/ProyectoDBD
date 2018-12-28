@@ -20,9 +20,6 @@ class CreateSeatsTable extends Migration
             $table->boolean('available')->default(true);
             $table->timestamps();
 
-            $table->unsignedInteger('flight_id');
-            $table->foreign('flight_id')->references('id')->on('flights');
-
             $table->unsignedInteger('plane_id');
             $table->foreign('plane_id')->references('id')->on('planes');
         });
