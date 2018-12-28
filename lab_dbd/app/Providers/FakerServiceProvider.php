@@ -51,15 +51,9 @@ class FakerServiceProvider extends ServiceProvider
                 public function typeDiscount()
                 {
                     $discountTipes = [
-                        '10%', 
-                        '20%',     
-                        '30%',
-                        '40%',        
-                        '50%',
-                        '60%',
-                        '70%',
-                        '80%',
-                        '90%',
+                        'christmas', 
+                        'sale',     
+                        'low season',
                     ];
                     return $discountTipes[array_rand($discountTipes)];
                 }
