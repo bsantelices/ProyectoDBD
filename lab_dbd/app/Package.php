@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Events\FillPackage;
 
 class Package extends Model
 {
@@ -19,11 +20,23 @@ class Package extends Model
     ];
 
     /**
+     * Execute FillPackage Event that asign a vehicle, flight and room for the new package
+     */
+    public static function boot()
+    {
+        parent::boot();
+        //only when created
+        static::created(function($package) {
+            event(new FillPackage($package));
+        });
+    }
+
+    /**
      * Get the vehicles records associated with the package.
      */
     public function vehicles()
     {
-        return $this->belongsToMany(Vehicle::class);
+        return $this->belongsToMany(Vehicle::class)->withTimestamps();
     }
 
     /**
@@ -39,7 +52,7 @@ class Package extends Model
      */
     public function rooms()
     {
-        return $this->belongsToMany(Room::class);
+        return $this->belongsToMany(Room::class)->withTimestamps();
     }
 
     /**
@@ -55,6 +68,6 @@ class Package extends Model
      */
     public function flights()
     {
-        return $this->belongsToMany(Flight::class);
+        return $this->belongsToMany(Flight::class)->withTimestamps();
     }
 }

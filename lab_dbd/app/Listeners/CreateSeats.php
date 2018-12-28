@@ -28,9 +28,10 @@ class CreateSeats
      */
     public function handle(NewPlane $event)
     {
-        for ($i=0; $i < 60; $i++) { 
+        $code = 65;
+        for ($i=0; $i < $event->plane->capacity; $i++) {
             Seat::create([
-                'code' => strval($i),
+                'code' => strval($i+1).chr(intval($code + ($i/4))),
                 'type' => 'basic',
                 'plane_id' => $event->plane->id
             ]);

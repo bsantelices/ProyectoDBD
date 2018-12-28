@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Events\FillReservation;
+
 class Reservation extends Model
 {
     /**
@@ -20,11 +22,23 @@ class Reservation extends Model
     ];
 
     /**
+     * Execute FillRervation Event that asign a vehicle, flight and room for the new reservation
+     */
+    public static function boot()
+    {
+        parent::boot();
+        //only when created
+        static::created(function($reservation) {
+            event(new FillReservation($reservation));
+        });
+    }
+
+    /**
      * Get the insurances records associated with the reservation.
      */
     public function insurances()
     {
-        return $this->belongsToMany(Insurance::class);
+        return $this->belongsToMany(Insurance::class)->withTimestamps();
     }
 
     /**
@@ -32,7 +46,7 @@ class Reservation extends Model
      */
     public function vehicles()
     {
-        return $this->belongsToMany(Vehicle::class);
+        return $this->belongsToMany(Vehicle::class)->withTimestamps();
     }
 
     /**
@@ -40,7 +54,7 @@ class Reservation extends Model
      */
     public function seats()
     {
-        return $this->belongsToMany(Seat::class);
+        return $this->belongsToMany(Seat::class)->withTimestamps();
     }
 
     /**
@@ -48,7 +62,7 @@ class Reservation extends Model
      */
     public function packages()
     {
-        return $this->belongsToMany(Package::class);
+        return $this->belongsToMany(Package::class)->withTimestamps();
     }
 
     /**
@@ -56,7 +70,7 @@ class Reservation extends Model
      */
     public function flights()
     {
-        return $this->belongsToMany(Flight::class);
+        return $this->belongsToMany(Flight::class)->withTimestamps();
     }
 
     /**
@@ -64,7 +78,7 @@ class Reservation extends Model
      */
     public function rooms()
     {
-        return $this->belongsToMany(Room::class);
+        return $this->belongsToMany(Room::class)->withTimestamps();
     }
 
     /**

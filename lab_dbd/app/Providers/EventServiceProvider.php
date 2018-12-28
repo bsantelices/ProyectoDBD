@@ -10,10 +10,15 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use App\Events\NewUser;
 use App\Events\NewHotel;
 use App\Events\NewPlane;
+use App\Events\FillPackage;
+use App\Events\FillReservation;
 use App\Listeners\AssignRole;
-use App\Listeners\LoggingNewUser;
 use App\Listeners\CreateRooms;
 use App\Listeners\CreateSeats;
+use App\Listeners\LinkVehicle;
+use App\Listeners\LinkFlight;
+use App\Listeners\LinkRoom;
+use App\Listeners\CreateReservation;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -29,7 +34,6 @@ class EventServiceProvider extends ServiceProvider
 
         NewUser::class => [
             AssignRole::class,
-            LoggingNewUser::class,
         ],
 
         NewHotel::class => [
@@ -38,6 +42,16 @@ class EventServiceProvider extends ServiceProvider
 
         NewPlane::class => [
             CreateSeats::class,
+        ],
+
+        FillPackage::class => [
+            LinkVehicle::class,
+            LinkFlight::class,
+            LinkRoom::class,
+        ],
+
+        FillReservation::class => [
+            CreateReservation::class,
         ],
     ];
 
