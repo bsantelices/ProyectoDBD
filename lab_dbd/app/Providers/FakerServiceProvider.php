@@ -50,12 +50,12 @@ class FakerServiceProvider extends ServiceProvider
                  */
                 public function typeDiscount()
                 {
-                    $discountTipes = [
+                    $discountTypes = [
                         'christmas', 
                         'sale',     
                         'low season',
                     ];
-                    return $discountTipes[array_rand($discountTipes)];
+                    return $discountTypes[array_rand($discountTypes)];
                 }
 
                 public function typeInsurance()
@@ -74,11 +74,20 @@ class FakerServiceProvider extends ServiceProvider
                  */
                 public function typeAirport()
                 {
-                    $discountTipe = [
+                    $airportTypes = [
                         'national', 
                         'international',     
                     ];
-                    return $discountTipe[array_rand($discountTipe)];
+                    return $airportTypes[array_rand($airportTypes)];
+                }
+
+                public function typePackage()
+                {
+                    $packageTypes = [
+                        'fly-hotel', 
+                        'fly-vehicle',     
+                    ];
+                    return $packageTypes[array_rand($packageTypes)];
                 }
 
 
