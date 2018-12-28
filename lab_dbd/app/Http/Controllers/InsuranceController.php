@@ -14,8 +14,7 @@ class InsuranceController extends Controller
      */
     public function index()
     {
-        $insurance = Insurance::all();
-        return $insurance;
+        return Insurance::all();
     }
 
     /**
@@ -36,12 +35,16 @@ class InsuranceController extends Controller
      */
     public function store(Request $request)
     {
-        $insurance = new Insurance();
-        $insurance->value = $request->value;
-        $insurance->type = $request->type;
-        $insurance->save();
-        $insurance = Insurance::all();
-        return $insurance;
+        $validator = Validator::make($request->all(), [
+            'value' => 'required|integer',
+            'type'  => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Insurance::create($request->all());
     }
 
     /**
@@ -50,9 +53,8 @@ class InsuranceController extends Controller
      * @param  \App\Insurance  $insurance
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Insurance $insurance)
     {
-        $insurance = Insurance::find($id);
         return $insurance;
     }
 
@@ -74,11 +76,18 @@ class InsuranceController extends Controller
      * @param  \App\Insurance  $insurance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Insurance $insurance)
     {
-        $insurance = Insurance::find($id);
-        $insurance->value = $request->value;
-        $insurance->type = $request->type;
+        $validator = Validator::make($request->all(), [
+            'value' => 'required|integer',
+            'type'  => 'required|string|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $insurance->update($request->all());
         $insurance->save();
         return $insurance;
     }
@@ -89,10 +98,10 @@ class InsuranceController extends Controller
      * @param  \App\Insurance  $insurance
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Insurance $insurance)
     {
-        $insurance = Insurance::find($id);
         $insurance->delete();
-        return Insurance::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

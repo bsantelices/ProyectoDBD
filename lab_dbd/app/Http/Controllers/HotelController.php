@@ -14,8 +14,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotel = Hotel::all();
-        return $hotel;
+        return Hotel::all();
     }
 
     /**
@@ -36,13 +35,17 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        $hotel = new Hotel();
-        $hotel->name = $request->name;
-        $hotel->state = $request->state;
-        $hotel->location_id = $request->location_id;
-        $hotel->save();
-        $hotel = Hotel::all();
-        return $hotel;
+        $validator = Validator::make($request->all(), [
+            'name'        => 'required|string|max:255',
+            'state'       => 'required|string|max:255',
+            'location_id' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Hotel::create($request->all());
     }
 
     /**
@@ -51,9 +54,8 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Hotel $hotel)
     {
-        $hotel = Hotel::find($id);
         return $hotel;
     }
 
@@ -75,12 +77,19 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Hotel $hotel)
     {
-        $hotel = Hotel::find($id);
-        $hotel->name = $request->name;
-        $hotel->state = $request->state;
-        $hotel->location_id = $request->location_id;
+        $validator = Validator::make($request->all(), [
+            'name'        => 'required|string|max:255',
+            'state'       => 'required|string|max:255',
+            'location_id' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $hotel->update($request->all());
         $hotel->save();
         return $hotel;
     }
@@ -91,10 +100,10 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Hotel $hotel)
     {
-        $hotel = Hotel::find($id);
         $hotel->delete();
-        return Hotel::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }
