@@ -9,6 +9,6 @@ $factory->define(App\Airport::class, function (Faker $faker) {
     return [
     	'name' => $faker->name,
     	'type' => $faker->unique()->typeAirport,
-        'location_id' => 0,
+        'location_id' => 1,
     ];
 });

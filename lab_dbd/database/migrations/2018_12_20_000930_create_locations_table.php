@@ -20,7 +20,7 @@ class CreateLocationsTable extends Migration
             $table->string('country');
             $table->string('street')->nullable();
             $table->integer('houseCode')->nullable();
-            $table->integer('postalCode');
+            $table->string('postalCode');
             $table->timestamps();
         });
     }
