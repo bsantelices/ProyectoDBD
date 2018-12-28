@@ -44,6 +44,32 @@ class FakerServiceProvider extends ServiceProvider
                     return $roles[array_rand($roles)];
                 }
 
+                public function typeDiscount()
+                {
+                    $discountTipe = [
+                        '10%', 
+                        '20%',     
+                        '30%',
+                        '40%',        
+                        '50%',
+                        '60%',
+                        '70%',
+                        '80%',
+                        '90%',
+                    ];
+                    return $discountTipe[array_rand($discountTipe)];
+                }
+
+                public function typeAirport()
+                {
+                    $discountTipe = [
+                        'national', 
+                        'international',     
+                    ];
+                    return $discountTipe[array_rand($discountTipe)];
+                }
+
+
                 /*
                  * $faker->new
                  * add new fakers in the following lines
