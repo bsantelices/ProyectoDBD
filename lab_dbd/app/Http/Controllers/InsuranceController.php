@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Insurance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class InsuranceController extends Controller
 {

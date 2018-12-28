@@ -47,8 +47,7 @@ class AirportController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        $airport = Airport::create($request->all());
-        return $airport;
+        return Airport::create($request->all());
     }
 
     /**

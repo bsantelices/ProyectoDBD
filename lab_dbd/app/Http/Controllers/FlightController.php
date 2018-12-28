@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Flight;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FlightController extends Controller
 {
