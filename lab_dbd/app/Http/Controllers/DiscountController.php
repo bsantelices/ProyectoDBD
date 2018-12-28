@@ -37,7 +37,7 @@ class DiscountController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'ammount'       => 'required|integer',
+            'amount'       => 'required|integer',
             'type'          => 'required|string|max:255',
             'title'         => 'required|string|max:255',
             'description'   => 'required|string'
@@ -82,7 +82,7 @@ class DiscountController extends Controller
     public function update(Request $request, Discount $discount)
     {
         $validator = Validator::make($request->all(), [
-            'ammount'       => 'required|integer',
+            'amount'       => 'required|integer',
             'type'          => 'required|string|max:255',
             'title'         => 'required|string|max:255',
             'description'   => 'required|string'
