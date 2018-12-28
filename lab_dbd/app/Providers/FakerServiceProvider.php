@@ -44,6 +44,10 @@ class FakerServiceProvider extends ServiceProvider
                     return $roles[array_rand($roles)];
                 }
 
+                /*
+                 * $faker->typeDiscount
+                 * picks a random discount type
+                 */
                 public function typeDiscount()
                 {
                     $discountTipe = [
@@ -60,6 +64,10 @@ class FakerServiceProvider extends ServiceProvider
                     return $discountTipe[array_rand($discountTipe)];
                 }
 
+                /*
+                 * $faker->typeAirport
+                 * picks a random Airport type
+                 */
                 public function typeAirport()
                 {
                     $discountTipe = [

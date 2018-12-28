@@ -19,7 +19,7 @@ class CreateAirportsTable extends Migration
             $table->string('type');
             $table->timestamps();
 
-            $table->unsignedInteger('location_id')->nullable();
+            $table->unsignedInteger('location_id');
             $table->foreign('location_id')->references('id')->on('locations');
         });
     }
