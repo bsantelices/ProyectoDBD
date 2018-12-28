@@ -14,8 +14,7 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        $discount = Discount::all();
-        return $discount;
+        return Discount::all();
     }
 
     /**
@@ -36,14 +35,18 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        $discount = new Discount();
-        $discount->amount = $request->amount;
-        $discount->type = $request->type;
-        $discount->title = $request->title;
-        $discount->description = $request->description;
-        $discount->save();
-        $discount = Discount::all();
-        return $discount;
+        $validator = Validator::make($request->all(), [
+            'ammount'       => 'required|integer',
+            'type'          => 'required|string|max:255',
+            'title'         => 'required|string|max:255',
+            'description'   => 'required|string'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Discount::create($request->all());
     }
 
     /**
@@ -54,7 +57,6 @@ class DiscountController extends Controller
      */
     public function show(Discount $discount)
     {
-        $discount = Discount::find($id);
         return $discount;
     }
 
@@ -78,11 +80,18 @@ class DiscountController extends Controller
      */
     public function update(Request $request, Discount $discount)
     {
-        $discount = Discount::find($id);
-        $discount->amount = $request->amount;
-        $discount->type = $request->type;
-        $discount->title = $request->title;
-        $discount->description = $request->description;
+        $validator = Validator::make($request->all(), [
+            'ammount'       => 'required|integer',
+            'type'          => 'required|string|max:255',
+            'title'         => 'required|string|max:255',
+            'description'   => 'required|string'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $discount->update($request->all());
         $discount->save();
         return $discount;
     }
@@ -95,8 +104,8 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
-        $discount = Discount::find($id);
         $discount->delete();
-        return Discount::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

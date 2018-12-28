@@ -14,8 +14,7 @@ class FlightController extends Controller
      */
     public function index()
     {
-        $flight = Flight::all();
-        return $flight;
+        return Flight::all();
     }
 
     /**
@@ -36,15 +35,19 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
-        $flight = new Flight();
-        $flight->coordinatesStart = $request->coordinatesStart;
-        $flight->coordinatesEnd = $request->coordinatesEnd;
-        $flight->type = $request->type;
-        $flight->luggageCapacity = $request->luggageCapacity;
-        $flight->airport_id = $request->airport_id;
-        $flight->save();
-        $flight = Flight::all();
-        return $flight;
+        $validator = Validator::make($request->all(), [
+            'type'             => 'required|string|max:255',
+            'coordinatesStart' => 'required|string|max:255',
+            'coordinatesEnd'   => 'required|string|max:255',
+            'luggageCapacity'  => 'required|integer',
+            'airport_id'       => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Flight::create($request->all());
     }
 
     /**
@@ -53,9 +56,8 @@ class FlightController extends Controller
      * @param  \App\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Flight $flight)
     {
-        $flight = Flight::find($id);
         return $flight;
     }
 
@@ -77,14 +79,21 @@ class FlightController extends Controller
      * @param  \App\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Flight $flight)
     {
-        $flight = Flight::find($id);
-        $flight->coordinatesStart = $request->coordinatesStart;
-        $flight->coordinatesEnd = $request->coordinatesEnd;
-        $flight->type = $request->type;
-        $flight->luggageCapacity = $request->luggageCapacity;
-        $flight->airport_id = $request->airport_id;
+        $validator = Validator::make($request->all(), [
+            'type'             => 'required|string|max:255',
+            'coordinatesStart' => 'required|string|max:255',
+            'coordinatesEnd'   => 'required|string|max:255',
+            'luggageCapacity'  => 'required|integer',
+            'airport_id'       => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $flight->update($request->all());
         $flight->save();
         return $flight;
     }
@@ -95,10 +104,10 @@ class FlightController extends Controller
      * @param  \App\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Flight $flight)
     {
-        $flight = Flight::find($id);
         $flight->delete();
-        return Flight::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }

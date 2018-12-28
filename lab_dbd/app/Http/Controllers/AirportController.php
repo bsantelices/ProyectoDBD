@@ -14,8 +14,7 @@ class AirportController extends Controller
      */
     public function index()
     {
-        $airport = Airport::all();
-        return $airport;
+        return Airport::all();
     }
 
     /**
@@ -36,13 +35,17 @@ class AirportController extends Controller
      */
     public function store(Request $request)
     {
-        $airport = new Airport();
-        $airport->names = $request->names;
-        $airport->type = $request->type;
-        $airport->location_id = $request->location_id;
-        $airport->save();
-        $airport = Airport::all();
-        return $airport;
+        $validator = Validator::make($request->all(), [
+            'name'          => 'required|string|max:255',
+            'type'          => 'required|string|max:255',
+            'location_id'   => 'required|integer'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        return Airport::create($request->all());
     }
 
     /**
@@ -51,9 +54,8 @@ class AirportController extends Controller
      * @param  \App\Airport  $airport
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Airport $airport)
     {
-        $airport = Airport::find($id);
         return $airport;
     }
 
@@ -75,12 +77,19 @@ class AirportController extends Controller
      * @param  \App\Airport  $airport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Airport $airport)
     {
-        $airport = Airport::find($id);
-        $airport->names = $request->names;
-        $airport->type = $request->type;
-        $airport->location_id = $request->location_id;
+        $validator = Validator::make($request->all(), [
+            'name'          => 'required|string|max:255',
+            'type'          => 'required|string|max:255',
+            'location_id'   => 'required|integer'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $airport->update($request->all());
         $airport->save();
         return $airport;
     }
@@ -91,10 +100,10 @@ class AirportController extends Controller
      * @param  \App\Airport  $airport
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Airport $airport)
     {
-        $airport = Airport::find($id);
         $airport->delete();
-        return Airport::all();
+        return response('Ok', 200)
+            ->header('Content-Type', 'text/plain');
     }
 }
