@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Airport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class AirportController extends Controller
 {
@@ -45,7 +47,8 @@ class AirportController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        return Airport::create($request->all());
+        $airport = Airport::create($request->all());
+        return $airport;
     }
 
     /**

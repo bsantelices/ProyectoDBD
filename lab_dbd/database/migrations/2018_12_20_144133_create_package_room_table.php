@@ -18,10 +18,10 @@ class CreatePackageRoomTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('room_id');
-            $table->foreign('room_id')->references('id')->on('rooms');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             
             $table->unsignedInteger('package_id');
-            $table->foreign('package_id')->references('id')->on('packages');
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
         });
     }
 

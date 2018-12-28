@@ -18,10 +18,10 @@ class CreateFlightPackageTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('package_id');
-            $table->foreign('package_id')->references('id')->on('packages');
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
             
             $table->unsignedInteger('flight_id');
-            $table->foreign('flight_id')->references('id')->on('flights');
+            $table->foreign('flight_id')->references('id')->on('flights')->onDelete('cascade');
         });
     }
 

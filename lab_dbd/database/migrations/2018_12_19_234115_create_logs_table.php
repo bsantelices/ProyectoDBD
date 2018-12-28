@@ -21,10 +21,10 @@ class CreateLogsTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedInteger('payment_method_id')->nullable();
-            $table->foreign('payment_method_id')->references('id')->on('payment_methods');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
         });
     }
 

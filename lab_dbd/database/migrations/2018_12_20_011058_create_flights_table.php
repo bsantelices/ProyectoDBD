@@ -22,10 +22,10 @@ class CreateFlightsTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('plane_id');
-            $table->foreign('plane_id')->references('id')->on('planes');
+            $table->foreign('plane_id')->references('id')->on('planes')->onDelete('cascade');
 
             $table->unsignedInteger('airport_id')->nullable();
-            $table->foreign('airport_id')->references('id')->on('airports');
+            $table->foreign('airport_id')->references('id')->on('airports')->onDelete('cascade');
         });
     }
 

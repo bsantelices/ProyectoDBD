@@ -21,7 +21,7 @@ class CreatePackagesTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('discount_id')->nullable();
-            $table->foreign('discount_id')->references('id')->on('discounts');
+            $table->foreign('discount_id')->references('id')->on('discounts')->onDelete('cascade');
         });
     }
 

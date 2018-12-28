@@ -18,10 +18,10 @@ class CreateReservationSeatTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('reservation_id');
-            $table->foreign('reservation_id')->references('id')->on('reservations');
+            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');
             
             $table->unsignedInteger('seat_id');
-            $table->foreign('seat_id')->references('id')->on('seats');
+            $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
         });
     }
 

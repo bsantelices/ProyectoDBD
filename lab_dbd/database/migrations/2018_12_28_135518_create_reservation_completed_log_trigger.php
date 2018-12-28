@@ -17,12 +17,12 @@ class CreateReservationCompletedLogTrigger extends Migration
               DECLARE
               BEGIN
                INSERT INTO logs(user_id,title,description,created_at,updated_at)
-                VALUES(NEW.user_id,'Reservation Completed','A Reservation has been completed',now(),now());
+                VALUES(OLD.user_id,'Reservation Completed','A Reservation has been completed',now(),now());
                 RETURN NULL;
               END;
             \$reservation_logging_trigger$ LANGUAGE plpgsql;
             
-            CREATE TRIGGER reservation_logging_trigger AFTER INSERT 
+            CREATE TRIGGER reservation_logging_trigger AFTER UPDATE
                 ON reservations FOR EACH ROW
                 WHEN (NEW.completed)
                 EXECUTE PROCEDURE reservation_logging_trigger();

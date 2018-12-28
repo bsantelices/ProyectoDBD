@@ -18,10 +18,10 @@ class CreatePackageVehicleTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('vehicle_id');
-            $table->foreign('vehicle_id')->references('id')->on('vehicles');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
             
             $table->unsignedInteger('package_id');
-            $table->foreign('package_id')->references('id')->on('packages');
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
         });
     }
 

@@ -12,7 +12,7 @@ class Airport extends Model
      * @var array
      */
     protected $fillable = [
-        'names',
+        'name',
         'type',
         'location_id'
     ];

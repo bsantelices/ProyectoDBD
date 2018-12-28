@@ -21,10 +21,10 @@ class CreateInsuranceReservationTable extends Migration
             $table->timestamp('end_at');
 
             $table->unsignedInteger('reservation_id');
-            $table->foreign('reservation_id')->references('id')->on('reservations');
+            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');
             
             $table->unsignedInteger('insurance_id');
-            $table->foreign('insurance_id')->references('id')->on('insurances');
+            $table->foreign('insurance_id')->references('id')->on('insurances')->onDelete('cascade');
         });
     }
 

@@ -18,10 +18,10 @@ class CreatePackageReservationTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('reservation_id');
-            $table->foreign('reservation_id')->references('id')->on('reservations');
+            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');
             
             $table->unsignedInteger('package_id');
-            $table->foreign('package_id')->references('id')->on('packages');
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
         });
     }
 

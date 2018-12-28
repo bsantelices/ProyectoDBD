@@ -20,7 +20,7 @@ class CreatePlanesTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('airport_id');
-            $table->foreign('airport_id')->references('id')->on('airports');
+            $table->foreign('airport_id')->references('id')->on('airports')->onDelete('cascade');
         });
     }
 

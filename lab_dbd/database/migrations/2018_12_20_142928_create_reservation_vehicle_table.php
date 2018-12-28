@@ -21,10 +21,10 @@ class CreateReservationVehicleTable extends Migration
             $table->timestamp('return_at');
 
             $table->unsignedInteger('reservation_id');
-            $table->foreign('reservation_id')->references('id')->on('reservations');
+            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');
             
             $table->unsignedInteger('vehicle_id');
-            $table->foreign('vehicle_id')->references('id')->on('vehicles');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
         });
     }
 
