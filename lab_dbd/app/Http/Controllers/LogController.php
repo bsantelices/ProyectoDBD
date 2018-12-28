@@ -53,7 +53,7 @@ class LogController extends Controller
      * @param  \App\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function show(Log $log)
+    public function show($id)
     {
         $log = Log::find($id);
         return $log;
@@ -77,7 +77,7 @@ class LogController extends Controller
      * @param  \App\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Log $log)
+    public function update(Request $request, $id)
     {
         $log = Log::find($id);
         $log->transactionCode = $request->transactionCode;
@@ -95,7 +95,7 @@ class LogController extends Controller
      * @param  \App\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Log $log)
+    public function destroy($id)
     {
         $log = Log::find($id);
         $log->delete();

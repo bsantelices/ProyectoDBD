@@ -53,7 +53,7 @@ class SeatController extends Controller
      * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function show(Seat $seat)
+    public function show($id)
     {
         $seat = Seat::find($id);
         return $seat;
@@ -77,7 +77,7 @@ class SeatController extends Controller
      * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Seat $seat)
+    public function update(Request $request, $id)
     {
         $seat = Seat::find($id);
         $seat->code = $request->code;
@@ -95,7 +95,7 @@ class SeatController extends Controller
      * @param  \App\Seat  $seat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seat $seat)
+    public function destroy($id)
     {
         $seat = Seat::find($id);
         $seat->delete();

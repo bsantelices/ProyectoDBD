@@ -51,7 +51,7 @@ class AirportController extends Controller
      * @param  \App\Airport  $airport
      * @return \Illuminate\Http\Response
      */
-    public function show(Airport $airport)
+    public function show($id)
     {
         $airport = Airport::find($id);
         return $airport;
@@ -75,7 +75,7 @@ class AirportController extends Controller
      * @param  \App\Airport  $airport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Airport $airport)
+    public function update(Request $request, $id)
     {
         $airport = Airport::find($id);
         $airport->names = $request->names;
@@ -91,7 +91,7 @@ class AirportController extends Controller
      * @param  \App\Airport  $airport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Airport $airport)
+    public function destroy($id)
     {
         $airport = Airport::find($id);
         $airport->delete();

@@ -49,7 +49,7 @@ class PaymentMethodController extends Controller
      * @param  \App\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function show(PaymentMethod $paymentMethod)
+    public function show($id)
     {
         $paymentMethod = PaymentMethod::find($id);
         return $paymentMethod;
@@ -73,7 +73,7 @@ class PaymentMethodController extends Controller
      * @param  \App\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PaymentMethod $paymentMethod)
+    public function update(Request $request, $id)
     {
         $paymentMethod = PaymentMethod::find($id);
         $paymentMethod->type = $request->type;
@@ -87,7 +87,7 @@ class PaymentMethodController extends Controller
      * @param  \App\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PaymentMethod $paymentMethod)
+    public function destroy($id)
     {
         $paymentMethod = PaymentMethod::find($id);
         $paymentMethod->delete();

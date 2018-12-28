@@ -53,7 +53,7 @@ class FlightController extends Controller
      * @param  \App\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function show(Flight $flight)
+    public function show($id)
     {
         $flight = Flight::find($id);
         return $flight;
@@ -77,7 +77,7 @@ class FlightController extends Controller
      * @param  \App\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Flight $flight)
+    public function update(Request $request, $id)
     {
         $flight = Flight::find($id);
         $flight->coordinatesStart = $request->coordinatesStart;
@@ -95,7 +95,7 @@ class FlightController extends Controller
      * @param  \App\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Flight $flight)
+    public function destroy($id)
     {
         $flight = Flight::find($id);
         $flight->delete();

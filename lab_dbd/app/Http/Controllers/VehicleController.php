@@ -52,7 +52,7 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function show(Vehicle $vehicle)
+    public function show($id)
     {
         $vehicle = Vehicle::find($id);
         return $vehicle;
@@ -76,7 +76,7 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vehicle $vehicle)
+    public function update(Request $request, $id)
     {
         $vehicle = Vehicle::find($id);
         $vehicle->capacity = $request->capacity;
@@ -93,7 +93,7 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vehicle $vehicle)
+    public function destroy($id)
     {
         $vehicle = Vehicle::find($id);
         $vehicle->save();

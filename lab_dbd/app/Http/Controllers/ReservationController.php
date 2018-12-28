@@ -53,7 +53,7 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show(Reservation $reservation)
+    public function show($id)
     {
         $reservation = Reservation::find($id);
         return $reservation;
@@ -77,7 +77,7 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, $id)
     {
         $reservation = Reservation::find($id);
         $reservation->amount = $request->amount;
@@ -95,7 +95,7 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservation $reservation)
+    public function destroy($id)
     {
         $reservation = Reservation::find($id);
         $reservation->delete();

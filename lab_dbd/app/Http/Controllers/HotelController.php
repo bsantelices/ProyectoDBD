@@ -51,7 +51,7 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function show(Hotel $hotel)
+    public function show($id)
     {
         $hotel = Hotel::find($id);
         return $hotel;
@@ -75,7 +75,7 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hotel $hotel)
+    public function update(Request $request, $id)
     {
         $hotel = Hotel::find($id);
         $hotel->name = $request->name;
@@ -91,7 +91,7 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hotel $hotel)
+    public function destroy($id)
     {
         $hotel = Hotel::find($id);
         $hotel->delete();

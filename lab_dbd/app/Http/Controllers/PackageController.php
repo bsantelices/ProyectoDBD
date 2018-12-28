@@ -52,7 +52,7 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function show(Package $package)
+    public function show($id)
     {
         $package = Package::find($id);
         return $package;
@@ -76,7 +76,7 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $request, $id)
     {
         $package = Package::find($id);
         $package->value = $request->value;
@@ -93,7 +93,7 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Package $package)
+    public function destroy($id)
     {
         $package = Package::find($id);
         $package->delete();

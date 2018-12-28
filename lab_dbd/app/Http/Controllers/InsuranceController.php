@@ -50,7 +50,7 @@ class InsuranceController extends Controller
      * @param  \App\Insurance  $insurance
      * @return \Illuminate\Http\Response
      */
-    public function show(Insurance $insurance)
+    public function show($id)
     {
         $insurance = Insurance::find($id);
         return $insurance;
@@ -74,7 +74,7 @@ class InsuranceController extends Controller
      * @param  \App\Insurance  $insurance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Insurance $insurance)
+    public function update(Request $request, $id)
     {
         $insurance = Insurance::find($id);
         $insurance->value = $request->value;
@@ -89,7 +89,7 @@ class InsuranceController extends Controller
      * @param  \App\Insurance  $insurance
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Insurance $insurance)
+    public function destroy($id)
     {
         $insurance = Insurance::find($id);
         $insurance->delete();

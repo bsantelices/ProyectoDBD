@@ -54,7 +54,7 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show($id)
     {
         $location = Location($id);
         return $location;
@@ -78,7 +78,7 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, $id)
     {
         $location = Location::find($id);
         $location->coordinates = $request->coordinates;
@@ -97,7 +97,7 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy($id)
     {
         $location = Location::find($id);
         $location->delete();

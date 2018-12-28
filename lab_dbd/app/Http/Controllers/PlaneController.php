@@ -51,7 +51,7 @@ class PlaneController extends Controller
      * @param  \App\Plane  $plane
      * @return \Illuminate\Http\Response
      */
-    public function show(Plane $plane)
+    public function show($id)
     {
         $plane = Plane::find($id);
         return $plane;
@@ -75,7 +75,7 @@ class PlaneController extends Controller
      * @param  \App\Plane  $plane
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Plane $plane)
+    public function update(Request $request, $id)
     {
         $plane = Plane::find($id);
         $plane->brand = $request->brand;
@@ -91,7 +91,7 @@ class PlaneController extends Controller
      * @param  \App\Plane  $plane
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Plane $plane)
+    public function destroy($id)
     {
         $plane = Plane::find($id);
         $plane->delete();
