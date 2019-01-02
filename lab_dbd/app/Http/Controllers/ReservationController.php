@@ -38,7 +38,7 @@ class ReservationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'description'       => 'required|string',
-            'ammount'           => 'required|integer',
+            'amount'           => 'required|integer',
             'completed'         => 'required|boolean',
             'payment_method_id' => 'required|integer',
             'user_id'           => 'required|integer',
