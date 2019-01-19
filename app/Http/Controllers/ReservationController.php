@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class ReservationController extends Controller
 {
@@ -38,7 +39,7 @@ class ReservationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'description'       => 'required|string',
-            'amount'           => 'required|integer',
+            'amount'            => 'required|integer',
             'completed'         => 'required|boolean',
             'payment_method_id' => 'required|integer',
             'user_id'           => 'required|integer',
@@ -48,7 +49,13 @@ class ReservationController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        return Reservation::create($request->all());
+        return Reservation::create([
+            'description'        => $request->description,
+            'amount'             => $request->amount,
+            'completed'          => $request->completed,
+            'payment_method_id'  => $request->payment_method_id,
+            'user_id'            => Auth::id()
+        ]);
     }
 
     /**

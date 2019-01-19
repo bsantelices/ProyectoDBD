@@ -20,23 +20,29 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-// Route::resource('airports','AirportController');
-// Route::resource('discounts','DiscountController');
-// Route::resource('flights','FlightController');
-// Route::resource('hotels','HotelController');
-// Route::resource('insurances','InsuranceController');
-// Route::resource('locations','LocationController');
-// Route::resource('logs','LogController');
-// Route::resource('packages','PackageController');
-// Route::resource('paymentMethods','PaymentMethodController');
-// Route::resource('planes','PlaneController');
-//Route::resource('reservations','ReservationController');
-// Route::resource('roles','RoleController');
-// Route::resource('rooms','RoomController');
-// Route::resource('seats','SeatController');
-//Route::resource('users','UserController');
-// Route::resource('vehicles','VehicleController');
+Route::resource('airports','AirportController');
+Route::resource('discounts','DiscountController');
+Route::resource('flights','FlightController');
+Route::resource('hotels','HotelController');
+Route::resource('insurances','InsuranceController');
+Route::resource('locations','LocationController');
+Route::resource('logs','LogController');
+Route::resource('packages','PackageController');
+Route::resource('paymentMethods','PaymentMethodController');
+Route::resource('planes','PlaneController');
+
+// make reservation
+Route::resource('reservations','ReservationController');
+
+Route::resource('roles','RoleController');
+Route::resource('rooms','RoomController');
+Route::resource('seats','SeatController');
+Route::resource('users','UserController');
+Route::resource('vehicles','VehicleController');
 
 
 
+// transaction
 Route::resource('users.reservations','User\ReservationController');
+
+// 
