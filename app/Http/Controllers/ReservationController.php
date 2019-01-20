@@ -10,6 +10,7 @@ use App\Flight;
 use App\Vehicle;
 use App\Insurance;
 use Carbon\Carbon;
+use App\Events\FillReservation;
 
 class ReservationController extends Controller
 {
@@ -68,58 +69,8 @@ class ReservationController extends Controller
             'user_id'            => $request->user_id
         ]);
 
-        // Vehicles for a reservation
-        /*
-         * EXAMPLE
-         *  vehicles => "{\"1\":
-         *                  {\"rent_at\": \"2019-01-20 00:12:15\",
-         *                  \"return_at\": \"2019-01-20 00:12:15\"},
-         *               \"2\": 
-         *                  {\"rent_at\": \"2019-01-20 00:12:15\",
-         *                  \"return_at\": \"2019-01-20 00:12:15\"}}"
-         *
-         */
-        if ($request->vehicles) { 
-            $vehicles = collect(json_decode($request->vehicles));
-            $vehicles->map(function ($data, $vehicle_id) use ($reservation) {
-                $data = collect($data);
-                if (Vehicle::find($vehicle_id)) {
-                    $reservation->vehicles()->attach($vehicle_id, [
-                        'rent_at'   => $data["rent_at"],
-                        'return_at' => $data["return_at"]
-                    ]);
-                }
-            });
-        }
-        
-        // Insurances for a reservation
-        if ($request->insurances) { 
-            $insurances = collect(json_decode($request->insurances));
-            $insurances->map(function ($data, $insurance_id) use ($reservation) {
-                $data = collect($data);
-                if (Insurance::find($insurance_id)) {
-                    $reservation->insurances()->attach($insurance_id, [
-                        'start_at'   => $data["start_at"],
-                        'end_at' => $data["end_at"]
-                    ]);
-                }
-            });
-        }
-
-        // Flights for a reservation
-        if ($request->flights) { 
-            $flights = collect(json_decode($request->flights));
-            $flights->map(function ($data, $flight_id) use ($reservation) {
-                $data = collect($data);
-                if (Flight::find($flight_id)) {
-                    $reservation->flights()->attach($flight_id, [
-                        'go_at'   => $data["go_at"],
-                        'return_at' => $data["return_at"]
-                    ]);
-                }
-            });
-        }
-
+        // fill vehicles, flights, insurances for a reservation
+        event(new FillReservation($reservation,$request));
         return $reservation;
     }
 

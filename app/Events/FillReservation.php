@@ -15,16 +15,17 @@ use App\Reservation;
 class FillReservation
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $reservation;
+    public $reservation, $vehicles;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Reservation $reservation)
+    public function __construct(Reservation $reservation, $fill)
     {
         $this->reservation = $reservation;
+        $this->fill = $fill;
     }
 
     /**
