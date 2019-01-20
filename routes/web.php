@@ -22,7 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('airports','AirportController');
 Route::resource('discounts','DiscountController');
-Route::resource('flights','FlightController');
 Route::resource('hotels','HotelController');
 Route::resource('insurances','InsuranceController');
 Route::resource('locations','LocationController');
@@ -33,6 +32,9 @@ Route::resource('planes','PlaneController');
 
 // make reservation
 Route::resource('reservations','ReservationController');
+
+// Take a flight
+Route::resource('flights','FlightController');
 
 Route::resource('roles','RoleController');
 Route::resource('rooms','RoomController');

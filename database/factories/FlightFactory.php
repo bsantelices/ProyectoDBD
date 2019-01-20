@@ -8,8 +8,8 @@ $factory->define(App\Flight::class, function (Faker $faker) {
         'coordinatesStart' => $faker->latitude($min = -90, $max = 90).','.$faker->longitude($min = -180, $max = 180),
         'coordinatesEnd' => $faker->latitude($min = -90, $max = 90).','.$faker->longitude($min = -180, $max = 180),
         'type' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-        'luggageCapacity' => $faker->unique()->numberBetween($min = 10, $max = 400),
-        'airport_id' => $faker->unique()->numberBetween($min = 1, $max = 10),
-        'plane_id' => $faker->unique()->numberBetween($min = 1, $max = 10),
+        'luggageCapacity' => $faker->numberBetween($min = 10, $max = 400),
+        'airport_id' => $faker->unique(true)->numberBetween($min = 1, count(App\Airport::all())),
+        'plane_id' => $faker->unique(true)->numberBetween($min = 1, count(App\Plane::all())),
     ];
 });

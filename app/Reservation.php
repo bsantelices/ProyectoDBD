@@ -29,7 +29,7 @@ class Reservation extends Model
         parent::boot();
         //only when created
         static::created(function($reservation) {
-            event(new FillReservation($reservation));
+            //event(new FillReservation($reservation));
         });
     }
 
@@ -38,7 +38,7 @@ class Reservation extends Model
      */
     public function insurances()
     {
-        return $this->belongsToMany(Insurance::class)->withTimestamps();
+        return $this->belongsToMany(Insurance::class)->withTimestamps()->withPivot('start_at','end_at');
     }
 
     /**
@@ -46,7 +46,7 @@ class Reservation extends Model
      */
     public function vehicles()
     {
-        return $this->belongsToMany(Vehicle::class)->withTimestamps();
+        return $this->belongsToMany(Vehicle::class)->withTimestamps()->withPivot('rent_at','return_at');
     }
 
     /**
@@ -70,7 +70,7 @@ class Reservation extends Model
      */
     public function flights()
     {
-        return $this->belongsToMany(Flight::class)->withTimestamps();
+        return $this->belongsToMany(Flight::class)->withTimestamps()->withPivot('go_at','return_at');
     }
 
     /**
