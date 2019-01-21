@@ -10,7 +10,7 @@ window.Popper = require('popper.js').default;
 
 try {
     window.$ = window.jQuery = require('jquery');
-
+    window.Headroom = require('headroom.js');
     require('bootstrap');
 } catch (e) {}
 

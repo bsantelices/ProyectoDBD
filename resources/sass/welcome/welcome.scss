@@ -141,3 +141,16 @@
 .icon {
 	margin-right: 0.5em;
 }
+
+.main-form {
+	padding-bottom: 1.5em !important;
+	padding-top: 1.5em !important;
+	@media only screen and (min-width: 996px) {
+	  padding-right: 2em !important;
+		padding-left: 2em !important;
+	}
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

@@ -14,4 +14,5 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .js('resources/js/welcome/welcome.js', 'public/js')
+   .js('resources/js/bootstrap-datepicker.js', 'public/js')
    .sass('resources/sass/welcome/welcome.scss', 'public/css');
