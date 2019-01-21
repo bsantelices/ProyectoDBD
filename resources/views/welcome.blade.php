@@ -136,19 +136,72 @@
                     <div class="col-lg-12">
                         <div class="row row-grid">
                             <div class="col-lg-12">
-                                <div class="card card-lift--hover shadow border-0">
-                                    <div class="card-body py-5">
-                                        <div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
-                                            <i class="ni ni-check-bold"></i>
-                                        </div>
-                                        <h6 class="text-primary text-uppercase">Download Argon</h6>
-                                        <p class="description mt-3">Argon is a great free UI package based on Bootstrap 4 that includes the most important components and features.</p>
-                                        <div>
-                                            <span class="badge badge-pill badge-primary">design</span>
-                                            <span class="badge badge-pill badge-primary">system</span>
-                                            <span class="badge badge-pill badge-primary">creative</span>
-                                        </div>
-                                        <a href="#" class="btn btn-primary mt-4">Learn more</a>
+                                <div class="main-form card shadow border-0">
+                                    <h1 class="display-3 ">Busca tu Vuelo <i class="fas fa-plane-departure"></i></h1>
+                                    <div class="main-form card-body py-5">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="input-group mb-4">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-exchange-alt"></i></span>
+                                                        </div>
+                                                        <select class="custom-select" id="inputGroupSelect01">
+                                                            <option value="1" selected="">Ida y Vuelta</option>
+                                                            <option value="0">Ida</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="input-group mb-4">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                                        </div>
+                                                        <input class="form-control" placeholder="Cantidad" min="1" max="10" type="number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-4">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
+                                                        </div>
+                                                        <select class="custom-select" id="inputGroupSelect01">
+                                                            <option value="economy" selected>Economico</option>
+                                                            <option value="business">negocio</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="input-group mb-4">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="fas fa-map-pin"></i></span>
+                                                            </div>
+                                                            <input class="form-control" placeholder="Origen" type="text">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                                            </div>
+                                                            <input class="form-control" placeholder="Destino" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <div class="input-group mb-4">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="fas fa-calendar-check"></i>
+                                                            </div>
+                                                            <input class="form-control datepicker" placeholder="Fecha Ida" value="{{ Carbon\Carbon::now()->format('d/m/Y') }}" type="text">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="fas fa-calendar-week"></i>
+                                                            </div>
+                                                            <input class="form-control datepicker" placeholder="Fecha Vuelta" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <a href="#" class="btn btn-primary mt-4"><i class="fas fa-search"></i> Buscar Vuelo</a>
                                     </div>
                                 </div>
                             </div>
@@ -168,8 +221,8 @@
                                     <polygon points="0,52 583,95 0,95" class="fill-default" />
                                     <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
                                 </svg>
-                                <h4 class="display-3 font-weight-bold text-white">Design System</h4>
-                                <p class="lead text-italic text-white">The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens.</p>
+                                <h4 class="display-3 font-weight-bold text-white">¡Tomate un Descanso!</h4>
+                                <p class="lead text-italic text-white">Aqui explico algo de algun paquete para darle color.</p>
                             </blockquote>
                         </div>
                     </div>
@@ -186,10 +239,11 @@
                                     <i class="fas fa-plane"></i>
                                 </div>
                             </div>
-                            <h3>Our customers</h3>
-                            <p class="lead">Don't let your uses guess by attaching tooltips and popoves to any element. Just make sure you enable them first via JavaScript.</p>
-                            <p>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p>
-                            <p>The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p>
+                            <h3>Pasajes desde $10.000</h3>
+                            <p class="lead">Chamullo algo de que existen pasajes bla bla bla, sera realmente necesaria esta seccion ? la hice solo por que no me gusta que termine el cuadro anterior en seco.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris.</p>
                             <a href="#" class="font-weight-bold text-warning mt-5">A beautiful UI Kit for impactful websites</a>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 
 
 require('./../bootstrap');
-require('./headroom.min.js');
+require('./../bootstrap-datepicker.js');
 
 /*!
 
@@ -36,21 +36,16 @@ $(document).ready(function() {
 
     });
 
-    // Headroom - show/hide navbar on scroll
+    //Headroom - show/hide navbar on scroll
     if($('.headroom')[0]) {
-        var headroom  = new Headroom(document.querySelector("#navbar-main"), {
-            offset: 300,
-            tolerance : {
-                up : 30,
-                down : 30
-            },
-        });
+        var headroom  = new Headroom(document.querySelector("#navbar-main"));
         headroom.init();
     }
     
     // Datepicker
     $('.datepicker')[0] && $('.datepicker').each(function() {
         $('.datepicker').datepicker({
+        		format: 'dd/mm/yyyy',
             disableTouchKeyboard: true,
             autoclose: false
         });
