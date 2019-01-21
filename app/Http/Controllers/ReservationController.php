@@ -51,6 +51,8 @@ class ReservationController extends Controller
             'flights'           => 'string',
             'vehicles'          => 'string',
             'insurances'        => 'string',
+            'rooms'             => 'string',
+            'packages'          => 'string'
         ]);
 
         // if validator fails

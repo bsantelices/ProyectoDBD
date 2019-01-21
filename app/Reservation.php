@@ -38,7 +38,7 @@ class Reservation extends Model
      */
     public function insurances()
     {
-        return $this->belongsToMany(Insurance::class)->withTimestamps()->withPivot('start_at','end_at');
+        return $this->belongsToMany(Insurance::class)->withTimestamps()->withPivot('start_at','end_at','cancel');
     }
 
     /**
@@ -46,7 +46,7 @@ class Reservation extends Model
      */
     public function vehicles()
     {
-        return $this->belongsToMany(Vehicle::class)->withTimestamps()->withPivot('rent_at','return_at');
+        return $this->belongsToMany(Vehicle::class)->withTimestamps()->withPivot('rent_at','return_at','cancel');
     }
 
     /**
@@ -62,7 +62,7 @@ class Reservation extends Model
      */
     public function packages()
     {
-        return $this->belongsToMany(Package::class)->withTimestamps();
+        return $this->belongsToMany(Package::class)->withTimestamps()->withPivot('cancel');;
     }
 
     /**
@@ -70,7 +70,7 @@ class Reservation extends Model
      */
     public function flights()
     {
-        return $this->belongsToMany(Flight::class)->withTimestamps()->withPivot('go_at','return_at');
+        return $this->belongsToMany(Flight::class)->withTimestamps()->withPivot('go_at','return_at','cancel');
     }
 
     /**
@@ -78,7 +78,7 @@ class Reservation extends Model
      */
     public function rooms()
     {
-        return $this->belongsToMany(Room::class)->withTimestamps();
+        return $this->belongsToMany(Room::class)->withTimestamps()->withPivot('entry_at','exit_at','cancel');
     }
 
     /**

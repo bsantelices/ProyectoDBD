@@ -93,6 +93,30 @@ class CreateReservation
                     ]);
                 }
             });
-        }   
+        }
+
+        // Rooms for a reservation
+        if ($event->fill->rooms) { 
+            $rooms = collect(json_decode($event->fill->rooms));
+            $rooms->map(function ($data, $room_id) use ($event) {
+                $data = collect($data);
+                if (Room::find($room_id)) {
+                    $event->reservation->rooms()->attach($room_id, [
+                        'entry_at'   => $data["entry_at"],
+                        'exit_at' => $data["exit_at"]
+                    ]);
+                }
+            });
+        }
+
+        // Packages for a reservation
+        if ($event->fill->packages) { 
+            $packages = collect(json_decode($event->fill->packages));
+            $packages->map(function ($data, $package_id) use ($event) {
+                if (Package::find($package_id)) {
+                    $event->reservation->rooms()->attach($package_id);
+                }
+            });
+        }
     }
 }

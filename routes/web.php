@@ -1,50 +1,74 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+// first view
 Route::get('/', function () {
     return view('welcome');
 });
 
+// user can register and login
 Auth::routes();
 
+// home site
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Users
+Route::resource('users','UserController');
 
-Route::resource('airports','AirportController');
-Route::resource('discounts','DiscountController');
-Route::resource('hotels','HotelController');
-Route::resource('insurances','InsuranceController');
-Route::resource('locations','LocationController');
+// user can see his log of things
 Route::resource('logs','LogController');
-Route::resource('packages','PackageController');
+
+// add payment method
 Route::resource('paymentMethods','PaymentMethodController');
-Route::resource('planes','PlaneController');
 
 // make reservation
+/*
+ * with different payment methods
+ * Create a reservation ONLY to go
+ * with an insurance
+ * Create a reservation to go and return
+ * See my Reservations
+ * with packages
+ */
 Route::resource('reservations','ReservationController');
 
-// Take a flight
+// create airports
+Route::resource('airports','AirportController');
+
+// create discounts
+Route::resource('discounts','DiscountController');
+
+// create hotels
+Route::resource('hotels','HotelController');
+
+// create insurances
+Route::resource('insurances','InsuranceController');
+
+// create locations
+Route::resource('locations','LocationController');
+
+// create packages
+Route::resource('packages','PackageController');
+
+// create planes
+Route::resource('planes','PlaneController');
+
+// create a flight
 Route::resource('flights','FlightController');
 
+// create roles
 Route::resource('roles','RoleController');
+
+// create rooms
 Route::resource('rooms','RoomController');
+
+// create seats
 Route::resource('seats','SeatController');
-Route::resource('users','UserController');
+
+// create vehicles
 Route::resource('vehicles','VehicleController');
 
+// ADMIN
 
-
-// transaction
+// see transactions by user
 Route::resource('users.reservations','User\ReservationController');
-
-// 
+ 

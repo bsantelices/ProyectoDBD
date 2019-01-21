@@ -17,6 +17,8 @@ class CreatePackageReservationTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
+            $table->timestamp('cancel')->nullable();
+
             $table->unsignedInteger('reservation_id');
             $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');
             

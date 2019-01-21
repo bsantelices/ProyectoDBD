@@ -19,6 +19,7 @@ class CreateDiscountsTable extends Migration
             $table->string('type');
             $table->string('title');
             $table->text('description');
+            $table->timestamp('expired')->nullable();
             $table->timestamps();
         });
     }

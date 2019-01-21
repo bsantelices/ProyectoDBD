@@ -19,6 +19,7 @@ class CreateReservationRoomTable extends Migration
 
             $table->timestamp('entry_at');
             $table->timestamp('exit_at');
+            $table->timestamp('cancel')->nullable();
 
             $table->unsignedInteger('reservation_id');
             $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');

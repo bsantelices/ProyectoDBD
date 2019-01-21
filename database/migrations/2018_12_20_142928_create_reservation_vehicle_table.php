@@ -19,6 +19,7 @@ class CreateReservationVehicleTable extends Migration
 
             $table->timestamp('rent_at');
             $table->timestamp('return_at');
+            $table->timestamp('cancel')->nullable();
 
             $table->unsignedInteger('reservation_id');
             $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');

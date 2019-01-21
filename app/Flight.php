@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Location;
 
 class Flight extends Model
 {
@@ -12,8 +13,8 @@ class Flight extends Model
      * @var array
      */
     protected $fillable = [
-        'coordinatesStart',
-        'coordinatesEnd',
+        'location_start',
+        'lcoation_end',
         'type',
         'luggageCapacity',
         'airport_id',
@@ -50,5 +51,21 @@ class Flight extends Model
     public function airport()
     {
         return $this->belongsTo(Airport::class);
+    }
+
+    /**
+     * Get the locationStart record associated with the flight.
+     */
+    public function locationStart()
+    {
+        return Location::find($this->location_start);
+    }
+
+    /**
+     * Get the locationEnd record associated with the flight.
+     */
+    public function locationEnd()
+    {
+        return Location::find($this->location_end);
     }
 }
