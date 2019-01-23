@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,9 +14,34 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Room::all();
+        $country =          $request->get('country');
+        $city =             $request->get('city');
+        $type =             $request->get('typeRoom');
+        $adultCapacity =    $request->get('adultCapacity');
+        $childrenCapacity = $request->get('childrenCapacity');
+        $state =            $request->get('state');
+        $order =            $request->get('order');
+
+        if($order == 1)
+        {
+            $rooms = Room::orderBy('value','DESC');
+        }
+        else
+        {
+            $rooms = Room::orderBy('value','ASC');
+        }
+
+        $roomsA = $rooms
+                    ->type($type)
+                    ->adultCapacity($adultCapacity)
+                    ->childrenCapacity($childrenCapacity)
+                    ->state($state);
+
+        $locations = Location::all();
+
+        return view('room.index',compact('rooms', 'locations'));
     }
 
     /**

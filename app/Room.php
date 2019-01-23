@@ -43,4 +43,69 @@ class Room extends Model
     {
         return $this->belongsTo(Hotel::class);
     }
+
+
+
+    public function scopeState($query, $state)
+    {
+        if($state)
+        {
+            return $query->where('state','LIKE','%$state%');
+        }
+    }
+
+    public function scopeAdultCapacity($query, $adultCapacity)
+    {
+        if($adultCapacity)
+        {
+            return $query->where('adultCapacity','LIKE','%$adultCapacity%');
+        }
+    }
+
+    public function scopeChildrenCapacity($query, $childrenCapacity)
+    {
+        if($childrenCapacity)
+        {
+            return $query->where('childrenCapacity','LIKE','%$childrenCapacity%');
+        }
+    }   
+
+    public function scopeType($query, $type)
+    {
+        if($type)
+        {
+            return $query->where('type','LIKE','%$type%');
+        }
+    }    
+
+    public function scopeCountry($query, $country)
+    {
+        if($country)
+        {
+            return $query->whereHas('hotel',function($query) use ($country)
+            {
+                $query->whereHas('location',function($query) use ($country)
+                {
+                    $query->where('country','LIKE',"%$country%");
+                });
+            });
+        }
+    }  
+
+    public function scopeCity($query, $city)
+    {
+        if($city)
+        {
+            return $query->whereHas('hotel',function($query) use ($city)
+            {
+                $query->whereHas('location',function($query) use ($city)
+                {
+                    $query->where('city','LIKE',"%$city%");
+                });
+            });
+        }
+    }  
+
+
+
 }
