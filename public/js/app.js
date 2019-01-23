@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 36);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(5);
-var isBuffer = __webpack_require__(17);
+var isBuffer = __webpack_require__(18);
 
 /*global toString:true*/
 
@@ -10779,7 +10779,7 @@ return jQuery;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(19);
+var normalizeHeaderName = __webpack_require__(20);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -13482,12 +13482,12 @@ module.exports = function bind(fn, thisArg) {
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(20);
-var buildURL = __webpack_require__(22);
-var parseHeaders = __webpack_require__(23);
-var isURLSameOrigin = __webpack_require__(24);
+var settle = __webpack_require__(21);
+var buildURL = __webpack_require__(23);
+var parseHeaders = __webpack_require__(24);
+var isURLSameOrigin = __webpack_require__(25);
 var createError = __webpack_require__(7);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(25);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(26);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -13584,7 +13584,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(26);
+      var cookies = __webpack_require__(27);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -13668,7 +13668,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(21);
+var enhanceError = __webpack_require__(22);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -13930,8 +13930,8 @@ window.Popper = __webpack_require__(4).default;
 
 try {
   window.$ = window.jQuery = __webpack_require__(2);
-  window.Headroom = __webpack_require__(70);
-  __webpack_require__(14);
+  window.Headroom = __webpack_require__(14);
+  __webpack_require__(15);
 } catch (e) {}
 
 /**
@@ -13940,7 +13940,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(15);
+window.axios = __webpack_require__(16);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -31122,6 +31122,481 @@ module.exports = function(module) {
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * headroom.js v0.9.4 - Give your page some headroom. Hide your header until you need it
+ * Copyright (c) 2017 Nick Williams - http://wicky.nillia.ms/headroom.js
+ * License: MIT
+ */
+
+(function(root, factory) {
+  'use strict';
+
+  if (true) {
+    // AMD. Register as an anonymous module.
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  }
+  else if (typeof exports === 'object') {
+    // COMMONJS
+    module.exports = factory();
+  }
+  else {
+    // BROWSER
+    root.Headroom = factory();
+  }
+}(this, function() {
+  'use strict';
+
+  /* exported features */
+  
+  var features = {
+    bind : !!(function(){}.bind),
+    classList : 'classList' in document.documentElement,
+    rAF : !!(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame)
+  };
+  window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+  
+  /**
+   * Handles debouncing of events via requestAnimationFrame
+   * @see http://www.html5rocks.com/en/tutorials/speed/animations/
+   * @param {Function} callback The callback to handle whichever event
+   */
+  function Debouncer (callback) {
+    this.callback = callback;
+    this.ticking = false;
+  }
+  Debouncer.prototype = {
+    constructor : Debouncer,
+  
+    /**
+     * dispatches the event to the supplied callback
+     * @private
+     */
+    update : function() {
+      this.callback && this.callback();
+      this.ticking = false;
+    },
+  
+    /**
+     * ensures events don't get stacked
+     * @private
+     */
+    requestTick : function() {
+      if(!this.ticking) {
+        requestAnimationFrame(this.rafCallback || (this.rafCallback = this.update.bind(this)));
+        this.ticking = true;
+      }
+    },
+  
+    /**
+     * Attach this as the event listeners
+     */
+    handleEvent : function() {
+      this.requestTick();
+    }
+  };
+  /**
+   * Check if object is part of the DOM
+   * @constructor
+   * @param {Object} obj element to check
+   */
+  function isDOMElement(obj) {
+    return obj && typeof window !== 'undefined' && (obj === window || obj.nodeType);
+  }
+  
+  /**
+   * Helper function for extending objects
+   */
+  function extend (object /*, objectN ... */) {
+    if(arguments.length <= 0) {
+      throw new Error('Missing arguments in extend function');
+    }
+  
+    var result = object || {},
+        key,
+        i;
+  
+    for (i = 1; i < arguments.length; i++) {
+      var replacement = arguments[i] || {};
+  
+      for (key in replacement) {
+        // Recurse into object except if the object is a DOM element
+        if(typeof result[key] === 'object' && ! isDOMElement(result[key])) {
+          result[key] = extend(result[key], replacement[key]);
+        }
+        else {
+          result[key] = result[key] || replacement[key];
+        }
+      }
+    }
+  
+    return result;
+  }
+  
+  /**
+   * Helper function for normalizing tolerance option to object format
+   */
+  function normalizeTolerance (t) {
+    return t === Object(t) ? t : { down : t, up : t };
+  }
+  
+  /**
+   * UI enhancement for fixed headers.
+   * Hides header when scrolling down
+   * Shows header when scrolling up
+   * @constructor
+   * @param {DOMElement} elem the header element
+   * @param {Object} options options for the widget
+   */
+  function Headroom (elem, options) {
+    options = extend(options, Headroom.options);
+  
+    this.lastKnownScrollY = 0;
+    this.elem             = elem;
+    this.tolerance        = normalizeTolerance(options.tolerance);
+    this.classes          = options.classes;
+    this.offset           = options.offset;
+    this.scroller         = options.scroller;
+    this.initialised      = false;
+    this.onPin            = options.onPin;
+    this.onUnpin          = options.onUnpin;
+    this.onTop            = options.onTop;
+    this.onNotTop         = options.onNotTop;
+    this.onBottom         = options.onBottom;
+    this.onNotBottom      = options.onNotBottom;
+  }
+  Headroom.prototype = {
+    constructor : Headroom,
+  
+    /**
+     * Initialises the widget
+     */
+    init : function() {
+      if(!Headroom.cutsTheMustard) {
+        return;
+      }
+  
+      this.debouncer = new Debouncer(this.update.bind(this));
+      this.elem.classList.add(this.classes.initial);
+  
+      // defer event registration to handle browser
+      // potentially restoring previous scroll position
+      setTimeout(this.attachEvent.bind(this), 100);
+  
+      return this;
+    },
+  
+    /**
+     * Unattaches events and removes any classes that were added
+     */
+    destroy : function() {
+      var classes = this.classes;
+  
+      this.initialised = false;
+  
+      for (var key in classes) {
+        if(classes.hasOwnProperty(key)) {
+          this.elem.classList.remove(classes[key]);
+        }
+      }
+  
+      this.scroller.removeEventListener('scroll', this.debouncer, false);
+    },
+  
+    /**
+     * Attaches the scroll event
+     * @private
+     */
+    attachEvent : function() {
+      if(!this.initialised){
+        this.lastKnownScrollY = this.getScrollY();
+        this.initialised = true;
+        this.scroller.addEventListener('scroll', this.debouncer, false);
+  
+        this.debouncer.handleEvent();
+      }
+    },
+  
+    /**
+     * Unpins the header if it's currently pinned
+     */
+    unpin : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(classList.contains(classes.pinned) || !classList.contains(classes.unpinned)) {
+        classList.add(classes.unpinned);
+        classList.remove(classes.pinned);
+        this.onUnpin && this.onUnpin.call(this);
+      }
+    },
+  
+    /**
+     * Pins the header if it's currently unpinned
+     */
+    pin : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(classList.contains(classes.unpinned)) {
+        classList.remove(classes.unpinned);
+        classList.add(classes.pinned);
+        this.onPin && this.onPin.call(this);
+      }
+    },
+  
+    /**
+     * Handles the top states
+     */
+    top : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(!classList.contains(classes.top)) {
+        classList.add(classes.top);
+        classList.remove(classes.notTop);
+        this.onTop && this.onTop.call(this);
+      }
+    },
+  
+    /**
+     * Handles the not top state
+     */
+    notTop : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(!classList.contains(classes.notTop)) {
+        classList.add(classes.notTop);
+        classList.remove(classes.top);
+        this.onNotTop && this.onNotTop.call(this);
+      }
+    },
+  
+    bottom : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(!classList.contains(classes.bottom)) {
+        classList.add(classes.bottom);
+        classList.remove(classes.notBottom);
+        this.onBottom && this.onBottom.call(this);
+      }
+    },
+  
+    /**
+     * Handles the not top state
+     */
+    notBottom : function() {
+      var classList = this.elem.classList,
+        classes = this.classes;
+  
+      if(!classList.contains(classes.notBottom)) {
+        classList.add(classes.notBottom);
+        classList.remove(classes.bottom);
+        this.onNotBottom && this.onNotBottom.call(this);
+      }
+    },
+  
+    /**
+     * Gets the Y scroll position
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollY
+     * @return {Number} pixels the page has scrolled along the Y-axis
+     */
+    getScrollY : function() {
+      return (this.scroller.pageYOffset !== undefined)
+        ? this.scroller.pageYOffset
+        : (this.scroller.scrollTop !== undefined)
+          ? this.scroller.scrollTop
+          : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    },
+  
+    /**
+     * Gets the height of the viewport
+     * @see http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript
+     * @return {int} the height of the viewport in pixels
+     */
+    getViewportHeight : function () {
+      return window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+    },
+  
+    /**
+     * Gets the physical height of the DOM element
+     * @param  {Object}  elm the element to calculate the physical height of which
+     * @return {int}     the physical height of the element in pixels
+     */
+    getElementPhysicalHeight : function (elm) {
+      return Math.max(
+        elm.offsetHeight,
+        elm.clientHeight
+      );
+    },
+  
+    /**
+     * Gets the physical height of the scroller element
+     * @return {int} the physical height of the scroller element in pixels
+     */
+    getScrollerPhysicalHeight : function () {
+      return (this.scroller === window || this.scroller === document.body)
+        ? this.getViewportHeight()
+        : this.getElementPhysicalHeight(this.scroller);
+    },
+  
+    /**
+     * Gets the height of the document
+     * @see http://james.padolsey.com/javascript/get-document-height-cross-browser/
+     * @return {int} the height of the document in pixels
+     */
+    getDocumentHeight : function () {
+      var body = document.body,
+        documentElement = document.documentElement;
+  
+      return Math.max(
+        body.scrollHeight, documentElement.scrollHeight,
+        body.offsetHeight, documentElement.offsetHeight,
+        body.clientHeight, documentElement.clientHeight
+      );
+    },
+  
+    /**
+     * Gets the height of the DOM element
+     * @param  {Object}  elm the element to calculate the height of which
+     * @return {int}     the height of the element in pixels
+     */
+    getElementHeight : function (elm) {
+      return Math.max(
+        elm.scrollHeight,
+        elm.offsetHeight,
+        elm.clientHeight
+      );
+    },
+  
+    /**
+     * Gets the height of the scroller element
+     * @return {int} the height of the scroller element in pixels
+     */
+    getScrollerHeight : function () {
+      return (this.scroller === window || this.scroller === document.body)
+        ? this.getDocumentHeight()
+        : this.getElementHeight(this.scroller);
+    },
+  
+    /**
+     * determines if the scroll position is outside of document boundaries
+     * @param  {int}  currentScrollY the current y scroll position
+     * @return {bool} true if out of bounds, false otherwise
+     */
+    isOutOfBounds : function (currentScrollY) {
+      var pastTop  = currentScrollY < 0,
+        pastBottom = currentScrollY + this.getScrollerPhysicalHeight() > this.getScrollerHeight();
+  
+      return pastTop || pastBottom;
+    },
+  
+    /**
+     * determines if the tolerance has been exceeded
+     * @param  {int} currentScrollY the current scroll y position
+     * @return {bool} true if tolerance exceeded, false otherwise
+     */
+    toleranceExceeded : function (currentScrollY, direction) {
+      return Math.abs(currentScrollY-this.lastKnownScrollY) >= this.tolerance[direction];
+    },
+  
+    /**
+     * determine if it is appropriate to unpin
+     * @param  {int} currentScrollY the current y scroll position
+     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
+     * @return {bool} true if should unpin, false otherwise
+     */
+    shouldUnpin : function (currentScrollY, toleranceExceeded) {
+      var scrollingDown = currentScrollY > this.lastKnownScrollY,
+        pastOffset = currentScrollY >= this.offset;
+  
+      return scrollingDown && pastOffset && toleranceExceeded;
+    },
+  
+    /**
+     * determine if it is appropriate to pin
+     * @param  {int} currentScrollY the current y scroll position
+     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
+     * @return {bool} true if should pin, false otherwise
+     */
+    shouldPin : function (currentScrollY, toleranceExceeded) {
+      var scrollingUp  = currentScrollY < this.lastKnownScrollY,
+        pastOffset = currentScrollY <= this.offset;
+  
+      return (scrollingUp && toleranceExceeded) || pastOffset;
+    },
+  
+    /**
+     * Handles updating the state of the widget
+     */
+    update : function() {
+      var currentScrollY  = this.getScrollY(),
+        scrollDirection = currentScrollY > this.lastKnownScrollY ? 'down' : 'up',
+        toleranceExceeded = this.toleranceExceeded(currentScrollY, scrollDirection);
+  
+      if(this.isOutOfBounds(currentScrollY)) { // Ignore bouncy scrolling in OSX
+        return;
+      }
+  
+      if (currentScrollY <= this.offset ) {
+        this.top();
+      } else {
+        this.notTop();
+      }
+  
+      if(currentScrollY + this.getViewportHeight() >= this.getScrollerHeight()) {
+        this.bottom();
+      }
+      else {
+        this.notBottom();
+      }
+  
+      if(this.shouldUnpin(currentScrollY, toleranceExceeded)) {
+        this.unpin();
+      }
+      else if(this.shouldPin(currentScrollY, toleranceExceeded)) {
+        this.pin();
+      }
+  
+      this.lastKnownScrollY = currentScrollY;
+    }
+  };
+  /**
+   * Default options
+   * @type {Object}
+   */
+  Headroom.options = {
+    tolerance : {
+      up : 0,
+      down : 0
+    },
+    offset : 0,
+    scroller: window,
+    classes : {
+      pinned : 'headroom--pinned',
+      unpinned : 'headroom--unpinned',
+      top : 'headroom--top',
+      notTop : 'headroom--not-top',
+      bottom : 'headroom--bottom',
+      notBottom : 'headroom--not-bottom',
+      initial : 'headroom'
+    }
+  };
+  Headroom.cutsTheMustard = typeof features !== 'undefined' && features.rAF && features.bind && features.classList;
+
+  return Headroom;
+}));
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /*!
   * Bootstrap v4.2.1 (https://getbootstrap.com/)
   * Copyright 2011-2018 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
@@ -35374,13 +35849,13 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(16);
+module.exports = __webpack_require__(17);
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35388,7 +35863,7 @@ module.exports = __webpack_require__(16);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(5);
-var Axios = __webpack_require__(18);
+var Axios = __webpack_require__(19);
 var defaults = __webpack_require__(3);
 
 /**
@@ -35423,14 +35898,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(9);
-axios.CancelToken = __webpack_require__(32);
+axios.CancelToken = __webpack_require__(33);
 axios.isCancel = __webpack_require__(8);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(33);
+axios.spread = __webpack_require__(34);
 
 module.exports = axios;
 
@@ -35439,7 +35914,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /*!
@@ -35466,7 +35941,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35474,8 +35949,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(27);
-var dispatchRequest = __webpack_require__(28);
+var InterceptorManager = __webpack_require__(28);
+var dispatchRequest = __webpack_require__(29);
 
 /**
  * Create a new instance of Axios
@@ -35552,7 +36027,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35571,7 +36046,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35604,7 +36079,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35632,7 +36107,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35705,7 +36180,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35765,7 +36240,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35840,7 +36315,7 @@ module.exports = (
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35883,7 +36358,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35943,7 +36418,7 @@ module.exports = (
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36002,18 +36477,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(29);
+var transformData = __webpack_require__(30);
 var isCancel = __webpack_require__(8);
 var defaults = __webpack_require__(3);
-var isAbsoluteURL = __webpack_require__(30);
-var combineURLs = __webpack_require__(31);
+var isAbsoluteURL = __webpack_require__(31);
+var combineURLs = __webpack_require__(32);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -36095,7 +36570,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36122,7 +36597,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36143,7 +36618,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36164,7 +36639,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36228,7 +36703,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36262,16 +36737,17 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 34 */
+/* 35 */,
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(35);
-__webpack_require__(43);
-module.exports = __webpack_require__(44);
+__webpack_require__(37);
+__webpack_require__(45);
+module.exports = __webpack_require__(46);
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -36283,7 +36759,7 @@ module.exports = __webpack_require__(44);
 
 __webpack_require__(11);
 
-window.Vue = __webpack_require__(36);
+window.Vue = __webpack_require__(38);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -36291,14 +36767,16 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(39));
+Vue.component('example-component', __webpack_require__(41));
 
 var app = new Vue({
   el: '#app'
 });
 
+$('.carousel').carousel();
+
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47392,10 +47870,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(37).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(39).setImmediate))
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -47451,7 +47929,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(38);
+__webpack_require__(40);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -47465,7 +47943,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -47658,15 +48136,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(10)))
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(40)
+var normalizeComponent = __webpack_require__(42)
 /* script */
-var __vue_script__ = __webpack_require__(41)
+var __vue_script__ = __webpack_require__(43)
 /* template */
-var __vue_template__ = __webpack_require__(42)
+var __vue_template__ = __webpack_require__(44)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47705,7 +48183,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47814,7 +48292,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47843,7 +48321,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47886,516 +48364,16 @@ if (false) {
 }
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * headroom.js v0.9.4 - Give your page some headroom. Hide your header until you need it
- * Copyright (c) 2017 Nick Williams - http://wicky.nillia.ms/headroom.js
- * License: MIT
- */
-
-(function(root, factory) {
-  'use strict';
-
-  if (true) {
-    // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  }
-  else if (typeof exports === 'object') {
-    // COMMONJS
-    module.exports = factory();
-  }
-  else {
-    // BROWSER
-    root.Headroom = factory();
-  }
-}(this, function() {
-  'use strict';
-
-  /* exported features */
-  
-  var features = {
-    bind : !!(function(){}.bind),
-    classList : 'classList' in document.documentElement,
-    rAF : !!(window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame)
-  };
-  window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
-  
-  /**
-   * Handles debouncing of events via requestAnimationFrame
-   * @see http://www.html5rocks.com/en/tutorials/speed/animations/
-   * @param {Function} callback The callback to handle whichever event
-   */
-  function Debouncer (callback) {
-    this.callback = callback;
-    this.ticking = false;
-  }
-  Debouncer.prototype = {
-    constructor : Debouncer,
-  
-    /**
-     * dispatches the event to the supplied callback
-     * @private
-     */
-    update : function() {
-      this.callback && this.callback();
-      this.ticking = false;
-    },
-  
-    /**
-     * ensures events don't get stacked
-     * @private
-     */
-    requestTick : function() {
-      if(!this.ticking) {
-        requestAnimationFrame(this.rafCallback || (this.rafCallback = this.update.bind(this)));
-        this.ticking = true;
-      }
-    },
-  
-    /**
-     * Attach this as the event listeners
-     */
-    handleEvent : function() {
-      this.requestTick();
-    }
-  };
-  /**
-   * Check if object is part of the DOM
-   * @constructor
-   * @param {Object} obj element to check
-   */
-  function isDOMElement(obj) {
-    return obj && typeof window !== 'undefined' && (obj === window || obj.nodeType);
-  }
-  
-  /**
-   * Helper function for extending objects
-   */
-  function extend (object /*, objectN ... */) {
-    if(arguments.length <= 0) {
-      throw new Error('Missing arguments in extend function');
-    }
-  
-    var result = object || {},
-        key,
-        i;
-  
-    for (i = 1; i < arguments.length; i++) {
-      var replacement = arguments[i] || {};
-  
-      for (key in replacement) {
-        // Recurse into object except if the object is a DOM element
-        if(typeof result[key] === 'object' && ! isDOMElement(result[key])) {
-          result[key] = extend(result[key], replacement[key]);
-        }
-        else {
-          result[key] = result[key] || replacement[key];
-        }
-      }
-    }
-  
-    return result;
-  }
-  
-  /**
-   * Helper function for normalizing tolerance option to object format
-   */
-  function normalizeTolerance (t) {
-    return t === Object(t) ? t : { down : t, up : t };
-  }
-  
-  /**
-   * UI enhancement for fixed headers.
-   * Hides header when scrolling down
-   * Shows header when scrolling up
-   * @constructor
-   * @param {DOMElement} elem the header element
-   * @param {Object} options options for the widget
-   */
-  function Headroom (elem, options) {
-    options = extend(options, Headroom.options);
-  
-    this.lastKnownScrollY = 0;
-    this.elem             = elem;
-    this.tolerance        = normalizeTolerance(options.tolerance);
-    this.classes          = options.classes;
-    this.offset           = options.offset;
-    this.scroller         = options.scroller;
-    this.initialised      = false;
-    this.onPin            = options.onPin;
-    this.onUnpin          = options.onUnpin;
-    this.onTop            = options.onTop;
-    this.onNotTop         = options.onNotTop;
-    this.onBottom         = options.onBottom;
-    this.onNotBottom      = options.onNotBottom;
-  }
-  Headroom.prototype = {
-    constructor : Headroom,
-  
-    /**
-     * Initialises the widget
-     */
-    init : function() {
-      if(!Headroom.cutsTheMustard) {
-        return;
-      }
-  
-      this.debouncer = new Debouncer(this.update.bind(this));
-      this.elem.classList.add(this.classes.initial);
-  
-      // defer event registration to handle browser
-      // potentially restoring previous scroll position
-      setTimeout(this.attachEvent.bind(this), 100);
-  
-      return this;
-    },
-  
-    /**
-     * Unattaches events and removes any classes that were added
-     */
-    destroy : function() {
-      var classes = this.classes;
-  
-      this.initialised = false;
-  
-      for (var key in classes) {
-        if(classes.hasOwnProperty(key)) {
-          this.elem.classList.remove(classes[key]);
-        }
-      }
-  
-      this.scroller.removeEventListener('scroll', this.debouncer, false);
-    },
-  
-    /**
-     * Attaches the scroll event
-     * @private
-     */
-    attachEvent : function() {
-      if(!this.initialised){
-        this.lastKnownScrollY = this.getScrollY();
-        this.initialised = true;
-        this.scroller.addEventListener('scroll', this.debouncer, false);
-  
-        this.debouncer.handleEvent();
-      }
-    },
-  
-    /**
-     * Unpins the header if it's currently pinned
-     */
-    unpin : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(classList.contains(classes.pinned) || !classList.contains(classes.unpinned)) {
-        classList.add(classes.unpinned);
-        classList.remove(classes.pinned);
-        this.onUnpin && this.onUnpin.call(this);
-      }
-    },
-  
-    /**
-     * Pins the header if it's currently unpinned
-     */
-    pin : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(classList.contains(classes.unpinned)) {
-        classList.remove(classes.unpinned);
-        classList.add(classes.pinned);
-        this.onPin && this.onPin.call(this);
-      }
-    },
-  
-    /**
-     * Handles the top states
-     */
-    top : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(!classList.contains(classes.top)) {
-        classList.add(classes.top);
-        classList.remove(classes.notTop);
-        this.onTop && this.onTop.call(this);
-      }
-    },
-  
-    /**
-     * Handles the not top state
-     */
-    notTop : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(!classList.contains(classes.notTop)) {
-        classList.add(classes.notTop);
-        classList.remove(classes.top);
-        this.onNotTop && this.onNotTop.call(this);
-      }
-    },
-  
-    bottom : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(!classList.contains(classes.bottom)) {
-        classList.add(classes.bottom);
-        classList.remove(classes.notBottom);
-        this.onBottom && this.onBottom.call(this);
-      }
-    },
-  
-    /**
-     * Handles the not top state
-     */
-    notBottom : function() {
-      var classList = this.elem.classList,
-        classes = this.classes;
-  
-      if(!classList.contains(classes.notBottom)) {
-        classList.add(classes.notBottom);
-        classList.remove(classes.bottom);
-        this.onNotBottom && this.onNotBottom.call(this);
-      }
-    },
-  
-    /**
-     * Gets the Y scroll position
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Window.scrollY
-     * @return {Number} pixels the page has scrolled along the Y-axis
-     */
-    getScrollY : function() {
-      return (this.scroller.pageYOffset !== undefined)
-        ? this.scroller.pageYOffset
-        : (this.scroller.scrollTop !== undefined)
-          ? this.scroller.scrollTop
-          : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-    },
-  
-    /**
-     * Gets the height of the viewport
-     * @see http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript
-     * @return {int} the height of the viewport in pixels
-     */
-    getViewportHeight : function () {
-      return window.innerHeight
-        || document.documentElement.clientHeight
-        || document.body.clientHeight;
-    },
-  
-    /**
-     * Gets the physical height of the DOM element
-     * @param  {Object}  elm the element to calculate the physical height of which
-     * @return {int}     the physical height of the element in pixels
-     */
-    getElementPhysicalHeight : function (elm) {
-      return Math.max(
-        elm.offsetHeight,
-        elm.clientHeight
-      );
-    },
-  
-    /**
-     * Gets the physical height of the scroller element
-     * @return {int} the physical height of the scroller element in pixels
-     */
-    getScrollerPhysicalHeight : function () {
-      return (this.scroller === window || this.scroller === document.body)
-        ? this.getViewportHeight()
-        : this.getElementPhysicalHeight(this.scroller);
-    },
-  
-    /**
-     * Gets the height of the document
-     * @see http://james.padolsey.com/javascript/get-document-height-cross-browser/
-     * @return {int} the height of the document in pixels
-     */
-    getDocumentHeight : function () {
-      var body = document.body,
-        documentElement = document.documentElement;
-  
-      return Math.max(
-        body.scrollHeight, documentElement.scrollHeight,
-        body.offsetHeight, documentElement.offsetHeight,
-        body.clientHeight, documentElement.clientHeight
-      );
-    },
-  
-    /**
-     * Gets the height of the DOM element
-     * @param  {Object}  elm the element to calculate the height of which
-     * @return {int}     the height of the element in pixels
-     */
-    getElementHeight : function (elm) {
-      return Math.max(
-        elm.scrollHeight,
-        elm.offsetHeight,
-        elm.clientHeight
-      );
-    },
-  
-    /**
-     * Gets the height of the scroller element
-     * @return {int} the height of the scroller element in pixels
-     */
-    getScrollerHeight : function () {
-      return (this.scroller === window || this.scroller === document.body)
-        ? this.getDocumentHeight()
-        : this.getElementHeight(this.scroller);
-    },
-  
-    /**
-     * determines if the scroll position is outside of document boundaries
-     * @param  {int}  currentScrollY the current y scroll position
-     * @return {bool} true if out of bounds, false otherwise
-     */
-    isOutOfBounds : function (currentScrollY) {
-      var pastTop  = currentScrollY < 0,
-        pastBottom = currentScrollY + this.getScrollerPhysicalHeight() > this.getScrollerHeight();
-  
-      return pastTop || pastBottom;
-    },
-  
-    /**
-     * determines if the tolerance has been exceeded
-     * @param  {int} currentScrollY the current scroll y position
-     * @return {bool} true if tolerance exceeded, false otherwise
-     */
-    toleranceExceeded : function (currentScrollY, direction) {
-      return Math.abs(currentScrollY-this.lastKnownScrollY) >= this.tolerance[direction];
-    },
-  
-    /**
-     * determine if it is appropriate to unpin
-     * @param  {int} currentScrollY the current y scroll position
-     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
-     * @return {bool} true if should unpin, false otherwise
-     */
-    shouldUnpin : function (currentScrollY, toleranceExceeded) {
-      var scrollingDown = currentScrollY > this.lastKnownScrollY,
-        pastOffset = currentScrollY >= this.offset;
-  
-      return scrollingDown && pastOffset && toleranceExceeded;
-    },
-  
-    /**
-     * determine if it is appropriate to pin
-     * @param  {int} currentScrollY the current y scroll position
-     * @param  {bool} toleranceExceeded has the tolerance been exceeded?
-     * @return {bool} true if should pin, false otherwise
-     */
-    shouldPin : function (currentScrollY, toleranceExceeded) {
-      var scrollingUp  = currentScrollY < this.lastKnownScrollY,
-        pastOffset = currentScrollY <= this.offset;
-  
-      return (scrollingUp && toleranceExceeded) || pastOffset;
-    },
-  
-    /**
-     * Handles updating the state of the widget
-     */
-    update : function() {
-      var currentScrollY  = this.getScrollY(),
-        scrollDirection = currentScrollY > this.lastKnownScrollY ? 'down' : 'up',
-        toleranceExceeded = this.toleranceExceeded(currentScrollY, scrollDirection);
-  
-      if(this.isOutOfBounds(currentScrollY)) { // Ignore bouncy scrolling in OSX
-        return;
-      }
-  
-      if (currentScrollY <= this.offset ) {
-        this.top();
-      } else {
-        this.notTop();
-      }
-  
-      if(currentScrollY + this.getViewportHeight() >= this.getScrollerHeight()) {
-        this.bottom();
-      }
-      else {
-        this.notBottom();
-      }
-  
-      if(this.shouldUnpin(currentScrollY, toleranceExceeded)) {
-        this.unpin();
-      }
-      else if(this.shouldPin(currentScrollY, toleranceExceeded)) {
-        this.pin();
-      }
-  
-      this.lastKnownScrollY = currentScrollY;
-    }
-  };
-  /**
-   * Default options
-   * @type {Object}
-   */
-  Headroom.options = {
-    tolerance : {
-      up : 0,
-      down : 0
-    },
-    offset : 0,
-    scroller: window,
-    classes : {
-      pinned : 'headroom--pinned',
-      unpinned : 'headroom--unpinned',
-      top : 'headroom--top',
-      notTop : 'headroom--not-top',
-      bottom : 'headroom--bottom',
-      notBottom : 'headroom--not-bottom',
-      initial : 'headroom'
-    }
-  };
-  Headroom.cutsTheMustard = typeof features !== 'undefined' && features.rAF && features.bind && features.classList;
-
-  return Headroom;
-}));
 
 /***/ })
 /******/ ]);

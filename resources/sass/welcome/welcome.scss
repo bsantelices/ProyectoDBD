@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 // Fontawesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
@@ -125,7 +126,7 @@
 }
 
 .main {
-	background-color: #5e72e4!important;
+	background-color: #191919!important;
 }
 
 .landing-image {
@@ -140,6 +141,52 @@
 
 .icon {
 	margin-right: 0.5em;
+}
+
+.btn-default {
+	background-color: #ff0000 !important;
+	color: #fff !important;
+	border: 1px solid #ff0000 !important;
+}
+
+.active{
+	background-color: #ff0000 !important;	
+}
+
+.btn-default:hover {
+	background-color: #ff0000 !important;
+	border: 1px solid #ff0000 !important;
+	color: rgba(255,255,255,0.7) !important;
+}
+
+.btn-white {
+	color: #191919 !important;
+}
+
+.btn-white:hover {
+	color: rgba(0,0,0,0.7) !important;
+}
+
+
+.btn {
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+}
+
+.welcome-title-strong {
+	font-weight: bold;
+}
+
+.welcome-title-black {
+	color: #191919 !important;
+}
+
+.welcome-title {
+	font-family: 'Roboto', sans-serif;
+}
+
+.headroom--not-top {
+	background-color: #282828 !important;
 }
 
 .main-form {

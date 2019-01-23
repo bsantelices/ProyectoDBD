@@ -49,26 +49,26 @@
                     </ul>
                     <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
+                            <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" title="Siguenos en Facebook">
                                 <i class="fab fa-facebook-square"></i>
                                 <span class="nav-link-inner--text d-lg-none">Facebook</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
+                            <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" title="Siguenos en Instagram">
                                 <i class="fab fa-instagram"></i>
                                 <span class="nav-link-inner--text d-lg-none">Instagram</span>
                             </a>
                         </li>
                         @auth
                             <li class="nav-item d-none d-lg-block ml-lg-4">
-                                <a href="{{ url('/home') }}" class="btn btn-neutral btn-icon">
+                                <a href="{{ url('/home') }}" class="btn btn-white btn-icon">
                                     <span class="nav-link-inner--text">Inicio</span>
                                 </a>
                             </li>
                         @else
                             <li class="nav-item d-none d-lg-block ml-lg-4">
-                                <a href="{{ route('login') }}" class="btn btn-neutral btn-icon">
+                                <a href="{{ route('login') }}" class="btn btn-white btn-icon">
                                     <span class="nav-link-inner--text">Entrar</span>
                                 </a>
                             </li>
@@ -99,10 +99,10 @@
                                 <img src="/img/welcome/travel.png" width="300">
                             </div>
                             <div class="col-lg-7">
-                                <h1 class="display-3  text-white">¡Escápate en Marzo!
-                                    <span>desde US$859/$597.864</span>
+                                <h1 class="display-3 welcome-title-strong text-white">¡Escápate en Marzo!
+                                    <span class="welcome-title">desde US$859/$597.864</span>
                                 </h1>
-                                <p class="lead  text-white">Viaja más cómodo comprando tu asiento en LarAvion. <br>¡No te quedes abajo!</p>
+                                <p class="lead welcome-title text-white">Viaja más cómodo comprando tu asiento en LarAvion. <br>¡No te quedes abajo!</p>
                                 <div class="btn-wrapper">
                                     <a id="buyTicket" href="#buy" class="btn btn-default btn-icon mb-3 mb-sm-0">
                                         <span class="btn-inner--icon"><i class="fas fa-plane"></i></span>
@@ -137,7 +137,7 @@
                         <div class="row row-grid">
                             <div class="col-lg-12">
                                 <div class="main-form card shadow border-0">
-                                    <h1 class="display-3 ">Busca tu Vuelo <i class="fas fa-plane-departure"></i></h1>
+                                    <h1 class="display-3 welcome-title welcome-title-black welcome-title-strong">Busca tu Vuelo <i class="fas fa-plane-departure"></i></h1>
                                     <div class="main-form card-body py-5">
                                         <form>
                                             <div class="row">
@@ -201,50 +201,10 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <a href="#" class="btn btn-primary mt-4"><i class="fas fa-search"></i> Buscar Vuelo</a>
+                                        <a href="#" class="btn btn-default mt-4"><i class="fas fa-search"></i> Buscar Vuelo</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section">
-            <div class="container">
-                <div class="row row-grid align-items-center">
-                    <div class="col-md-6">
-                        <div class="card bg-default shadow border-0">
-                            <img src="img/welcome/img-1-1200x1000.jpg" class="card-img-top">
-                            <blockquote class="card-blockquote">
-                                <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="svg-bg">
-                                    <polygon points="0,52 583,95 0,95" class="fill-default" />
-                                    <polygon points="0,42 583,95 683,0 0,95" opacity=".2" class="fill-default" />
-                                </svg>
-                                <h4 class="display-3 font-weight-bold text-white">¡Tomate un Descanso!</h4>
-                                <p class="lead text-italic text-white">Aqui explico algo de algun paquete para darle color.</p>
-                            </blockquote>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="pl-md-5">
-                            <div>
-                                <div class="icon icon-lg icon-shape icon-shape-info shadow rounded-circle mb-5">
-                                    <i class="fas fa-globe-americas"></i>
-                                </div>
-                                <div class="icon icon-lg icon-shape icon-shape-success shadow rounded-circle mb-5">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div class="icon icon-lg icon-shape icon-shape-danger shadow rounded-circle mb-5">
-                                    <i class="fas fa-plane"></i>
-                                </div>
-                            </div>
-                            <h3>Pasajes desde $10.000</h3>
-                            <p class="lead">Chamullo algo de que existen pasajes bla bla bla, sera realmente necesaria esta seccion ? la hice solo por que no me gusta que termine el cuadro anterior en seco.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris.</p>
-                            <a href="#" class="font-weight-bold text-warning mt-5">A beautiful UI Kit for impactful websites</a>
                         </div>
                     </div>
                 </div>

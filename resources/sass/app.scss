@@ -1,6 +1,8 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 // Variables
 @import 'variables';
@@ -37,7 +39,33 @@
   border-radius: 10px;
 }
 
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
 .navbar-laravel {
-  background-color: #fff;
+  background-color: #282828;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-userimage {
+	margin-right: 5px;
+	border-radius: 50%;
+	height: 33px;
+	width: 33px;
+}
+
+.navbar-brand {
+	font-family: 'Pacifico', cursive;
+	font-size: 1.7em !important;
+}
+
+.nav-link {
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+}
+
+.card-header {
+	background-color: #fff;
+	font-weight: bold;
 }

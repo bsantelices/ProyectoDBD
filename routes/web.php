@@ -68,7 +68,7 @@ Route::resource('seats','SeatController');
 Route::resource('vehicles','VehicleController');
 
 // ADMIN
+Route::get('/admin','AdminController@index')->name('admin');
 
 // see transactions by user
 Route::resource('users.reservations','User\ReservationController');
- 

@@ -45,7 +45,8 @@ $(document).ready(function() {
     // Datepicker
     $('.datepicker')[0] && $('.datepicker').each(function() {
         $('.datepicker').datepicker({
-        		format: 'dd/mm/yyyy',
+        	format: 'dd/mm/yyyy',
+            startDate: new Date(),
             disableTouchKeyboard: true,
             autoclose: false
         });
