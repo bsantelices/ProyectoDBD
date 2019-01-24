@@ -44,13 +44,11 @@ class Room extends Model
         return $this->belongsTo(Hotel::class);
     }
 
-
-
     public function scopeState($query, $state)
     {
         if($state)
         {
-            return $query->where('state','LIKE','%$state%');
+            return $query->where('state','=',$state);
         }
     }
 
@@ -58,7 +56,7 @@ class Room extends Model
     {
         if($adultCapacity)
         {
-            return $query->where('adultCapacity','LIKE','%$adultCapacity%');
+            return $query->where('adultCapacity','>=',$adultCapacity);
         }
     }
 
@@ -66,7 +64,7 @@ class Room extends Model
     {
         if($childrenCapacity)
         {
-            return $query->where('childrenCapacity','LIKE','%$childrenCapacity%');
+            return $query->where('childrenCapacity','>=',$childrenCapacity);
         }
     }   
 
@@ -74,7 +72,7 @@ class Room extends Model
     {
         if($type)
         {
-            return $query->where('type','LIKE','%$type%');
+            return $query->where('type','=',$type);
         }
     }    
 

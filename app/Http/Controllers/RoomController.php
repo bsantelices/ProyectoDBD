@@ -24,20 +24,14 @@ class RoomController extends Controller
         $state =            $request->get('state');
         $order =            $request->get('order');
 
-        if($order == 1)
-        {
-            $rooms = Room::orderBy('value','DESC');
-        }
-        else
-        {
-            $rooms = Room::orderBy('value','ASC');
-        }
-
-        $roomsA = $rooms
+        $rooms = Room::orderBy('id','DESC')
                     ->type($type)
                     ->adultCapacity($adultCapacity)
                     ->childrenCapacity($childrenCapacity)
-                    ->state($state);
+                    ->state($state)
+                    ->country($country)
+                    ->city($city)
+                    ->get();
 
         $locations = Location::all();
 
