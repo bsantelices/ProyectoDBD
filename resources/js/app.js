@@ -7,6 +7,10 @@
 
 require('./bootstrap');
 
+require('sweetalert');
+
+import swal from 'sweetalert';
+
 window.Vue = require('vue');
 
 /**
@@ -15,10 +19,14 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('home-component', require('./components/HomeComponent.vue'));
 
 const app = new Vue({
     el: '#app'
 });
 
 $('.carousel').carousel();
+
+$('select').click(function () {
+  $('option[selected="selected"]', this).remove();
+});

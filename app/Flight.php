@@ -14,7 +14,7 @@ class Flight extends Model
      */
     protected $fillable = [
         'location_start',
-        'lcoation_end',
+        'location_end',
         'type',
         'luggageCapacity',
         'airport_id',

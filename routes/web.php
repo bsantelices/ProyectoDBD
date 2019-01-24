@@ -72,3 +72,7 @@ Route::get('/admin','AdminController@index')->name('admin');
 
 // see transactions by user
 Route::resource('users.reservations','User\ReservationController');
+
+
+// USER
+Route::post('/findFlight','FlightController@find');

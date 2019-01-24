@@ -111,4 +111,18 @@ class FlightController extends Controller
         return response('Ok', 200)
             ->header('Content-Type', 'text/plain');
     }
+
+    /**
+     * Find a Flight From A to B
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function find(Request $request)
+    {
+        return Flight::Where(
+            ['location_start','=',$request->locationStart],
+            ['location_end','=',$request->locationEnd]
+        )->first();
+    }
 }

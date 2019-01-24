@@ -41,6 +41,10 @@
 
 body {
 	font-family: 'Roboto', sans-serif;
+	background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), center url('/img/welcome/bg2.jpg') no-repeat;
+	background-size: cover;
+	height: 100vh;
+	width: 100%;
 }
 
 .navbar-laravel {
@@ -60,12 +64,132 @@ body {
 	font-size: 1.7em !important;
 }
 
+.image-bg {
+	// background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), center url('/img/welcome/bg2.jpg') no-repeat;
+	// background-size: cover;
+	color: #fff !important;
+	.card-title {
+		font-weight: bold;
+	}
+	background-color: #191919 !important;
+}
+
 .nav-link {
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
 }
 
+.card {
+	border-radius: 9px;
+	overflow: hidden;
+	margin-bottom: 1em;
+}
+
+.card-title {
+	font-weight: bold;	
+}
+
 .card-header {
 	background-color: #fff;
 	font-weight: bold;
+}
+
+.strong-text {
+	font-size: 1.5em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+}
+
+.normal-text {
+	font-family: 'Roboto', sans-serif;
+}
+
+.flight-card-button {
+	padding-top: 1em;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	bottom: 0;
+}
+
+.btn {
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+}
+
+.input-group-text {
+	background-color: #282828 !important;
+	color: #fff !important;
+	border: transparent !important;
+}
+
+input[type=text] {
+	background-color: #282828 !important;
+	color: #fff !important;
+	border: transparent !important;
+	font-weight: bold;
+}
+
+select[type=text] {
+	background-color: #282828 !important;
+	color: #fff !important;
+	border: transparent !important;
+	font-weight: bold;
+}
+
+.form-control:focus{
+    border-color: #ff0000 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.form__options {
+	border: none;
+	width: 100%;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+}
+
+.form__answer {
+	margin: 0px;
+}
+
+.radio-label {
+	border: 1px solid rgba(#fff,.15);
+	border-radius: 0.25rem;
+	font-weight: bold;
+	background-color: #282828 !important;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1em;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	cursor: pointer;
+	opacity: .5;
+	transition: all .5s ease-in-out;
+	&:hover, &:focus, &:active {
+		border: 1px solid rgba(#fff,.5);
+	}
+}
+
+.input-group {
+	margin-bottom: 10px;
+}
+
+input[type="radio"] {
+	opacity: 0;
+	width: 0;
+  height: 0;
+}
+
+input[type="radio"]:active ~ label {
+  opacity: 1;
+}
+
+input[type="radio"]:checked ~ label {
+  opacity: 1;
+	border: 1px solid #fff;
 }

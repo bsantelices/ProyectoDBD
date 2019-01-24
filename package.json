@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.6.3",
-        "headroom.js": "^0.9.4"
+        "headroom.js": "^0.9.4",
+        "sweetalert": "^2.1.2"
     }
 }
