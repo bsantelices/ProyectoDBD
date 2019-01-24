@@ -49495,15 +49495,92 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts', 'locations'],
+    props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts', 'locations', 'planes'],
     data: function data() {
         return {
             state: 'flight',
             flightsVue: this.flights.reverse(),
             flightForm: false,
             requestFlight: {
+                locationStart: '',
+                locationEnd: '',
+                dateStart: '',
+                dateEnd: '',
+                Type: ''
+            },
+            planesVue: this.planes.reverse(),
+            planeForm: false,
+            requestPlane: {
                 locationStart: '',
                 locationEnd: '',
                 dateStart: '',
@@ -49541,11 +49618,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteFlight: function deleteFlight(id) {
             var _this2 = this;
 
-            axios.delete('/flights/' + id).then(function (response) {
-                _this2.flightsVue = _this2.flightsVue.filter(function (elem) {
-                    return elem.id != id;
-                });
-                swal("Listo!", "Se ha eliminado correctamente!", "success");
+            swal({
+                title: "Estás Seguro?",
+                text: "Una vez borrado, no podrás recuperar la información!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(function (willDelete) {
+                if (willDelete) {
+                    axios.delete('/flights/' + id).then(function (response) {
+                        _this2.flightsVue = _this2.flightsVue.filter(function (elem) {
+                            return elem.id != id;
+                        });
+                        swal("Listo!", "Se ha eliminado correctamente!", "success");
+                    });
+                } else {
+                    swal({
+                        title: "No se ha borrado el archivo!"
+                    });
+                }
             });
         }
     }
@@ -49596,6 +49687,34 @@ var render = function() {
                   }
                 },
                 [_vm._v("Vuelos")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("plane")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "plane"
+                    }
+                  }
+                },
+                [_vm._v("Avión")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("airport")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "airport"
+                    }
+                  }
+                },
+                [_vm._v("Aereopuerto")]
               ),
               _vm._v(" "),
               _c(
@@ -50026,7 +50145,7 @@ var render = function() {
                             _vm._v("codigo")
                           ]),
                           _vm._v(" "),
-                          _c("span", { staticClass: "normal-text" }, [
+                          _c("span", { staticClass: "normal-text-admin" }, [
                             _vm._v(_vm._s(flight.id))
                           ])
                         ]),
@@ -50076,6 +50195,400 @@ var render = function() {
                           _vm._v(" "),
                           _c("span", { staticClass: "normal-text-admin" }, [
                             _vm._v(_vm._s(flight.created_at_format))
+                          ])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.state == "plane"
+            ? _c("div", { staticClass: "card image-bg" }, [
+                _c("div", { staticClass: "admin-card card-body" }, [
+                  _c("h2", { staticClass: "admin-title card-title" }, [
+                    _vm._v(
+                      "\n                            Aviónes\n                            "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.planeForm = !_vm.planeForm
+                          }
+                        }
+                      },
+                      [
+                        !_vm.planeForm
+                          ? _c("span", [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Registrar Un Nuevo Avión")
+                            ])
+                          : _c("span", [
+                              _c("i", { staticClass: "fas fa-minus" }),
+                              _vm._v(" Esconder Formulario")
+                            ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm.planeForm
+                      ? _c(
+                          "form",
+                          {
+                            staticClass: "row justify-content-center",
+                            attrs: { action: "" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.createFlight()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-10 admin-form-div" },
+                              [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestPlane.brand,
+                                        expression: "requestPlane.brand"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Marca",
+                                      type: "text"
+                                    },
+                                    domProps: { value: _vm.requestPlane.brand },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestPlane,
+                                          "brand",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestPlane.capacity,
+                                        expression: "requestPlane.capacity"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      placeholder: "Capacidad",
+                                      min: "1",
+                                      max: "500",
+                                      type: "number"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestPlane.capacity
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestPlane,
+                                          "capacity",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.requestPlane.locationEnd,
+                                          expression: "requestPlane.locationEnd"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "", type: "text" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.requestPlane,
+                                            "locationEnd",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: {
+                                            value: "",
+                                            selected: "",
+                                            disabled: ""
+                                          }
+                                        },
+                                        [_vm._v("Destino")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.locations, function(
+                                        location,
+                                        index
+                                      ) {
+                                        return location.id !=
+                                          _vm.requestPlane.locationStart
+                                          ? _c(
+                                              "option",
+                                              {
+                                                domProps: { value: location.id }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    " +
+                                                    _vm._s(location.city) +
+                                                    ", " +
+                                                    _vm._s(location.country) +
+                                                    "\n                                            "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestPlane.dateStart,
+                                        expression: "requestPlane.dateStart"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      id: "datepicker",
+                                      placeholder: "Fecha Ida",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestPlane.dateStart
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestPlane,
+                                          "dateStart",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestPlane.dateEnd,
+                                        expression: "requestPlane.dateEnd"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      id: "datepicker",
+                                      placeholder: "Fecha Vuelta",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestPlane.dateEnd
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestPlane,
+                                          "dateEnd",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "input-group" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.requestPlane.Type,
+                                          expression: "requestPlane.Type"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        required: "",
+                                        placeholder: "Tipo",
+                                        type: "text"
+                                      },
+                                      domProps: {
+                                        value: _vm.requestPlane.Type
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.requestPlane,
+                                            "Type",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Registrar Avión\n                                    "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br")
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "admin-list-container" },
+                    _vm._l(_vm.planesVue, function(plane, index) {
+                      return _c("div", { staticClass: "admin-list" }, [
+                        _c("div", { staticClass: "admin-list-icon" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.deleteFlight(plane.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-times" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("codigo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(plane.id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Marca")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(plane.brand))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Capacidad")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(plane.capacity))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Aereopuerto")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(plane.airport_id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("creación")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(plane.created_at_format))
                           ])
                         ])
                       ])
