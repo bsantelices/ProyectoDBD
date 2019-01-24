@@ -20,9 +20,10 @@ window.Vue = require('vue');
  */
 
 Vue.component('home-component', require('./components/HomeComponent.vue'));
+Vue.component('admin-component', require('./components/AdminComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });
 
 $('.carousel').carousel();

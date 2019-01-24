@@ -74,7 +74,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title">Ticket Reserva</h2>
-                            <div v-if="request.locationStart && request.locationEnd" class="ticket-locations">
+                            <div v-if="request.locationStart && request.locationEnd && request.locationStart != request.locationEnd" class="ticket-locations">
                                 <div class="ticket-location">
                                     <span class="strong-text">{{ (FindLocation(request.locationStart)).locationInit }}</span>
                                     <span class="normal-text">{{ (FindLocation(request.locationStart)).locationName }}</span>
@@ -83,6 +83,16 @@
                                 <div class="ticket-location">
                                     <span class="strong-text">{{ (FindLocation(request.locationEnd)).locationInit }}</span>
                                     <span class="normal-text">{{ (FindLocation(request.locationEnd)).locationName }}</span>
+                                </div>
+                            </div>
+                            <div v-if="request.dateStart && request.dateEnd && request.dateStart != request.dateEnd" class="ticket-dates">
+                                <div class="col-md-6 ticket-date ticket-date-left">
+                                    <span class="normal-text">Sale a la(s):</span>
+                                    <span class="strong-text-date">{{ request.dateStart }}</span>
+                                </div>
+                                <div class="col-md-6 ticket-date">
+                                    <span class="normal-text">Llega a la(s):</span>
+                                    <span class="strong-text-date">{{ request.dateEnd }}</span>
                                 </div>
                             </div>
                         </div>
@@ -116,11 +126,13 @@
         methods: {
             FindFlight() {
                 console.log(this.request);
-                // axios.post('/findFlight',this.request).then(
-                //     (response) => {
-                //         console.log(response.data)
-                //     }
-                // );
+                if (this.request.locationStart != this.request.locationEnd) {
+                    // axios.post('/findFlight',this.request).then(
+                    //     (response) => {
+                    //         console.log(response.data)
+                    //     }
+                    // );
+                }
             },
             FindLocation(id) {
                 let location = this.locations.find((location) => {
@@ -138,7 +150,8 @@
 <style type="text/css">
 .ticket-locations {
     border: 1px solid #dedede;
-    border-radius: 0.25em;
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -157,5 +170,29 @@
     font-size: 1.5em;
     margin-right: 15px;
     margin-left: 5px;
+}
+
+.ticket-dates {
+    border-right: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    border-left: 1px solid #dedede;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 1em;
+    align-items: center;
+}
+
+.ticket-date-left {
+    border-right: 1px solid #dedede;
+}
+
+.ticket-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 </style>

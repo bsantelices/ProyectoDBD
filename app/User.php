@@ -57,6 +57,17 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the roles records associated with the user.
+     */
+    public function hasRole($role)
+    {
+        $array = $this->roles->map(function($roleEl) {
+            return $roleEl->name;
+        });
+        return in_array($role,$array->toArray());
+    }
+
+    /**
      * Get the log record associated with the user.
      */
     public function log()

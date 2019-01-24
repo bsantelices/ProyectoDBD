@@ -67,12 +67,14 @@ Route::resource('seats','SeatController');
 // create vehicles
 Route::resource('vehicles','VehicleController');
 
-// ADMIN
-Route::get('/admin','AdminController@index')->name('admin');
-
 // see transactions by user
 Route::resource('users.reservations','User\ReservationController');
 
 
 // USER
 Route::post('/findFlight','FlightController@find');
+
+// ADMIN
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('/admin', 'AdminController@index');
+});

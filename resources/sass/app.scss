@@ -43,7 +43,6 @@ body {
 	font-family: 'Roboto', sans-serif;
 	background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), center url('/img/welcome/bg2.jpg') no-repeat;
 	background-size: cover;
-	height: 100vh;
 	width: 100%;
 }
 
@@ -96,6 +95,12 @@ body {
 
 .strong-text {
 	font-size: 1.5em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+}
+
+.strong-text-date {
+	font-size: 1.2em;
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
 }
@@ -163,10 +168,7 @@ select[type=text] {
 	background-color: #282828 !important;
 	font-family: 'Roboto', sans-serif;
 	font-size: 1em;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 10px;
 	cursor: pointer;
 	opacity: .5;
 	transition: all .5s ease-in-out;
