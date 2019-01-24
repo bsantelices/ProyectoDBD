@@ -49359,7 +49359,7 @@ exports = module.exports = __webpack_require__(38)(false);
 
 
 // module
-exports.push([module.i, "\n.admin-profile-info {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 100%;\n}\n.admin-userimage {\n    height: 50px;\n    width: 50px;\n    border-radius: 50%;\n}\n.admin-name {\n    font-size: 1.1em !important;\n}\n.btn-light {\n    background-color: #dedede !important;\n}\n", ""]);
+exports.push([module.i, "\n.admin-profile-info {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 100%;\n}\n.admin-username {\n    width: 80%;\n    height: 1.3em;\n    overflow: hidden;\n}\n.admin-title {\n    padding-left: 1em;\n}\n.admin-userimage {\n    height: 50px;\n    width: 50px;\n    border-radius: 50%;\n}\n.admin-name {\n    font-size: 1.1em !important;\n}\n.btn-light {\n    background-color: #dedede !important;\n}\n.admin-list {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    background-color: #282828;\n    color: #fff;\n    border-bottom: solid 1px rgba(255, 255, 255, 0.05);\n    padding: 1em;\n}\n.admin-list-div {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    height: 100%;\n    padding-right: 5px;\n    padding-left: 5px;\n    min-width: 16%;\n}\n.admin-card {\n    padding-right: 0px !important;\n    padding-bottom: 0px !important;\n    padding-left: 0px !important;\n}\n.admin-list-icon {\n    height: 100%;\n    width: 40px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    margin-right: 10px;\n}\n", ""]);
 
 // exports
 
@@ -49405,16 +49405,81 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['admin'],
+    props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts'],
     data: function data() {
-        return {};
+        return {
+            state: 'flight',
+            flightsVue: this.flights.reverse()
+        };
     },
     created: function created() {},
     mounted: function mounted() {},
 
-    methods: {}
+    methods: {
+        activeClass: function activeClass(state) {
+            if (this.state == state) {
+                return 'btn btn-primary btn-block';
+            } else {
+                return 'btn btn-light btn-block';
+            }
+        }
+    }
 });
 
 /***/ }),
@@ -49443,41 +49508,200 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "normal-text" }, [
+                _c("span", { staticClass: "admin-username normal-text" }, [
                   _vm._v(_vm._s(_vm.admin.username))
                 ])
               ]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-primary btn-block" }, [
-                _vm._v("Vuelos")
-              ]),
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("flight")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "flight"
+                    }
+                  }
+                },
+                [_vm._v("Vuelos")]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-light btn-block" }, [
-                _vm._v("Paquetes")
-              ]),
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("package")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "package"
+                    }
+                  }
+                },
+                [_vm._v("Paquetes")]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-light btn-block" }, [
-                _vm._v("Vehiculos")
-              ]),
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("vehicle")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "vehicle"
+                    }
+                  }
+                },
+                [_vm._v("Vehiculos")]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-light btn-block" }, [
-                _vm._v("Roles")
-              ]),
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("role")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "role"
+                    }
+                  }
+                },
+                [_vm._v("Roles")]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-light btn-block" }, [
-                _vm._v("Seguros")
-              ]),
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("insurance")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "insurance"
+                    }
+                  }
+                },
+                [_vm._v("Seguros")]
+              ),
               _vm._v(" "),
-              _c("button", { staticClass: "btn btn-light btn-block" }, [
-                _vm._v("Descuentos")
-              ])
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("discount")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "discount"
+                    }
+                  }
+                },
+                [_vm._v("Descuentos")]
+              )
             ])
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "col-md-9" }, [
+          _vm.state == "flight"
+            ? _c("div", { staticClass: "card image-bg" }, [
+                _c(
+                  "div",
+                  { staticClass: "admin-card card-body" },
+                  [
+                    _c("h2", { staticClass: "admin-title card-title" }, [
+                      _vm._v("Vuelos")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.flights, function(flight, index) {
+                      return _c("div", { staticClass: "admin-list" }, [
+                        _vm._m(0, true),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("codigo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text" }, [
+                            _vm._v(_vm._s(flight.id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Lugar de partida")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(
+                              _vm._s(flight.locationStart.city) +
+                                ", " +
+                                _vm._s(flight.locationStart.country)
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Lugar de llegada")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(
+                              _vm._s(flight.locationEnd.city) +
+                                ", " +
+                                _vm._s(flight.locationEnd.country)
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Tipo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(flight.type))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("creación")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(flight.created_at_format))
+                          ])
+                        ])
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.state == "package"
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(1)])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.state == "vehicle"
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(2)])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.state == "role"
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(3)])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.state == "insurance"
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(4)])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.state == "discount"
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(5)])
+            : _vm._e()
+        ])
       ])
     ])
   ])
@@ -49487,13 +49711,53 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-9" }, [
-      _c("div", { staticClass: "card image-bg" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("h2", { staticClass: "card-title" }, [_vm._v("Ticket Reserva")]),
-          _vm._v("\n                        dfgdfgdfg\n                    ")
-        ])
-      ])
+    return _c("div", { staticClass: "admin-list-icon" }, [
+      _c("i", { staticClass: "fas fa-plane" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h2", { staticClass: "card-title" }, [_vm._v("Paquetes")]),
+      _vm._v("\n                        dfgdfgdfg\n                    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h2", { staticClass: "card-title" }, [_vm._v("Vehiculos")]),
+      _vm._v("\n                        dfgdfgdfg\n                    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h2", { staticClass: "card-title" }, [_vm._v("Roles")]),
+      _vm._v("\n                        dfgdfgdfg\n                    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h2", { staticClass: "card-title" }, [_vm._v("Seguros")]),
+      _vm._v("\n                        dfgdfgdfg\n                    ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h2", { staticClass: "card-title" }, [_vm._v("Descuentos")]),
+      _vm._v("\n                        dfgdfgdfg\n                    ")
     ])
   }
 ]
