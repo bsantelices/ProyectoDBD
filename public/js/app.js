@@ -48830,11 +48830,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         FindFlight: function FindFlight() {
             console.log(this.request);
             if (this.request.locationStart != this.request.locationEnd) {
-                // axios.post('/findFlight',this.request).then(
-                //     (response) => {
-                //         console.log(response.data)
-                //     }
-                // );
+                axios.post('/findFlight', this.request).then(function (response) {
+                    console.log(response.data);
+                });
             }
         },
         FindLocation: function FindLocation(id) {
@@ -49359,7 +49357,7 @@ exports = module.exports = __webpack_require__(38)(false);
 
 
 // module
-exports.push([module.i, "\n.admin-profile-info {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 100%;\n}\n.admin-username {\n    width: 80%;\n    height: 1.3em;\n    overflow: hidden;\n}\n.admin-title {\n    padding-left: 1em;\n}\n.admin-userimage {\n    height: 50px;\n    width: 50px;\n    border-radius: 50%;\n}\n.admin-name {\n    font-size: 1.1em !important;\n}\n.btn-light {\n    background-color: #dedede !important;\n}\n.admin-list {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    background-color: #282828;\n    color: #fff;\n    border-bottom: solid 1px rgba(255, 255, 255, 0.05);\n    padding: 1em;\n}\n.admin-list-div {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    height: 100%;\n    padding-right: 5px;\n    padding-left: 5px;\n    min-width: 16%;\n}\n.admin-card {\n    padding-right: 0px !important;\n    padding-bottom: 0px !important;\n    padding-left: 0px !important;\n}\n.admin-list-icon {\n    height: 100%;\n    width: 40px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    margin-right: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.admin-profile-info {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 100%;\n}\n.admin-username {\n    width: 80%;\n    height: 1.3em;\n    overflow: hidden;\n}\n.admin-form-div {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.admin-title {\n    padding-left: 1em;\n}\n.admin-title button {\n    margin-left: 1em;\n}\n.admin-userimage {\n    height: 50px;\n    width: 50px;\n    border-radius: 50%;\n}\n.admin-name {\n    font-size: 1.1em !important;\n}\n.btn-light {\n    background-color: #dedede !important;\n}\n.admin-list-container {\n    max-height: 60vh;\n    width: 100%;\n    overflow-y: scroll;\n}\n.admin-list {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    background-color: #282828;\n    color: #fff;\n    border-bottom: solid 1px rgba(255, 255, 255, 0.05);\n    padding: 1em;\n}\n.admin-list-div {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    height: 100%;\n    padding-right: 5px;\n    padding-left: 5px;\n    min-width: 16%;\n}\n.admin-card {\n    padding-right: 0px !important;\n    padding-bottom: 0px !important;\n    padding-left: 0px !important;\n}\n.admin-list-icon {\n    height: 100%;\n    width: 40px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    margin-right: 10px;\n}\n", ""]);
 
 // exports
 
@@ -49459,13 +49457,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts'],
+    props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts', 'locations'],
     data: function data() {
         return {
             state: 'flight',
-            flightsVue: this.flights.reverse()
+            flightsVue: this.flights.reverse(),
+            flightForm: false,
+            requestFlight: {
+                locationStart: '',
+                locationEnd: '',
+                dateStart: '',
+                dateEnd: '',
+                Type: ''
+            }
         };
     },
     created: function created() {},
@@ -49478,6 +49522,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 return 'btn btn-light btn-block';
             }
+        },
+        createFlight: function createFlight() {
+            var _this = this;
+
+            var request = {
+                type: this.requestFlight.Type,
+                luggageCapacity: 100,
+                plane_id: 1,
+                airport_id: 1,
+                location_start: this.requestFlight.locationStart,
+                location_end: this.requestFlight.locationEnd
+            };
+            axios.post('/flights', request).then(function (response) {
+                _this.flightsVue.unshift(response.data);
+            });
+        },
+        deleteFlight: function deleteFlight(id) {
+            var _this2 = this;
+
+            axios.delete('/flights/' + id).then(function (response) {
+                _this2.flightsVue = _this2.flightsVue.filter(function (elem) {
+                    return elem.id != id;
+                });
+                swal("Listo!", "Se ha eliminado correctamente!", "success");
+            });
         }
     }
 });
@@ -49605,17 +49674,352 @@ var render = function() {
         _c("div", { staticClass: "col-md-9" }, [
           _vm.state == "flight"
             ? _c("div", { staticClass: "card image-bg" }, [
-                _c(
-                  "div",
-                  { staticClass: "admin-card card-body" },
-                  [
-                    _c("h2", { staticClass: "admin-title card-title" }, [
-                      _vm._v("Vuelos")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.flights, function(flight, index) {
+                _c("div", { staticClass: "admin-card card-body" }, [
+                  _c("h2", { staticClass: "admin-title card-title" }, [
+                    _vm._v(
+                      "\n                            Vuelos\n                            "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.flightForm = !_vm.flightForm
+                          }
+                        }
+                      },
+                      [
+                        !_vm.flightForm
+                          ? _c("span", [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Crear Vuelo")
+                            ])
+                          : _c("span", [
+                              _c("i", { staticClass: "fas fa-minus" }),
+                              _vm._v(" Esconder Formulario")
+                            ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm.flightForm
+                      ? _c(
+                          "form",
+                          {
+                            staticClass: "row justify-content-center",
+                            attrs: { action: "" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.createFlight()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-10 admin-form-div" },
+                              [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.requestFlight.locationStart,
+                                          expression:
+                                            "requestFlight.locationStart"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "", type: "text" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.requestFlight,
+                                            "locationStart",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: {
+                                            value: "",
+                                            selected: "",
+                                            disabled: ""
+                                          }
+                                        },
+                                        [_vm._v("Origen")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.locations, function(
+                                        location,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: location.id } },
+                                          [
+                                            _vm._v(
+                                              _vm._s(location.city) +
+                                                ", " +
+                                                _vm._s(location.country)
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.requestFlight.locationEnd,
+                                          expression:
+                                            "requestFlight.locationEnd"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "", type: "text" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.requestFlight,
+                                            "locationEnd",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: {
+                                            value: "",
+                                            selected: "",
+                                            disabled: ""
+                                          }
+                                        },
+                                        [_vm._v("Destino")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.locations, function(
+                                        location,
+                                        index
+                                      ) {
+                                        return location.id !=
+                                          _vm.requestFlight.locationStart
+                                          ? _c(
+                                              "option",
+                                              {
+                                                domProps: { value: location.id }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                                                    " +
+                                                    _vm._s(location.city) +
+                                                    ", " +
+                                                    _vm._s(location.country) +
+                                                    "\n                                            "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestFlight.dateStart,
+                                        expression: "requestFlight.dateStart"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      id: "datepicker",
+                                      placeholder: "Fecha Ida",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestFlight.dateStart
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestFlight,
+                                          "dateStart",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestFlight.dateEnd,
+                                        expression: "requestFlight.dateEnd"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      id: "datepicker",
+                                      placeholder: "Fecha Vuelta",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestFlight.dateEnd
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestFlight,
+                                          "dateEnd",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "input-group" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.requestFlight.Type,
+                                          expression: "requestFlight.Type"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        required: "",
+                                        placeholder: "Tipo",
+                                        type: "text"
+                                      },
+                                      domProps: {
+                                        value: _vm.requestFlight.Type
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.requestFlight,
+                                            "Type",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Crear Vuelo\n                                    "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br")
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "admin-list-container" },
+                    _vm._l(_vm.flightsVue, function(flight, index) {
                       return _c("div", { staticClass: "admin-list" }, [
-                        _vm._m(0, true),
+                        _c("div", { staticClass: "admin-list-icon" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.deleteFlight(flight.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-times" })]
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "admin-list-div" }, [
                           _c("span", { staticClass: "strong-text-admin" }, [
@@ -49675,31 +50079,31 @@ var render = function() {
                           ])
                         ])
                       ])
-                    })
-                  ],
-                  2
-                )
+                    }),
+                    0
+                  )
+                ])
               ])
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "package"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(1)])
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(0)])
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "vehicle"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(2)])
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(1)])
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "role"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(3)])
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(2)])
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "insurance"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(4)])
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(3)])
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "discount"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(5)])
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(4)])
             : _vm._e()
         ])
       ])
@@ -49707,14 +50111,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "admin-list-icon" }, [
-      _c("i", { staticClass: "fas fa-plane" })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

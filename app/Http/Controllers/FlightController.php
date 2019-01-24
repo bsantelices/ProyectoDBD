@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Flight;
 use Illuminate\Http\Request;
+use App\Location;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class FlightController extends Controller
@@ -38,8 +40,8 @@ class FlightController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'type'             => 'required|string|max:255',
-            'coordinatesStart' => 'required|string|max:255',
-            'coordinatesEnd'   => 'required|string|max:255',
+            'location_start' => 'required|integer',
+            'location_end'   => 'required|integer',
             'luggageCapacity'  => 'required|integer',
             'airport_id'       => 'required|integer',
         ]);
@@ -48,7 +50,11 @@ class FlightController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        return Flight::create($request->all());
+        $flight = Flight::create($request->all());
+        $flight->created_at_format = (new Carbon($flight->created_at))->diffForHumans();
+        $flight->locationStart = Location::find($flight->location_start);
+        $flight->locationEnd = Location::find($flight->location_end);
+        return $flight;
     }
 
     /**

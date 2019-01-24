@@ -23478,7 +23478,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .welcome-title-black {
-  color: #191919 !important;
+  color: #fff !important;
 }
 
 .welcome-title {
@@ -23492,6 +23492,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .main-form {
   padding-bottom: 1.5em !important;
   padding-top: 1.5em !important;
+  background-color: #191919 !important;
+  color: #fff !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -23512,5 +23514,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     padding-right: 2em !important;
     padding-left: 2em !important;
   }
+}
+
+.main {
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), center url("/img/welcome/bg.jpg") no-repeat;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), center url("/img/welcome/bg.jpg") no-repeat;
+  background-size: cover;
 }
 

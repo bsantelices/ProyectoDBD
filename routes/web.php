@@ -76,5 +76,5 @@ Route::post('/findFlight','FlightController@find');
 
 // ADMIN
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('/admin', 'AdminController@index');
+    Route::get('/admin', 'AdminController@index')->name('admin');
 });

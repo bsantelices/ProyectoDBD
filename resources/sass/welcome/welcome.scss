@@ -178,7 +178,7 @@
 }
 
 .welcome-title-black {
-	color: #191919 !important;
+	color: #fff !important;
 }
 
 .welcome-title {
@@ -196,8 +196,16 @@
 	  padding-right: 2em !important;
 		padding-left: 2em !important;
 	}
+	background-color: #191919 !important;
+	color: #fff !important;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+}
+
+.main {
+	background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), center url('/img/welcome/bg.jpg') no-repeat;
+	background-size: cover;
 }

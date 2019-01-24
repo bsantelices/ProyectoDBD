@@ -127,11 +127,11 @@
             FindFlight() {
                 console.log(this.request);
                 if (this.request.locationStart != this.request.locationEnd) {
-                    // axios.post('/findFlight',this.request).then(
-                    //     (response) => {
-                    //         console.log(response.data)
-                    //     }
-                    // );
+                    axios.post('/findFlight',this.request).then(
+                        (response) => {
+                            console.log(response.data)
+                        }
+                    );
                 }
             },
             FindLocation(id) {
