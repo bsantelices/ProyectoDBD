@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Plane;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class PlaneController extends Controller
@@ -46,7 +47,9 @@ class PlaneController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        return Plane::create($request->all());
+        $plane = Plane::create($request->all());
+        $plane->created_at_format = (new Carbon($plane->created_at))->diffForHumans();
+        return $plane;
     }
 
     /**

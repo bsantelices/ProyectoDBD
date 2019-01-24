@@ -17211,6 +17211,13 @@ input[type=text] {
   font-weight: bold;
 }
 
+input[type=number] {
+  background-color: #282828 !important;
+  color: #fff !important;
+  border: transparent !important;
+  font-weight: bold;
+}
+
 select[type=text] {
   background-color: #282828 !important;
   color: #fff !important;

@@ -49557,15 +49557,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts', 'locations', 'planes'],
+    props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts', 'locations', 'planes', 'airports'],
     data: function data() {
         return {
             state: 'flight',
@@ -49581,12 +49575,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             planesVue: this.planes.reverse(),
             planeForm: false,
             requestPlane: {
-                locationStart: '',
-                locationEnd: '',
-                dateStart: '',
-                dateEnd: '',
-                Type: ''
-            }
+                brand: '',
+                capacity: '',
+                airport: ''
+            },
+            airportsVue: this.airports.reverse()
         };
     },
     created: function created() {},
@@ -49628,6 +49621,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (willDelete) {
                     axios.delete('/flights/' + id).then(function (response) {
                         _this2.flightsVue = _this2.flightsVue.filter(function (elem) {
+                            return elem.id != id;
+                        });
+                        swal("Listo!", "Se ha eliminado correctamente!", "success");
+                    });
+                } else {
+                    swal({
+                        title: "No se ha borrado el archivo!"
+                    });
+                }
+            });
+        },
+        createPlane: function createPlane() {
+            var _this3 = this;
+
+            var request = {
+                brand: this.requestPlane.brand,
+                capacity: this.requestPlane.capacity,
+                airport_id: this.requestPlane.airport
+            };
+            axios.post('/planes', request).then(function (response) {
+                _this3.planesVue.unshift(response.data);
+            });
+        },
+        deletePlane: function deletePlane(id) {
+            var _this4 = this;
+
+            swal({
+                title: "Estás Seguro?",
+                text: "Una vez borrado, no podrás recuperar la información!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(function (willDelete) {
+                if (willDelete) {
+                    axios.delete('/planes/' + id).then(function (response) {
+                        _this4.planesVue = _this4.planesVue.filter(function (elem) {
                             return elem.id != id;
                         });
                         swal("Listo!", "Se ha eliminado correctamente!", "success");
@@ -50247,7 +50276,7 @@ var render = function() {
                             on: {
                               submit: function($event) {
                                 $event.preventDefault()
-                                _vm.createFlight()
+                                _vm.createPlane()
                               }
                             }
                           },
@@ -50327,8 +50356,8 @@ var render = function() {
                                         {
                                           name: "model",
                                           rawName: "v-model",
-                                          value: _vm.requestPlane.locationEnd,
-                                          expression: "requestPlane.locationEnd"
+                                          value: _vm.requestPlane.airport,
+                                          expression: "requestPlane.airport"
                                         }
                                       ],
                                       staticClass: "form-control",
@@ -50351,7 +50380,7 @@ var render = function() {
                                             })
                                           _vm.$set(
                                             _vm.requestPlane,
-                                            "locationEnd",
+                                            "airport",
                                             $event.target.multiple
                                               ? $$selectedVal
                                               : $$selectedVal[0]
@@ -50369,135 +50398,28 @@ var render = function() {
                                             disabled: ""
                                           }
                                         },
-                                        [_vm._v("Destino")]
+                                        [_vm._v("Aereopuerto")]
                                       ),
                                       _vm._v(" "),
-                                      _vm._l(_vm.locations, function(
-                                        location,
+                                      _vm._l(_vm.airportsVue, function(
+                                        airport,
                                         index
                                       ) {
-                                        return location.id !=
-                                          _vm.requestPlane.locationStart
-                                          ? _c(
-                                              "option",
-                                              {
-                                                domProps: { value: location.id }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                                                    " +
-                                                    _vm._s(location.city) +
-                                                    ", " +
-                                                    _vm._s(location.country) +
-                                                    "\n                                            "
-                                                )
-                                              ]
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: airport.id } },
+                                          [
+                                            _vm._v(
+                                              "\n                                                    " +
+                                                _vm._s(airport.name) +
+                                                "\n                                            "
                                             )
-                                          : _vm._e()
+                                          ]
+                                        )
                                       })
                                     ],
                                     2
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.requestPlane.dateStart,
-                                        expression: "requestPlane.dateStart"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      required: "",
-                                      id: "datepicker",
-                                      placeholder: "Fecha Ida",
-                                      type: "text"
-                                    },
-                                    domProps: {
-                                      value: _vm.requestPlane.dateStart
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.requestPlane,
-                                          "dateStart",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.requestPlane.dateEnd,
-                                        expression: "requestPlane.dateEnd"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      required: "",
-                                      id: "datepicker",
-                                      placeholder: "Fecha Vuelta",
-                                      type: "text"
-                                    },
-                                    domProps: {
-                                      value: _vm.requestPlane.dateEnd
-                                    },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.requestPlane,
-                                          "dateEnd",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "input-group" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.requestPlane.Type,
-                                          expression: "requestPlane.Type"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        required: "",
-                                        placeholder: "Tipo",
-                                        type: "text"
-                                      },
-                                      domProps: {
-                                        value: _vm.requestPlane.Type
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.requestPlane,
-                                            "Type",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    })
-                                  ])
+                                  )
                                 ]),
                                 _vm._v(" "),
                                 _c(
@@ -50534,7 +50456,7 @@ var render = function() {
                               on: {
                                 click: function($event) {
                                   $event.preventDefault()
-                                  _vm.deleteFlight(plane.id)
+                                  _vm.deletePlane(plane.id)
                                 }
                               }
                             },
