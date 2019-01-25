@@ -34,4 +34,23 @@ class Vehicle extends Model
     {
         return $this->belongsToMany(Package::class);
     }
+
+    public function scopeCapacity($query, $capacity){
+        if($capacity){
+            return $query->where('capacity','=',$capacity);
+        }
+    }
+    public function scopeBrand($query, $brand){
+        if($brand){
+            return $query->where('brand','=',$brand);
+        }
+    }
+    public function scopeModel($query, $model){
+        if($model){
+            return $query->where('model','=',$model);
+        }
+    }
+    public function scopeAvailability($query){
+        return $query->where('availability','=',true);
+    }
 }

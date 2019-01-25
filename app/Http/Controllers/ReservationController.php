@@ -180,5 +180,44 @@ class ReservationController extends Controller
     }  
 
 
+    public function buyVehicles(Request $request)
+    {   
+
+        $reservation = new Reservation();
+
+        $reservation->description = "-";
+
+        $reservation->completed = true;
+
+        $reservation->payment_method_id = 1;
+
+        $reservation->amount = 0;
+
+        if(Auth::user()){
+            $reservation->user_id = Auth::user()->id;
+        }
+
+        else
+        {
+            $reservation->user_id = 14;
+        }
+
+        $car = Vehicle::find($request->vehicle_id);
+        $car->availability = false;
+        $car->save();
+
+
+        $reservation->save();
+        $reservation->vehicles()->attach(intval($request->vehicle_id),[
+            'rent_at'=>Carbon::now(),
+            'return_at'=>Carbon::now()
+        ]);
+
+
+        $vehicles = Vehicle::orderBy('id','DESC')->availability()->get();
+
+        return view('vehicle.index',compact('vehicles'));
+    } 
+
 
 }

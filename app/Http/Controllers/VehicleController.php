@@ -13,9 +13,19 @@ class VehicleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Vehicle::all();
+        $capacity = $request->get('capacity');
+        $brand = $request->get('brand');
+        $model = $request->get('model');
+        
+        $vehicles = Vehicle::orderBy('id', 'DESC')
+            ->capacity($capacity)
+            ->brand($brand)
+            ->model($model)
+            ->availability()
+            ->get();
+        return view('vehicle.index', compact('vehicles'));
     }
 
     /**
