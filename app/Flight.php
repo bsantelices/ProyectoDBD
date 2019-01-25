@@ -20,7 +20,8 @@ class Flight extends Model
         'airport_id',
         'plane_id',
         'go_at',
-        'return_at'
+        'return_at',
+        'value'
     ];
 
     /**

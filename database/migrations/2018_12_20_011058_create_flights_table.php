@@ -20,6 +20,7 @@ class CreateFlightsTable extends Migration
             $table->string('type');
             $table->integer('luggageCapacity');
             $table->timestamps();
+            $table->integer('value');
 
             $table->timestamp('go_at');
             $table->timestamp('return_at');

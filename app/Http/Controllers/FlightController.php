@@ -48,6 +48,7 @@ class FlightController extends Controller
             'plane_id'      => 'required|integer',
             'go_at'       => 'required|string',
             'return_at'       => 'required|string',
+            'value'            => 'required|integer'
         ]);
         if ($validator->fails()) {
             return redirect('/home')
@@ -63,6 +64,7 @@ class FlightController extends Controller
             'plane_id'       => $request->plane_id,
             'go_at'             => Carbon::createFromFormat('d/m/Y', $request->go_at),
             'return_at'         => Carbon::createFromFormat('d/m/Y', $request->return_at),
+            'value'             => $request->value,
         ]);
         $flight->created_at_format = (new Carbon($flight->created_at))->diffForHumans();
         $flight->locationStart = Location::find($flight->location_start);
@@ -107,6 +109,7 @@ class FlightController extends Controller
             'coordinatesEnd'   => 'required|string|max:255',
             'luggageCapacity'  => 'required|integer',
             'airport_id'       => 'required|integer',
+            'value'            => 'required|integer'
         ]);
         if ($validator->fails()) {
             return redirect('/home')
@@ -140,7 +143,7 @@ class FlightController extends Controller
     public function find(Request $request)
     {
         if ($request->type == 1) {
-            $flights = Flight::Where('location_start',40)->where('location_end',38)->get()->map(function ($flight) {
+            $flights = Flight::Where('location_start',intval($request->locationStart))->where('location_end',intval($request->locationEnd))->get()->map(function ($flight) {
                 $flight->planeData = $flight->plane;
                 return $flight;
             });

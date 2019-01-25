@@ -19,6 +19,7 @@ $factory->define(App\Flight::class, function (Faker $faker) {
         'airport_id' => $faker->unique(true)->numberBetween($min = 1, count(App\Airport::all())),
         'plane_id' => $faker->unique(true)->numberBetween($min = 1, count(App\Plane::all())),
         'go_at' => Carbon::now(),
-        'return_at' => Carbon::tomorrow()
+        'return_at' => Carbon::tomorrow(),
+        'value' => 10000,
     ];
 });

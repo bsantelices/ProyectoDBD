@@ -50120,6 +50120,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts', 'locations', 'planes', 'airports'],
@@ -50217,7 +50218,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 location_start: this.requestFlight.locationStart,
                 location_end: this.requestFlight.locationEnd,
                 go_at: this.requestFlight.dateStart,
-                return_at: this.requestFlight.dateEnd
+                return_at: this.requestFlight.dateEnd,
+                value: this.requestFlight.value
             };
             this.requestFlight = {
                 locationStart: '',
@@ -50226,6 +50228,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 dateEnd: '',
                 Type: '',
                 plane: '',
+                value: '',
                 airport: ''
             };
             axios.post('/flights', request).then(function (response) {
@@ -51016,6 +51019,39 @@ var render = function() {
                                         _vm.$set(
                                           _vm.requestFlight,
                                           "dateEnd",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestFlight.value,
+                                        expression: "requestFlight.value"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      placeholder: "Valor",
+                                      min: "1",
+                                      max: "500000",
+                                      type: "number"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestFlight.value
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestFlight,
+                                          "value",
                                           $event.target.value
                                         )
                                       }
