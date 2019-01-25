@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
-
-
 <section class="content">
 	<div class="col-md-8 col-md-offset-2">
 		<h1 style = "background-color: #FFFFFF">Habitaciones</h1>
@@ -74,14 +71,20 @@
         </tr>
     </thead>
     @foreach($rooms as $room)
-            <tr>
-                <td>{{$room['value']}}</td>
-                <td>{{$room['adultCapacity']}}</td>
-                <td>{{$room['childrenCapacity']}}</td>
-                <td>{{$room['type']}}</td>
-                <td>{{$room['state']}}</td>
-                <td><button>Comprar</button></td>
-            </tr>
+        <tr>
+            <td>{{$room['value']}}</td>
+            <td>{{$room['adultCapacity']}}</td>
+            <td>{{$room['childrenCapacity']}}</td>
+            <td>{{$room['type']}}</td>
+            <td>{{$room['state']}}</td>
+            <td>
+            	<form method='POST' action=" {{ route('buyRooms') }}">
+            		{{ csrf_field() }}
+            		<input style="display: none;" type="number" name="room_id" value="{{$room->id}}">
+            		<button type = "submit">Comprar</button>
+            	</form>
+            </td>
+        </tr>
 	@endforeach		
     </table>
     </div>

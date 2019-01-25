@@ -68,8 +68,11 @@ Route::resource('seats','SeatController');
 Route::resource('vehicles','VehicleController');
 
 // see transactions by user
-Route::resource('users.reservations','User\ReservationController');
+Route::resource('users.reservations','ReservationController');
 
+Route::post('reservations','ReservationController@buyRoom');
+
+Route::post('/buyRoom','ReservationController@buyRoom')->name('buyRooms');
 
 // USER
 Route::post('/findFlight','FlightController@find');

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\Flight;
+use App\Room;
+use App\Location;
 use App\Vehicle;
 use App\Insurance;
 use Carbon\Carbon;
@@ -136,4 +138,47 @@ class ReservationController extends Controller
         return response('Ok', 200)
             ->header('Content-Type', 'text/plain');
     }
+
+
+    public function buyRoom(Request $request)
+    {   
+
+        $reservation = new Reservation();
+
+        $reservation->description = "-";
+
+        $reservation->completed = true;
+
+        $reservation->payment_method_id = 1;
+
+        $reservation->amount = 0;
+
+        if(Auth::user()){
+            $reservation->user_id = Auth::user()->id;
+        }
+
+        else
+        {
+            $reservation->user_id = 14;
+        }
+
+        $habitacion = Room::find($request->room_id);
+        $habitacion->availability = false;
+        $habitacion->save();
+
+
+        $reservation->save();
+        $reservation->rooms()->attach(intval($request->room_id),[
+            'entry_at'=>Carbon::now(),
+            'exit_at'=>Carbon::now()
+        ]);
+
+        $rooms = Room::orderBy('id','DESC')->availability()->get();
+        $locations = Location::orderBy('id','DESC')->get();
+
+        return view('room.index',compact('rooms','locations'));
+    }  
+
+
+
 }
