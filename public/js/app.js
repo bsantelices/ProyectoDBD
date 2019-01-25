@@ -49725,6 +49725,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['admin', 'flights', 'packages', 'vehicles', 'roles', 'insurances', 'discounts', 'locations', 'planes', 'airports'],
@@ -49768,6 +49810,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             roleForm: false,
             requestRole: {
                 name: ''
+            },
+            insurancesVue: this.insurances.reverse(),
+            insuranceForm: false,
+            requestInsurance: {
+                value: '',
+                Type: ''
             }
         };
     },
@@ -49981,6 +50029,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (willDelete) {
                     axios.delete('/roles/' + id).then(function (response) {
                         _this10.rolesVue = _this10.rolesVue.filter(function (elem) {
+                            return elem.id != id;
+                        });
+                        swal("Listo!", "Se ha eliminado correctamente!", "success");
+                    });
+                } else {
+                    swal({
+                        title: "No se ha borrado el archivo!"
+                    });
+                }
+            });
+        },
+        createInsurance: function createInsurance() {
+            var _this11 = this;
+
+            var request = {
+                value: this.requestInsurance.value,
+                type: this.requestInsurance.Type
+            };
+            this.requestInsurance = {
+                value: '',
+                Type: ''
+            };
+            axios.post('/insurances', request).then(function (response) {
+                _this11.insurancesVue.unshift(response.data);
+            });
+        },
+        deleteInsurance: function deleteInsurance(id) {
+            var _this12 = this;
+
+            swal({
+                title: "Estás Seguro?",
+                text: "Una vez borrado, no podrás recuperar la información!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(function (willDelete) {
+                if (willDelete) {
+                    axios.delete('/insurances/' + id).then(function (response) {
+                        _this12.insurancesVue = _this12.insurancesVue.filter(function (elem) {
                             return elem.id != id;
                         });
                         swal("Listo!", "Se ha eliminado correctamente!", "success");
@@ -51755,11 +51842,214 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "insurance"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(2)])
+            ? _c("div", { staticClass: "card image-bg" }, [
+                _c("div", { staticClass: "admin-card card-body" }, [
+                  _c("h2", { staticClass: "admin-title card-title" }, [
+                    _vm._v(
+                      "\n                            Seguros\n                            "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.insuranceForm = !_vm.insuranceForm
+                          }
+                        }
+                      },
+                      [
+                        !_vm.insuranceForm
+                          ? _c("span", [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Crear un Seguro")
+                            ])
+                          : _c("span", [
+                              _c("i", { staticClass: "fas fa-minus" }),
+                              _vm._v(" Esconder Formulario")
+                            ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm.insuranceForm
+                      ? _c(
+                          "form",
+                          {
+                            staticClass: "row justify-content-center",
+                            attrs: { action: "" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.createInsurance()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-10 admin-form-div" },
+                              [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestInsurance.value,
+                                        expression: "requestInsurance.value"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      placeholder: "Valor",
+                                      min: "1",
+                                      max: "100000",
+                                      type: "number"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestInsurance.value
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestInsurance,
+                                          "value",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestInsurance.Type,
+                                        expression: "requestInsurance.Type"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Tipo",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestInsurance.Type
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestInsurance,
+                                          "Type",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Crear Seguro\n                                    "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br")
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "admin-list-container" },
+                    _vm._l(_vm.insurancesVue, function(insurance, index) {
+                      return _c("div", { staticClass: "admin-list" }, [
+                        _c("div", { staticClass: "admin-list-icon" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.deleteInsurance(insurance.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-times" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("codigo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(insurance.id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Valor")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v("$" + _vm._s(insurance.value))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Tipo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(insurance.type))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("creación")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(insurance.created_at_format))
+                          ])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "discount"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(3)])
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(2)])
             : _vm._e()
         ])
       ])
@@ -51782,15 +52072,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-body" }, [
       _c("h2", { staticClass: "card-title" }, [_vm._v("Vehiculos")]),
-      _vm._v("\n                        dfgdfgdfg\n                    ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h2", { staticClass: "card-title" }, [_vm._v("Seguros")]),
       _vm._v("\n                        dfgdfgdfg\n                    ")
     ])
   },
