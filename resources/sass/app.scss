@@ -41,7 +41,7 @@
 
 body {
 	font-family: 'Roboto', sans-serif;
-	background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), center url('/img/welcome/bg.jpg') no-repeat;
+	background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), center url('/img/welcome/fondo.PNG') no-repeat;
 	background-size: cover;
 	width: 100%;
 	min-height: 100vh;
@@ -152,6 +152,13 @@ input[type=number] {
 	font-weight: bold;
 }
 
+textarea[type=text] {
+	background-color: #282828 !important;
+	color: #fff !important;
+	border: transparent !important;
+	font-weight: bold;
+}
+
 select[type=text] {
 	background-color: #282828 !important;
 	color: #fff !important;
@@ -170,7 +177,7 @@ select[type=text] {
 	width: 100%;
 	padding: 0;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-direction: row;
 }
 

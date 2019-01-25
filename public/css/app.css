@@ -17100,8 +17100,8 @@ readers do not read off random characters that represent icons */
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), center url("/img/welcome/bg.jpg") no-repeat;
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), center url("/img/welcome/bg.jpg") no-repeat;
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), center url("/img/welcome/fondo.PNG") no-repeat;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), center url("/img/welcome/fondo.PNG") no-repeat;
   background-size: cover;
   width: 100%;
   min-height: 100vh;
@@ -17218,6 +17218,13 @@ input[type=number] {
   font-weight: bold;
 }
 
+textarea[type=text] {
+  background-color: #282828 !important;
+  color: #fff !important;
+  border: transparent !important;
+  font-weight: bold;
+}
+
 select[type=text] {
   background-color: #282828 !important;
   color: #fff !important;
@@ -17238,9 +17245,9 @@ select[type=text] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;

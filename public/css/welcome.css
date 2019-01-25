@@ -23492,7 +23492,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .main-form {
   padding-bottom: 1.5em !important;
   padding-top: 1.5em !important;
-  background-color: #66A5AD !important;
+  background-color: #191919 !important;
   color: #fff !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -23517,8 +23517,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .main {
-  background: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), center url("/img/welcome/bg.jpg") no-repeat;
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), center url("/img/welcome/bg.jpg") no-repeat;
+  background: -webkit-gradient(linear, left top, right bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), center url("/img/welcome/fondo.PNG") no-repeat;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), center url("/img/welcome/fondo.PNG") no-repeat;
   background-size: cover;
 }
 

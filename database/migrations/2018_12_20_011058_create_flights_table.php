@@ -21,6 +21,9 @@ class CreateFlightsTable extends Migration
             $table->integer('luggageCapacity');
             $table->timestamps();
 
+            $table->timestamp('go_at');
+            $table->timestamp('return_at');
+
             $table->unsignedInteger('plane_id');
             $table->foreign('plane_id')->references('id')->on('planes')->onDelete('cascade');
 

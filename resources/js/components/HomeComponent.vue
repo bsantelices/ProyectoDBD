@@ -5,7 +5,7 @@
                 <div class="col-md-7">
                     <div class="card image-bg">
                         <div class="card-body">
-                            <form action="" v-on:submit.prevent="FindFlight()">
+                            <form v-if="!finding" action="" v-on:submit.prevent="FindFlight()">
                                 <h2 class="card-title">Busca tu Vuelo !</h2>
                                 <div class="form-group">
                                     <div class="input-group">
@@ -26,17 +26,10 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-calendar-check"></i></span>
-                                        </div>
-                                        <input v-model="request.dateStart" required id="datepicker" class="form-control" placeholder="Fecha Ida" type="text">
-                                        <input v-model="request.dateEnd" required id="datepicker" class="form-control" placeholder="Fecha Vuelta" type="text">
-                                    </div>
 
                                     <div class="form__options">
                                         <span class="form__answer"> 
-                                            <input type="radio" name="match" id="match_1" value="guy" checked> 
+                                            <input v-model="request.type" type="radio" name="match" id="match_1" v-bind:value="1" checked> 
                                             <label class="radio-label" for="match_1">
                                                 Solo Ida
                                                 <i class="fas fa-long-arrow-alt-right"></i>
@@ -44,27 +37,62 @@
                                         </span>
                                         
                                         <span class="form__answer"> 
-                                            <input type="radio" name="match" id="match_2" value="girl"> 
+                                            <input v-model="request.type" type="radio" name="match" id="match_2" v-bind:value="2"> 
                                             <label class="radio-label" for="match_2">
                                                 Ida y Vuelta
                                                 <i class="fas fa-exchange-alt"></i>
                                             </label> 
                                         </span>
-                                        
+<!--                                         
                                         <span class="form__answer"> 
-                                            <input type="radio" name="match" id="match_3" value="cat"> 
+                                            <input v-model="request.type" type="radio" name="match" id="match_3" v-bind:value="3"> 
                                             <label class="radio-label" for="match_3">
                                                 Con Escalas
                                                 <i class="fas fa-shoe-prints"></i>
+                                            </label> 
+                                        </span> -->
+                                    </div>
+
+                                    <div class="flight-card-button">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            Buscar Vuelo
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form v-if="finding && finalCheck" action="" v-on:submit.prevent="ChooseFlight()">
+                                <h2 class="card-title">Elije un Vuelo !</h2>
+                                <div class="form-group">
+                                    <div class="form__options">
+                                        <span v-for="( posibleFlight, index) in posibleFlights" class="form__answer"> 
+                                            <input v-model="requestPosible" type="radio" v-bind:name="posibleFlight.id" v-bind:id="posibleFlight.id" v-bind:value="posibleFlight"> 
+                                            <label class="radio-label" v-bind:for="posibleFlight.id">
+                                                <span><i class="fas fa-plane"></i> {{ posibleFlight.type }}</span>
+                                                <hr>
+                                                <span>Sale a la(s): 
+                                                    {{ posibleFlight.go_at }}
+                                                </span>
+                                                <br>
+                                                <span>Llega a la(s): 
+                                                    {{ posibleFlight.return_at }}
+                                                </span>
                                             </label> 
                                         </span>
                                     </div>
 
                                     <div class="flight-card-button">
-                                        <button type="submit" class="btn btn-primary">
-                                            Buscar Vuelo
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            Elejir Vuelo
                                         </button>
                                     </div>
+                                </div>
+                            </form>
+                            <form v-if="!finalCheck" action="" v-on:submit.prevent="FinalFlight()">
+                                <h2 class="card-title">Todo listo !</h2>
+                                <div class="flight-card-button">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        Comprar Vuelo!
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -85,14 +113,22 @@
                                     <span class="normal-text">{{ (FindLocation(request.locationEnd)).locationName }}</span>
                                 </div>
                             </div>
-                            <div v-if="request.dateStart && request.dateEnd && request.dateStart != request.dateEnd" class="ticket-dates">
+                            <div v-if="requestPosible" class="ticket-dates">
                                 <div class="col-md-6 ticket-date ticket-date-left">
                                     <span class="normal-text">Sale a la(s):</span>
-                                    <span class="strong-text-date">{{ request.dateStart }}</span>
+                                    <span class="strong-text-date">{{ requestPosible.go_at }}</span>
                                 </div>
                                 <div class="col-md-6 ticket-date">
                                     <span class="normal-text">Llega a la(s):</span>
-                                    <span class="strong-text-date">{{ request.dateEnd }}</span>
+                                    <span class="strong-text-date">{{ requestPosible.return_at }}</span>
+                                </div>
+                            </div>
+                            <div v-if="requestPosible" class="ticket-dates">
+                                <div class="col-md-12 ticket-date">
+                                    <span class="normal-text">Tipo: {{ requestPosible.type }}</span>
+                                    <span class="strong-text-date">Avión:</span>
+                                    <span class="normal-text">{{ requestPosible.planeData.brand }}</span>
+                                    <span class="strong-text-date">{{ auth.name }} {{ auth.lastname }}</span>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +142,8 @@
 <script>
     export default {
         props: [
-            'locations'
+            'locations',
+            'auth'
         ],
         data() {
             return {
@@ -117,6 +154,10 @@
                     dateEnd: '',
                     type: 0
                 },
+                finding: false,
+                posibleFlights: {},
+                requestPosible: '',
+                finalCheck: true,
             };
         },
         created() {
@@ -125,11 +166,11 @@
         },
         methods: {
             FindFlight() {
-                console.log(this.request);
                 if (this.request.locationStart != this.request.locationEnd) {
                     axios.post('/findFlight',this.request).then(
                         (response) => {
-                            console.log(response.data)
+                            this.posibleFlights = response.data;
+                            this.finding = !this.finding;
                         }
                     );
                 }
@@ -143,6 +184,11 @@
                     locationInit: location.city[0] + location.country[0]
                 };
             },
+            ChooseFlight(){
+                this.request.dateStart = this.requestPosible.go_at;
+                this.request.dateEnd = this.requestPosible.return_at;
+                this.finalCheck = !this.finalCheck;
+            }
         }
     }
 </script>

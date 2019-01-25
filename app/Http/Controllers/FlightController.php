@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Flight;
 use Illuminate\Http\Request;
 use App\Location;
+use App\Plane;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,13 +45,25 @@ class FlightController extends Controller
             'location_end'   => 'required|integer',
             'luggageCapacity'  => 'required|integer',
             'airport_id'       => 'required|integer',
+            'plane_id'      => 'required|integer',
+            'go_at'       => 'required|string',
+            'return_at'       => 'required|string',
         ]);
         if ($validator->fails()) {
             return redirect('/home')
                 ->withErrors($validator)
                 ->withInput();
         }
-        $flight = Flight::create($request->all());
+        $flight = Flight::create([
+            'type'             => $request->type,
+            'location_start' => $request->location_start,
+            'location_end'   => $request->location_end,
+            'luggageCapacity'  => $request->luggageCapacity,
+            'airport_id'       => $request->airport_id,
+            'plane_id'       => $request->plane_id,
+            'go_at'             => Carbon::createFromFormat('d/m/Y', $request->go_at),
+            'return_at'         => Carbon::createFromFormat('d/m/Y', $request->return_at),
+        ]);
         $flight->created_at_format = (new Carbon($flight->created_at))->diffForHumans();
         $flight->locationStart = Location::find($flight->location_start);
         $flight->locationEnd = Location::find($flight->location_end);
@@ -126,9 +139,16 @@ class FlightController extends Controller
      */
     public function find(Request $request)
     {
-        return Flight::Where(
-            ['location_start','=',$request->locationStart],
-            ['location_end','=',$request->locationEnd]
-        )->first();
+        if ($request->type == 1) {
+            $flights = Flight::Where('location_start',40)->where('location_end',38)->get()->map(function ($flight) {
+                $flight->planeData = $flight->plane;
+                return $flight;
+            });
+            return $flights;
+        } else if($request->type == 2) {
+            // ida y vuelta
+        } else {
+            // proximamente paradas
+        }
     }
 }

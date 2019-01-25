@@ -18,7 +18,9 @@ class Flight extends Model
         'type',
         'luggageCapacity',
         'airport_id',
-        'plane_id'
+        'plane_id',
+        'go_at',
+        'return_at'
     ];
 
     /**

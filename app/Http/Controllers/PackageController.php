@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Package;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class PackageController extends Controller
@@ -47,7 +48,9 @@ class PackageController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        return Package::create($request->all());
+        $package = Package::create($request->all());
+        $package->created_at_format = (new Carbon($package->created_at))->diffForHumans();
+        return $package;
     }
 
     /**
