@@ -96,4 +96,30 @@ class Reservation extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+    public function buyRoom(Room $room)
+    {   
+        $reservation = new Reservation();
+
+        $reservation->description = "-";
+
+        $reservation->completed = true;
+
+        $reservation->payment_method_id = 1;
+
+        if(Auth::user()){
+            $reservation->user_id = Auth::user()->id;
+        }
+
+        else
+        {
+            $reservation->user_id = 14;
+        }
+
+        $reservation->save();
+
+        $reservation->rooms()->attach($room->id);
+
+    }
 }

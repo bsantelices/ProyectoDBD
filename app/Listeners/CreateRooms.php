@@ -41,6 +41,7 @@ class CreateRooms
                 'adultCapacity' => rand(1,5),
                 'childrenCapacity' => rand(1,5),
                 'type' => $types[array_rand($types)],
+                'availability' => true,
                 'hotel_id' => $event->hotel->id
             ]);
         }
