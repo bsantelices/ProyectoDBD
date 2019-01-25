@@ -96,7 +96,7 @@
                     <div class="col px-0">
                         <div class="row">
                             <div class="col-lg-5 landing-image">
-                                <img src="/img/welcome/travel.png" width="300">
+                                <img src="../../img/welcome/travel.png" width="300">
                             </div>
                             <div class="col-lg-7">
                                 <h1 class="display-3 welcome-title-strong text-white">¡Escápate en Marzo!
