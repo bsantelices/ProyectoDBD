@@ -49357,7 +49357,7 @@ exports = module.exports = __webpack_require__(38)(false);
 
 
 // module
-exports.push([module.i, "\n.admin-profile-info {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 100%;\n}\n.admin-username {\n    width: 80%;\n    height: 1.3em;\n    overflow: hidden;\n}\n.admin-form-div {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.admin-title {\n    padding-left: 1em;\n}\n.admin-title button {\n    margin-left: 1em;\n}\n.admin-userimage {\n    height: 50px;\n    width: 50px;\n    border-radius: 50%;\n}\n.admin-name {\n    font-size: 1.1em !important;\n}\n.btn-light {\n    background-color: #dedede !important;\n}\n.admin-list-container {\n    max-height: 60vh;\n    width: 100%;\n    overflow-y: scroll;\n}\n.admin-list {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    background-color: #282828;\n    color: #fff;\n    border-bottom: solid 1px rgba(255, 255, 255, 0.05);\n    padding: 1em;\n}\n.admin-list-div {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    height: 100%;\n    padding-right: 5px;\n    padding-left: 5px;\n    min-width: 16%;\n}\n.admin-card {\n    padding-right: 0px !important;\n    padding-bottom: 0px !important;\n    padding-left: 0px !important;\n}\n.admin-list-icon {\n    height: 100%;\n    width: 40px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    margin-right: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.admin-profile-info {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 100%;\n}\n.admin-username {\n    width: 80%;\n    height: 1.3em;\n    overflow: hidden;\n}\n.admin-form-div {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.admin-title {\n    padding-left: 1em;\n}\n.admin-title button {\n    margin-left: 1em;\n}\n.admin-userimage {\n    height: 50px;\n    width: 50px;\n    border-radius: 50%;\n}\n.admin-name {\n    font-size: 1.1em !important;\n}\n.btn-light {\n    background-color: #dedede !important;\n}\n.admin-list-container {\n    max-height: 60vh;\n    width: 100%;\n    overflow-y: scroll;\n    overflow-x: hidden;\n}\n.admin-list {\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    background-color: #282828;\n    color: #fff;\n    border-bottom: solid 1px rgba(255, 255, 255, 0.05);\n    padding: 1em;\n}\n.admin-list-div {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    height: 100%;\n    padding-right: 5px;\n    padding-left: 5px;\n    min-width: 16%;\n}\n.admin-card {\n    padding-right: 0px !important;\n    padding-bottom: 0px !important;\n    padding-left: 0px !important;\n}\n.admin-list-icon {\n    height: 100%;\n    width: 40px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border-right: solid 1px rgba(255, 255, 255, 0.05);\n    margin-right: 10px;\n}\n", ""]);
 
 // exports
 
@@ -49368,6 +49368,174 @@ exports.push([module.i, "\n.admin-profile-info {\n    display: -webkit-box;\n   
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -49570,7 +49738,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 locationEnd: '',
                 dateStart: '',
                 dateEnd: '',
-                Type: ''
+                Type: '',
+                plane: '',
+                airport: ''
             },
             planesVue: this.planes.reverse(),
             planeForm: false,
@@ -49579,7 +49749,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 capacity: '',
                 airport: ''
             },
-            airportsVue: this.airports.reverse()
+            airportsVue: this.airports.reverse(),
+            airportForm: false,
+            requestAirport: {
+                name: '',
+                Type: '',
+                location: ''
+            },
+            locationsVue: this.locations.reverse(),
+            locationForm: false,
+            requestLocation: {
+                coordinates: '',
+                city: '',
+                country: '',
+                postalCode: ''
+            },
+            rolesVue: this.roles.reverse(),
+            roleForm: false,
+            requestRole: {
+                name: ''
+            }
         };
     },
     created: function created() {},
@@ -49599,10 +49788,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var request = {
                 type: this.requestFlight.Type,
                 luggageCapacity: 100,
-                plane_id: 1,
-                airport_id: 1,
+                plane_id: this.requestFlight.plane,
+                airport_id: this.requestFlight.airport,
                 location_start: this.requestFlight.locationStart,
                 location_end: this.requestFlight.locationEnd
+            };
+            this.requestFlight = {
+                locationStart: '',
+                locationEnd: '',
+                dateStart: '',
+                dateEnd: '',
+                Type: '',
+                plane: '',
+                airport: ''
             };
             axios.post('/flights', request).then(function (response) {
                 _this.flightsVue.unshift(response.data);
@@ -49640,6 +49838,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 capacity: this.requestPlane.capacity,
                 airport_id: this.requestPlane.airport
             };
+            this.requestPlane = {
+                brand: '',
+                capacity: '',
+                airport: ''
+            };
             axios.post('/planes', request).then(function (response) {
                 _this3.planesVue.unshift(response.data);
             });
@@ -49657,6 +49860,127 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (willDelete) {
                     axios.delete('/planes/' + id).then(function (response) {
                         _this4.planesVue = _this4.planesVue.filter(function (elem) {
+                            return elem.id != id;
+                        });
+                        swal("Listo!", "Se ha eliminado correctamente!", "success");
+                    });
+                } else {
+                    swal({
+                        title: "No se ha borrado el archivo!"
+                    });
+                }
+            });
+        },
+        createAirport: function createAirport() {
+            var _this5 = this;
+
+            var request = {
+                name: this.requestAirport.name,
+                type: this.requestAirport.Type,
+                location_id: this.requestAirport.location
+            };
+            this.requestAirport = {
+                name: '',
+                Type: '',
+                location: ''
+            };
+            axios.post('/airports', request).then(function (response) {
+                _this5.airportsVue.unshift(response.data);
+            });
+        },
+        deleteAirport: function deleteAirport(id) {
+            var _this6 = this;
+
+            swal({
+                title: "Estás Seguro?",
+                text: "Una vez borrado, no podrás recuperar la información!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(function (willDelete) {
+                if (willDelete) {
+                    axios.delete('/airports/' + id).then(function (response) {
+                        _this6.airportsVue = _this6.airportsVue.filter(function (elem) {
+                            return elem.id != id;
+                        });
+                        swal("Listo!", "Se ha eliminado correctamente!", "success");
+                    });
+                } else {
+                    swal({
+                        title: "No se ha borrado el archivo!"
+                    });
+                }
+            });
+        },
+        createLocation: function createLocation() {
+            var _this7 = this;
+
+            var request = {
+                coordinates: this.requestLocation.coordinates,
+                city: this.requestLocation.city,
+                country: this.requestLocation.country,
+                postalCode: this.requestLocation.postalCode
+            };
+            this.requestLocation = {
+                coordinates: '',
+                city: '',
+                country: '',
+                postalCode: ''
+            };
+            axios.post('/locations', request).then(function (response) {
+                _this7.locationsVue.unshift(response.data);
+            });
+        },
+        deleteLocation: function deleteLocation(id) {
+            var _this8 = this;
+
+            swal({
+                title: "Estás Seguro?",
+                text: "Una vez borrado, no podrás recuperar la información!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(function (willDelete) {
+                if (willDelete) {
+                    axios.delete('/locations/' + id).then(function (response) {
+                        _this8.locationsVue = _this8.locationsVue.filter(function (elem) {
+                            return elem.id != id;
+                        });
+                        swal("Listo!", "Se ha eliminado correctamente!", "success");
+                    });
+                } else {
+                    swal({
+                        title: "No se ha borrado el archivo!"
+                    });
+                }
+            });
+        },
+        createRole: function createRole() {
+            var _this9 = this;
+
+            var request = {
+                name: this.requestRole.name
+            };
+            this.requestRole = {
+                name: ''
+            };
+            axios.post('/roles', request).then(function (response) {
+                _this9.rolesVue.unshift(response.data);
+            });
+        },
+        deleteRole: function deleteRole(id) {
+            var _this10 = this;
+
+            swal({
+                title: "Estás Seguro?",
+                text: "Una vez borrado, no podrás recuperar la información!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+            }).then(function (willDelete) {
+                if (willDelete) {
+                    axios.delete('/roles/' + id).then(function (response) {
+                        _this10.rolesVue = _this10.rolesVue.filter(function (elem) {
                             return elem.id != id;
                         });
                         swal("Listo!", "Se ha eliminado correctamente!", "success");
@@ -49744,6 +50068,20 @@ var render = function() {
                   }
                 },
                 [_vm._v("Aereopuerto")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  class: [_vm.activeClass("location")],
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.state = "location"
+                    }
+                  }
+                },
+                [_vm._v("Ubicaciones")]
               ),
               _vm._v(" "),
               _c(
@@ -50093,6 +50431,152 @@ var render = function() {
                                   }),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "input-group" }, [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.requestFlight.plane,
+                                            expression: "requestFlight.plane"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { required: "", type: "text" },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.requestFlight,
+                                              "plane",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "",
+                                              selected: "",
+                                              disabled: ""
+                                            }
+                                          },
+                                          [_vm._v("Avión")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.planesVue, function(
+                                          plane,
+                                          index
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            { domProps: { value: plane.id } },
+                                            [
+                                              _vm._v(
+                                                "\n                                                        " +
+                                                  _vm._s(plane.brand) +
+                                                  ", " +
+                                                  _vm._s(plane.capacity) +
+                                                  "\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.requestFlight.airport,
+                                            expression: "requestFlight.airport"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { required: "", type: "text" },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.requestFlight,
+                                              "airport",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          {
+                                            attrs: {
+                                              value: "",
+                                              selected: "",
+                                              disabled: ""
+                                            }
+                                          },
+                                          [_vm._v("Aereopuerto")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm._l(_vm.airportsVue, function(
+                                          airport,
+                                          index
+                                        ) {
+                                          return _c(
+                                            "option",
+                                            { domProps: { value: airport.id } },
+                                            [
+                                              _vm._v(
+                                                "\n                                                        " +
+                                                  _vm._s(airport.name) +
+                                                  "\n                                                "
+                                              )
+                                            ]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    ),
+                                    _vm._v(" "),
                                     _c("input", {
                                       directives: [
                                         {
@@ -50521,6 +51005,585 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
+          _vm.state == "airport"
+            ? _c("div", { staticClass: "card image-bg" }, [
+                _c("div", { staticClass: "admin-card card-body" }, [
+                  _c("h2", { staticClass: "admin-title card-title" }, [
+                    _vm._v(
+                      "\n                            Aereopuertos\n                            "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.airportForm = !_vm.airportForm
+                          }
+                        }
+                      },
+                      [
+                        !_vm.airportForm
+                          ? _c("span", [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Registrar un Nuevo Aereopuerto")
+                            ])
+                          : _c("span", [
+                              _c("i", { staticClass: "fas fa-minus" }),
+                              _vm._v(" Esconder Formulario")
+                            ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm.airportForm
+                      ? _c(
+                          "form",
+                          {
+                            staticClass: "row justify-content-center",
+                            attrs: { action: "" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.createAirport()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-10 admin-form-div" },
+                              [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.requestAirport.location,
+                                          expression: "requestAirport.location"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { required: "", type: "text" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.requestAirport,
+                                            "location",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: {
+                                            value: "",
+                                            selected: "",
+                                            disabled: ""
+                                          }
+                                        },
+                                        [_vm._v("Ubicación")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.locations, function(
+                                        location,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: location.id } },
+                                          [
+                                            _vm._v(
+                                              _vm._s(location.city) +
+                                                ", " +
+                                                _vm._s(location.country)
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestAirport.name,
+                                        expression: "requestAirport.name"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Nombre",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestAirport.name
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestAirport,
+                                          "name",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestAirport.Type,
+                                        expression: "requestAirport.Type"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Tipo",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestAirport.Type
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestAirport,
+                                          "Type",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Registrar Aereopuerto\n                                    "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br")
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "admin-list-container" },
+                    _vm._l(_vm.airportsVue, function(airport, index) {
+                      return _c("div", { staticClass: "admin-list" }, [
+                        _c("div", { staticClass: "admin-list-icon" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.deleteAirport(airport.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-times" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("codigo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(airport.id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Nombre")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(airport.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Tipo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(airport.type))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Ubicación")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(airport.location_id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("creación")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(airport.created_at_format))
+                          ])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.state == "location"
+            ? _c("div", { staticClass: "card image-bg" }, [
+                _c("div", { staticClass: "admin-card card-body" }, [
+                  _c("h2", { staticClass: "admin-title card-title" }, [
+                    _vm._v(
+                      "\n                            Ubicaciones\n                            "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.locationForm = !_vm.locationForm
+                          }
+                        }
+                      },
+                      [
+                        !_vm.locationForm
+                          ? _c("span", [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Registrar Una Nueva Ubicacíon")
+                            ])
+                          : _c("span", [
+                              _c("i", { staticClass: "fas fa-minus" }),
+                              _vm._v(" Esconder Formulario")
+                            ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm.locationForm
+                      ? _c(
+                          "form",
+                          {
+                            staticClass: "row justify-content-center",
+                            attrs: { action: "" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.createLocation()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-10 admin-form-div" },
+                              [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestLocation.coordinates,
+                                        expression:
+                                          "requestLocation.coordinates"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Coordenadas",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestLocation.coordinates
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestLocation,
+                                          "coordinates",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestLocation.city,
+                                        expression: "requestLocation.city"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Ciudad",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestLocation.city
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestLocation,
+                                          "city",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestLocation.country,
+                                        expression: "requestLocation.country"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Pais",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestLocation.country
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestLocation,
+                                          "country",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestLocation.postalCode,
+                                        expression: "requestLocation.postalCode"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Codigo Postal",
+                                      type: "text"
+                                    },
+                                    domProps: {
+                                      value: _vm.requestLocation.postalCode
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestLocation,
+                                          "postalCode",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Registrar Avión\n                                    "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br")
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "admin-list-container" },
+                    _vm._l(_vm.locationsVue, function(location, index) {
+                      return _c("div", { staticClass: "admin-list" }, [
+                        _c("div", { staticClass: "admin-list-icon" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.deleteLocation(location.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-times" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("codigo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(location.id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Coordenadas")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(location.coordinates))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Ciudad")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(location.city))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Pais")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(location.country))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Codigo postal")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(location.postalCode))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("creación")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(location.created_at_format))
+                          ])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _vm.state == "package"
             ? _c("div", { staticClass: "card image-bg" }, [_vm._m(0)])
             : _vm._e(),
@@ -50530,15 +51593,173 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "role"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(2)])
+            ? _c("div", { staticClass: "card image-bg" }, [
+                _c("div", { staticClass: "admin-card card-body" }, [
+                  _c("h2", { staticClass: "admin-title card-title" }, [
+                    _vm._v(
+                      "\n                            Roles\n                            "
+                    ),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.roleForm = !_vm.roleForm
+                          }
+                        }
+                      },
+                      [
+                        !_vm.roleForm
+                          ? _c("span", [
+                              _c("i", { staticClass: "fas fa-plus" }),
+                              _vm._v(" Crear un Rol")
+                            ])
+                          : _c("span", [
+                              _c("i", { staticClass: "fas fa-minus" }),
+                              _vm._v(" Esconder Formulario")
+                            ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _vm.roleForm
+                      ? _c(
+                          "form",
+                          {
+                            staticClass: "row justify-content-center",
+                            attrs: { action: "" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.createRole()
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-10 admin-form-div" },
+                              [
+                                _c("div", { staticClass: "input-group" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.requestRole.name,
+                                        expression: "requestRole.name"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      required: "",
+                                      placeholder: "Nombre",
+                                      type: "text"
+                                    },
+                                    domProps: { value: _vm.requestRole.name },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.requestRole,
+                                          "name",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        Crear Role\n                                    "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("br")
+                              ]
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "admin-list-container" },
+                    _vm._l(_vm.rolesVue, function(role, index) {
+                      return _c("div", { staticClass: "admin-list" }, [
+                        _c("div", { staticClass: "admin-list-icon" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.deleteRole(role.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-times" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("codigo")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(role.id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("Nombre")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(role.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "admin-list-div" }, [
+                          _c("span", { staticClass: "strong-text-admin" }, [
+                            _vm._v("creación")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "normal-text-admin" }, [
+                            _vm._v(_vm._s(role.created_at_format))
+                          ])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "insurance"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(3)])
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(2)])
             : _vm._e(),
           _vm._v(" "),
           _vm.state == "discount"
-            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(4)])
+            ? _c("div", { staticClass: "card image-bg" }, [_vm._m(3)])
             : _vm._e()
         ])
       ])
@@ -50561,15 +51782,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-body" }, [
       _c("h2", { staticClass: "card-title" }, [_vm._v("Vehiculos")]),
-      _vm._v("\n                        dfgdfgdfg\n                    ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h2", { staticClass: "card-title" }, [_vm._v("Roles")]),
       _vm._v("\n                        dfgdfgdfg\n                    ")
     ])
   },

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Airport;
 use App\Location;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -43,38 +44,16 @@ class AirportController extends Controller
         $validator = Validator::make($request->all(), [
             'name'          => 'required|string|max:255',
             'type'          => 'required|string',
-            'country'       => 'required|string',
-            'city'          => 'required|string',
-            'street'        => 'required|string'
+            'location_id'   => 'required|integer',
         ]);
         if ($validator->fails()) {
-            return redirect()
-                    ->back()
-                    ->with('fail', 'Fallo: Asegurese de llenar todos los campos'); 
+            return redirect('/home')
+                ->withErrors($validator)
+                ->withInput();
         }
-        else
-        {
-            $airport = new Airport();
-            $airport->name = $request->get('name');
-            $airport->type = $request->get('type');
-            $locations = Location::all();
-            $locationA = $locations->where('country','country');
-            $locationB = $locationA->where('city','city');
-            $locationC = $locationB->where('street','street');
-
-            if($locationC->get('id') == null)
-            {
-                return redirect()
-                        ->back()
-                        ->with('fail', 'Fallo: Datos de lugar invalidos'); 
-            }
-            else
-            {
-                $airport->location_id = $locationC->get('id');
-                $airport->save();
-                return redirect('/airports');
-            }
-        }
+        $airport = Airport::create($request->all());
+        $airport->created_at_format = (new Carbon($airport->created_at))->diffForHumans();
+        return $airport;
     }
 
     /**

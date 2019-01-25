@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Location;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class LocationController extends Controller
@@ -40,8 +41,8 @@ class LocationController extends Controller
             'city'        => 'required|string|max:255',
             'coordinates' => 'required|string|max:255',
             'country'     => 'required|string|max:255',
-            'street'      => 'required|string|max:255',
-            'houseCode'   => 'required|string|max:255',
+            'street'      => 'string|max:255',
+            'houseCode'   => 'string|max:255',
             'postalCode'  => 'required|string|max:255',
         ]);
         if ($validator->fails()) {
@@ -49,7 +50,9 @@ class LocationController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        return Location::create($request->all());
+        $location = Location::create($request->all());
+        $location->created_at_format = (new Carbon($location->created_at))->diffForHumans();
+        return $location;
     }
 
     /**

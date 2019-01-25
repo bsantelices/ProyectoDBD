@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
@@ -44,7 +45,9 @@ class RoleController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        return Role::create($request->all());
+        $role = Role::create($request->all());
+        $role->created_at_format = (new Carbon($role->created_at))->diffForHumans();
+        return $role;
     }
 
     /**
