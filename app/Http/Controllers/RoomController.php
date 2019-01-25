@@ -16,26 +16,24 @@ class RoomController extends Controller
      */
     public function index(Request $request)
     {
-        $country =          $request->get('country');
-        $city =             $request->get('city');
-        $type =             $request->get('typeRoom');
-        $adultCapacity =    $request->get('adultCapacity');
-        $childrenCapacity = $request->get('childrenCapacity');
-        $state =            $request->get('state');
-        $order =            $request->get('order');
-
-        $rooms = Room::orderBy('id','DESC')
-                    ->type($type)
-                    ->adultCapacity($adultCapacity)
-                    ->childrenCapacity($childrenCapacity)
-                    ->state($state)
-                    ->country($country)
-                    ->city($city)
-                    ->get();
 
         $locations = Location::all();
 
-        return view('room.index',compact('rooms', 'locations'));
+            $city =             $request->get('city');
+            $type =             $request->get('typeRoom');
+            $adultCapacity =    $request->get('adultCapacity');
+            $childrenCapacity = $request->get('childrenCapacity');
+            $state =            $request->get('state');
+
+            $rooms = Room::orderBy('id','DESC')
+                        ->type($type)
+                        ->adultCapacity($adultCapacity)
+                        ->childrenCapacity($childrenCapacity)
+                        ->state($state)
+                        ->city($city)
+                        ->availability()
+                        ->get();
+            return view('room.index',compact('rooms', 'locations'));
     }
 
     /**
@@ -63,6 +61,7 @@ class RoomController extends Controller
             'childrenCapacity' => 'required|integer',
             'type'             => 'required|string|max:255',
             'hotel_id'         => 'required|integer',
+            'availability'     => 'required|boolean'
         ]);
         if ($validator->fails()) {
             return redirect('/home')
@@ -110,6 +109,7 @@ class RoomController extends Controller
             'childrenCapacity' => 'required|integer',
             'type'             => 'required|string|max:255',
             'hotel_id'         => 'required|integer',
+            'availability'     => 'required|boolean'
         ]);
         if ($validator->fails()) {
             return redirect('/home')
@@ -133,4 +133,6 @@ class RoomController extends Controller
         return response('Ok', 200)
             ->header('Content-Type', 'text/plain');
     }
+
+
 }

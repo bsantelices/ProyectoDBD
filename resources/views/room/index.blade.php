@@ -1,25 +1,21 @@
 @extends('layouts.app')
 @section('content')
 
+
+
+
 <section class="content">
 	<div class="col-md-8 col-md-offset-2">
-		<h1>Habitaciones</h1>
+		<h1 style = "background-color: #FFFFFF">Habitaciones</h1>
 		<form method='GET' action='/rooms'>
 			{{ csrf_field() }}
 			<div class="form-group">
-				<label >Pais</label>
-				<select name="country"  id="country" class="selectpicker" value = "{{old('country')}}">
+				<label >Destino</label>
+				<select name="city"  id="city" class="selectpicker">
 					@foreach($locations as $location)
-						<option value="{{$location['country']}}">{{$location['country']}}</option>
+						<option value="{{$location['city']}}">{{$location['country']}}, {{$location['city']}}</option>
 					@endforeach
 				</select>			
-
-				<label >Ciudad</label>
-				<select name="city" id="ciudad" class="selectpicker">
-					@foreach($locations as $location)
-						<option value="{{$location['city']}}">{{$location['city']}}</option>
-					@endforeach
-				</select>
 			
 				<label for="typeRoom">Tipo de habitacion</label>
 				<select class="form-control" id="typeRoom" name = "typeRoom">
@@ -56,28 +52,42 @@
 				</select>						
 
 			<div class ="field">
-					<div class = control>
-						<button type="submit" class = "button is-link">Buscar</button>
-					</div>
+				<div class = control>
+					<button type="submit" class = "button is-link">Buscar</button>
+				</div>
 			</div>			
 
 			</div>
 		</form>
-
-		@foreach($rooms as $room)
-			<?php 	$hotel = App\Hotel::find($room->hotel_id);
-					$location = App\Location::find($hotel->location_id);
-			?>
-				<h1>{{$room['type']}}</h1>
-		@endforeach			
-	 
 		
-
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+    <table class="table table-striped custab" style = "background-color: #FFFFFF">
+    <thead>
+        <tr>
+            <th>Valor</th>
+            <th>Capacidad adultos</th>
+            <th>Capacidad niños</th>
+            <th>Tipo de habitacion</th>
+            <th>Estrellas</th>
+            <th class="text-center">Comprar</th>
+        </tr>
+    </thead>
+    @foreach($rooms as $room)
+            <tr>
+                <td>{{$room['value']}}</td>
+                <td>{{$room['adultCapacity']}}</td>
+                <td>{{$room['childrenCapacity']}}</td>
+                <td>{{$room['type']}}</td>
+                <td>{{$room['state']}}</td>
+                <td><button>Comprar</button></td>
+            </tr>
+	@endforeach		
+    </table>
+    </div>
+</div>
+		
 	</div>
-
-
 </section>
-
-
 
 @endsection

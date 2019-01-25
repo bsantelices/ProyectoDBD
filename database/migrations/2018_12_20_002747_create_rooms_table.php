@@ -20,6 +20,7 @@ class CreateRoomsTable extends Migration
             $table->integer('adultCapacity');
             $table->integer('childrenCapacity');
             $table->string('type');
+            $table->boolean('availability');
             $table->timestamps();
 
             $table->unsignedInteger('hotel_id');

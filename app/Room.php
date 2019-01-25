@@ -17,7 +17,8 @@ class Room extends Model
         'adultCapacity',
         'childrenCapacity',
         'type',
-        'hotel_id'
+        'hotel_id',
+        'availability'
 	];
 
     /**
@@ -48,7 +49,7 @@ class Room extends Model
     {
         if($state)
         {
-            return $query->where('state','=',$state);
+            return $query->where('state','>=',$state);
         }
     }
 
@@ -75,6 +76,11 @@ class Room extends Model
             return $query->where('type','=',$type);
         }
     }    
+
+    public function scopeAvailability($query)
+    {
+        return $query->where('availability','=',true);
+    }        
 
     public function scopeCountry($query, $country)
     {
