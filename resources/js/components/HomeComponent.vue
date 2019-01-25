@@ -129,6 +129,10 @@
                                     <span class="strong-text-date">Avión:</span>
                                     <span class="normal-text">{{ requestPosible.planeData.brand }}</span>
                                     <span class="strong-text-date">{{ auth.name }} {{ auth.lastname }}</span>
+                                    <span class="strong-test-data">
+                                        <span>Valor: </span>
+                                        <span class="normal-text">{{ requestPosible.value }}</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>

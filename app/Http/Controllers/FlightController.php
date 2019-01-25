@@ -149,7 +149,11 @@ class FlightController extends Controller
             });
             return $flights;
         } else if($request->type == 2) {
-            // ida y vuelta
+            $flights = Flight::Where('location_start',intval($request->locationStart))->where('location_end',intval($request->locationEnd))->get()->map(function ($flight) {
+                $flight->planeData = $flight->plane;
+                return $flight;
+            });
+            return $flights;
         } else {
             // proximamente paradas
         }

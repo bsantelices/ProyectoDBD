@@ -48845,6 +48845,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['locations', 'auth'],
@@ -49358,6 +49362,14 @@ var render = function() {
                             " " +
                             _vm._s(_vm.auth.lastname)
                         )
+                      ]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "strong-test-data" }, [
+                        _c("span", [_vm._v("Valor: ")]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "normal-text" }, [
+                          _vm._v(_vm._s(_vm.requestPosible.value))
+                        ])
                       ])
                     ])
                   ])
