@@ -12,5 +12,6 @@ $factory->define(App\Vehicle::class, function (Faker $faker) {
         'brand' => $faker->word,
         'patent' => $patent->jpjNumberPlate,
         'capacity' => $faker->numberBetween($min = 2, $max = 10),
+        'availability' => true,
     ];
 });

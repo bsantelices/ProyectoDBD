@@ -19,7 +19,7 @@ class CreateVehiclesTable extends Migration
             $table->string('model');
             $table->string('brand');
             $table->string('patent');
-            $table->boolean('true');
+            $table->boolean('availability');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class Vehicle extends Model
         'capacity',
         'model',
         'brand',
-        'patent'
+        'patent',
         'availability'
     ];
 
