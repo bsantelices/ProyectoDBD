@@ -48864,7 +48864,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             finding: false,
             posibleFlights: {},
             requestPosible: '',
-            finalCheck: true
+            finalCheck: true,
+            finalFlightBool: true
         };
     },
     created: function created() {},
@@ -48894,6 +48895,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.request.dateStart = this.requestPosible.go_at;
             this.request.dateEnd = this.requestPosible.return_at;
             this.finalCheck = !this.finalCheck;
+        },
+        FinalFlight: function FinalFlight() {
+            this.finalFlightBool = !this.finalFlightBool;
+            swal({
+                title: "Completado!"
+            });
         }
     }
 });
@@ -49248,7 +49255,22 @@ var render = function() {
                         _vm._v("Todo listo !")
                       ]),
                       _vm._v(" "),
-                      _vm._m(5)
+                      _vm.finalFlightBool
+                        ? _c("div", { staticClass: "flight-card-button" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-block",
+                                attrs: { type: "submit" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        Comprar Vuelo!\n                                    "
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e()
                     ]
                   )
                 : _vm._e()
@@ -49449,22 +49471,6 @@ var staticRenderFns = [
         [
           _vm._v(
             "\n                                            Elejir Vuelo\n                                        "
-          )
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flight-card-button" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [
-          _vm._v(
-            "\n                                        Comprar Vuelo!\n                                    "
           )
         ]
       )

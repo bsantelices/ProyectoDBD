@@ -89,7 +89,7 @@
                             </form>
                             <form v-if="!finalCheck" action="" v-on:submit.prevent="FinalFlight()">
                                 <h2 class="card-title">Todo listo !</h2>
-                                <div class="flight-card-button">
+                                <div v-if="finalFlightBool" class="flight-card-button">
                                     <button type="submit" class="btn btn-primary btn-block">
                                         Comprar Vuelo!
                                     </button>
@@ -162,6 +162,7 @@
                 posibleFlights: {},
                 requestPosible: '',
                 finalCheck: true,
+                finalFlightBool: true,
             };
         },
         created() {
@@ -192,6 +193,12 @@
                 this.request.dateStart = this.requestPosible.go_at;
                 this.request.dateEnd = this.requestPosible.return_at;
                 this.finalCheck = !this.finalCheck;
+            },
+            FinalFlight(){
+                this.finalFlightBool = !this.finalFlightBool;
+                    swal({
+                        title: "Completado!",
+                    });
             }
         }
     }
